@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Hintergrundfarbe des Buttons -->
+    <solid android:color="#006200EE"/> <!-- Setze die gewünschte Farbe -->
+
+    <!-- Eckenradius für runde Form -->
+    <corners android:radius="50dp"/> <!-- Erhöhe den Wert für rundere Ecken -->
+
+    <!-- Optionale Ränder -->
+    <stroke
+        android:width="2dp"
+        android:color="#FFFFFF"/> <!-- Setze Randfarbe und -breite -->
+
+    <!-- Optionaler Innenabstand -->
+    <padding
+        android:left="10dp"
+        android:top="10dp"
+        android:right="10dp"
+        android:bottom="10dp"/>
+</shape>
