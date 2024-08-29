@@ -1,4 +1,4 @@
-package com.example.abschlussprojekt.data.remote.weather
+package com.example.abschlussprojekt.data.remote
 
 import com.example.abschlussprojekt.data.model.WeatherResponse
 import com.squareup.moshi.Moshi

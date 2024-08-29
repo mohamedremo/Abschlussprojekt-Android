@@ -1,6 +1,7 @@
 package com.example.abschlussprojekt.data.model
 
 data class Profile(
+    val userId: String,
     val firstName: String,
     val surName: String,
     val email: String,
