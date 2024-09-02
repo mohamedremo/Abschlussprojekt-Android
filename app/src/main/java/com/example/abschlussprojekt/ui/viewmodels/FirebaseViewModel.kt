@@ -1,6 +1,7 @@
 package com.example.abschlussprojekt.ui.viewmodels
 
 import android.app.Application
+import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -39,10 +40,17 @@ class FirebaseViewModel(application: Application): AndroidViewModel(application)
     }
 
     fun saveInFirestore(firstName: String, surName: String, email: String, birthDate: String, driverLicense: Boolean, wantDeliver: Boolean, phoneNumber: String) {
-        repository.saveInFirestore(firstName, surName, email, birthDate, driverLicense, wantDeliver, phoneNumber)
+        repository.saveInFirestore(firstName, surName, email, birthDate, driverLicense, wantDeliver)
     }
 
     fun getUserProfile(onResult: (Map<String, Any>?) -> Unit) {
-        repository.getUserProfile(onResult)
+        viewModelScope.launch {
+            repository.getUserProfile(onResult)
+        }
+
+    }
+
+    fun uploadImage(imageUri: Uri) {
+        repository.uploadImage(imageUri)
     }
 }

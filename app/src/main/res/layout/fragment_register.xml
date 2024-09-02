@@ -25,34 +25,40 @@
         android:id="@+id/textInputLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
         android:layout_marginTop="20dp"
-        app:boxStrokeColor="@color/md_theme_primary"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:boxCornerRadiusBottomEnd="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxStrokeColor="@color/md_theme_background"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
 
-
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etFirstName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="60dp"
-            android:background="@drawable/round_edittext"
+            android:layout_height="match_parent"
             android:drawableStart="@drawable/person_24px"
             android:hint="@string/first_name"
             tools:layout_editor_absoluteX="77dp"
             tools:layout_editor_absoluteY="189dp" />
-
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etLayoutSurName"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        app:boxCornerRadiusBottomEnd="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusTopStart="30dp"
         app:boxStrokeColor="@color/md_theme_primary"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,52 +66,53 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
-
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etSurName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="60dp"
-            android:background="@drawable/round_edittext"
             android:drawableStart="@drawable/person_24px"
             android:hint="@string/sur_name"
             tools:layout_editor_absoluteX="77dp"
             tools:layout_editor_absoluteY="189dp" />
-
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etLayoutBirthDate"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+
+        app:boxCornerRadiusBottomEnd="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusTopStart="30dp"
         app:boxStrokeColor="@color/md_theme_primary"
         app:errorEnabled="true"
         app:layout_constraintTop_toBottomOf="@+id/etLayoutSurName"
         tools:layout_editor_absoluteX="0dp">
 
-
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etBirthDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="60dp"
-            android:background="@drawable/round_edittext"
             android:drawableStart="@drawable/person_24px"
             android:hint="@string/birth_date"
             android:inputType="date"
             tools:layout_editor_absoluteX="77dp"
             tools:layout_editor_absoluteY="189dp" />
-
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etLayoutMail"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        app:boxCornerRadiusBottomEnd="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusTopStart="30dp"
         app:boxStrokeColor="@color/md_theme_primary"
         app:errorEnabled="true"
         app:layout_constraintTop_toBottomOf="@+id/etLayoutBirthDate"
@@ -115,9 +122,6 @@
             android:id="@+id/etMail"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginEnd="60dp"
-            android:background="@drawable/round_edittext"
             android:drawableStart="@drawable/mail_24px"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
@@ -126,13 +130,18 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="398dp" />
-
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etLayoutPassword"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        app:boxCornerRadiusBottomEnd="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusTopStart="30dp"
         app:boxStrokeColor="@color/md_theme_primary"
         app:errorEnabled="true"
         app:layout_constraintTop_toBottomOf="@+id/etLayoutMail"
@@ -142,10 +151,6 @@
             android:id="@+id/etPasswordOne"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="60dp"
-            android:background="@drawable/round_edittext"
             android:drawableStart="@drawable/password_24px"
             android:hint="@string/password"
             android:inputType="textPassword"
@@ -160,6 +165,12 @@
         android:id="@+id/etLayoutPasswordTwo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        app:boxCornerRadiusBottomEnd="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusTopStart="30dp"
         app:boxStrokeColor="@color/md_theme_primary"
         app:errorEnabled="true"
         app:layout_constraintTop_toBottomOf="@+id/etLayoutPassword"
@@ -169,10 +180,6 @@
             android:id="@+id/etPasswordTwo"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="60dp"
-            android:background="@drawable/round_edittext"
             android:drawableStart="@drawable/password_24px"
             android:hint="@string/password_again"
             android:inputType="textPassword"
@@ -184,6 +191,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <RadioButton
+        android:id="@+id/radioButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -198,13 +206,11 @@
         android:id="@+id/registerBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="28dp"
         android:backgroundTint="#d14518"
         android:text="@string/register"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

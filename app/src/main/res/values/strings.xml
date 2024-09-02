@@ -8,4 +8,9 @@
     <string name="password">Passwort</string>
     <string name="password_again">Passwort wiederholen</string>
     <string name="register">Registrieren</string>
+    <string name="login">LogIn</string>
+    <string name="noAccount">Ich habe noch kein Konto.</string>
+    <string name="welcome">Willkommen!</string>
+    <string name="penguin">Pinguin</string>
+
 </resources>

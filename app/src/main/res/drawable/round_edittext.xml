@@ -11,7 +11,7 @@
     <!-- Optionale Ränder -->
     <stroke
         android:width="2dp"
-        android:color="#D899B3"/> <!-- Setze Randfarbe und -breite -->
+        android:color="@color/md_theme_primary"/> <!-- Setze Randfarbe und -breite -->
 
     <!-- Optionaler Innenabstand -->
     <padding

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000"
+        motion:motionInterpolator="cubic(0,2,0,2,0,8,0,8)">
+        <OnSwipe
+            motion:dragDirection="dragUp" />
+       <KeyFrameSet>
+
+
+           <KeyAttribute
+               motion:motionTarget="@+id/cardV"
+               motion:framePosition="100"
+               android:translationY="-150dp" />
+       </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/tvActual"
+            android:layout_marginStart="12dp"
+            motion:layout_constraintBottom_toTopOf="@+id/recyclerView"
+            android:layout_marginBottom="8dp" />
+        <Constraint
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_editor_absoluteX="111dp"
+            android:id="@+id/tvTasks"
+            motion:layout_constraintStart_toEndOf="@+id/tvActual"
+            motion:layout_constraintBottom_toTopOf="@+id/recyclerView"
+            android:layout_marginBottom="8dp" />
+        <Constraint
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            motion:layout_editor_absoluteY="329dp"
+            android:id="@+id/recyclerView"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent" />
+        <Constraint
+            motion:layout_constraintStart_toEndOf="@+id/tvPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            motion:layout_editor_absoluteY="50dp"
+            android:id="@+id/butle"
+            motion:layout_constraintTop_toBottomOf="@+id/tvWelcome"
+            android:layout_marginTop="16dp" />
+        <Constraint
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_editor_absoluteY="48dp"
+            android:id="@+id/day"
+            motion:layout_constraintTop_toBottomOf="@+id/tvWelcome"
+            motion:layout_constraintEnd_toStartOf="@+id/cvProfile"
+            android:layout_marginEnd="55dp"
+            android:layout_marginRight="55dp" />
+        <Constraint
+            motion:layout_constraintStart_toEndOf="@+id/moneyPig"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            motion:layout_constraintBottom_toTopOf="@+id/tvLocation"
+            android:layout_marginStart="8dp"
+            android:id="@+id/tvPoints"
+            motion:layout_constraintTop_toBottomOf="@+id/tvWelcome"
+            android:layout_marginTop="17dp"
+            motion:layout_constraintVertical_bias="0.0"
+            android:layout_marginLeft="8dp" />
+        <Constraint
+            motion:layout_constraintStart_toEndOf="@+id/butle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/tvWelcome"
+            android:layout_marginTop="16dp"
+            android:id="@+id/points" />
+        <Constraint
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:id="@+id/cvMain"
+            android:translationY="-30dp" />
+        <Constraint
+            android:id="@+id/cardV"
+            android:layout_width="match_parent"
+            android:layout_height="255dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:translationY="-2dp" />
+        <Constraint
+            android:id="@+id/tvLvl"
+            motion:layout_constraintEnd_toEndOf="@+id/lvlSymbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@+id/lvlSymbol"
+            motion:layout_constraintTop_toTopOf="@+id/lvlSymbol"
+            motion:layout_constraintStart_toStartOf="@+id/lvlSymbol" />
+        <Constraint
+            android:id="@+id/moneyPig"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            motion:layout_constraintTop_toBottomOf="@+id/tvWelcome"
+            android:layout_marginStart="16dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="12dp" />
+        <Constraint
+            android:id="@+id/locatorNeedle"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            motion:layout_constraintTop_toBottomOf="@+id/moneyPig"
+            android:layout_marginStart="16dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="4dp" />
+        <Constraint
+            android:id="@+id/tvLocation"
+            motion:layout_constraintStart_toEndOf="@+id/locatorNeedle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            motion:layout_constraintBottom_toTopOf="@+id/tvWeather"
+            android:layout_marginStart="8dp" />
+        <Constraint
+            android:id="@+id/tvWeather"
+            motion:layout_constraintStart_toEndOf="@+id/weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/locatorNeedle"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="7dp" />
+        <Constraint
+            android:id="@+id/weather"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            motion:layout_constraintTop_toBottomOf="@+id/locatorNeedle"
+            android:layout_marginStart="16dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="4dp" />
+        <Constraint
+            android:id="@+id/cvProfile"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="12dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="70dp" />
+        <Constraint
+            android:id="@+id/tvWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="56dp" />
+        <Constraint
+            android:id="@+id/lvlSymbol"
+            motion:layout_constraintStart_toEndOf="@+id/tvWelcome"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="4dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="54dp" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            android:layout_width="wrap_content"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:id="@+id/tvWelcome"/>
+        <Constraint
+            android:id="@+id/lvlSymbol"
+            motion:layout_constraintStart_toEndOf="@+id/tvWelcome"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="4dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="24dp"
+            android:rotation="-360"/>
+        <Constraint
+            android:id="@+id/tvLocation"
+            motion:layout_constraintStart_toEndOf="@+id/locatorNeedle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            motion:layout_constraintBottom_toTopOf="@+id/tvWeather"
+            android:layout_marginStart="8dp"
+            android:translationX="-150dp"/>
+        <Constraint
+            android:id="@+id/butle"
+            motion:layout_constraintStart_toEndOf="@+id/tvPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/tvWelcome"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="8dp" >
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="@android:color/white" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/points"
+            motion:layout_constraintStart_toEndOf="@+id/butle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/tvWelcome"
+            android:layout_marginTop="4dp"
+            />
+        <Constraint
+            android:id="@+id/tvPoints"
+            motion:layout_constraintStart_toEndOf="@+id/moneyPig"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/tvWelcome"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="8dp">
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="@android:color/white" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/locatorNeedle"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            motion:layout_constraintTop_toBottomOf="@+id/moneyPig"
+            android:layout_marginStart="16dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="4dp"
+            android:translationX="-100dp" />
+        <Constraint
+            android:id="@+id/day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/lvlSymbol"
+            android:layout_marginStart="32dp"
+            motion:layout_constraintStart_toStartOf="@+id/points"
+            android:layout_marginTop="12dp"
+            android:translationX="-500dp" />
+        <Constraint
+            android:id="@+id/cvProfile"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="55dp"
+            android:layout_height="53dp"
+            android:layout_marginEnd="12dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="30dp" />
+        <Constraint
+            android:layout_height="25dp"
+            android:layout_width="25dp"
+            motion:layout_constraintTop_toBottomOf="@+id/tvWelcome"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="36dp"
+            android:layout_marginStart="36dp"
+            android:id="@+id/weather" android:rotation="360"/><Constraint android:layout_height="wrap_content" android:layout_width="wrap_content" motion:layout_constraintTop_toBottomOf="@+id/tvWelcome" motion:layout_constraintStart_toEndOf="@+id/weather" android:layout_marginLeft="8dp" android:layout_marginStart="12dp" android:id="@+id/tvWeather" android:layout_marginTop="4dp">
+        <CustomAttribute
+            motion:attributeName="textColor"
+            motion:customColorValue="@android:color/white" />
+    </Constraint><Constraint android:layout_height="25dp" android:layout_width="25dp" motion:layout_constraintTop_toBottomOf="@+id/tvWelcome" motion:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="120dp" android:layout_marginStart="120dp" android:id="@+id/moneyPig" android:rotation="360"/>
+
+
+    </ConstraintSet>
+</MotionScene>
