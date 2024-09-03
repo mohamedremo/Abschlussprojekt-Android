@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.firebase.storage.ktx)
+    implementation(libs.play.services.maps)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -95,5 +96,15 @@ dependencies {
 
     //GSON
     implementation(libs.gson)
+
+    //EXOPLAYER
+    implementation (libs.exoplayer)
+
+    //GLIDE
+    implementation (libs.glide)
+    annotationProcessor (libs.compiler)
+
+    //LOTTIE
+    implementation (libs.lottie)
 
 }

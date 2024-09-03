@@ -100,7 +100,11 @@
             android:layout_height="wrap_content"
             motion:layout_constraintBottom_toBottomOf="@+id/lvlSymbol"
             motion:layout_constraintTop_toTopOf="@+id/lvlSymbol"
-            motion:layout_constraintStart_toStartOf="@+id/lvlSymbol" />
+            motion:layout_constraintStart_toStartOf="@+id/lvlSymbol" >
+            <CustomAttribute
+                motion:attributeName="textSize"
+                motion:customPixelDimension="1sp" />
+        </Constraint>
         <Constraint
             android:id="@+id/moneyPig"
             android:layout_width="25dp"
@@ -160,8 +164,8 @@
         <Constraint
             android:id="@+id/lvlSymbol"
             motion:layout_constraintStart_toEndOf="@+id/tvWelcome"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="30dp"
+            android:layout_height="26dp"
             android:layout_marginStart="4dp"
             motion:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="54dp" />
@@ -262,11 +266,30 @@
             motion:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="36dp"
             android:layout_marginStart="36dp"
-            android:id="@+id/weather" android:rotation="360"/><Constraint android:layout_height="wrap_content" android:layout_width="wrap_content" motion:layout_constraintTop_toBottomOf="@+id/tvWelcome" motion:layout_constraintStart_toEndOf="@+id/weather" android:layout_marginLeft="8dp" android:layout_marginStart="12dp" android:id="@+id/tvWeather" android:layout_marginTop="4dp">
+            android:id="@+id/weather"
+            android:rotation="360"/>
+        <Constraint
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/tvWelcome"
+            motion:layout_constraintStart_toEndOf="@+id/weather"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="12dp"
+            android:id="@+id/tvWeather"
+            android:layout_marginTop="4dp">
         <CustomAttribute
             motion:attributeName="textColor"
             motion:customColorValue="@android:color/white" />
-    </Constraint><Constraint android:layout_height="25dp" android:layout_width="25dp" motion:layout_constraintTop_toBottomOf="@+id/tvWelcome" motion:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="120dp" android:layout_marginStart="120dp" android:id="@+id/moneyPig" android:rotation="360"/>
+    </Constraint>
+        <Constraint
+            android:layout_height="25dp"
+            android:layout_width="25dp"
+            motion:layout_constraintTop_toBottomOf="@+id/tvWelcome"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="120dp"
+            android:layout_marginStart="120dp"
+            android:id="@+id/moneyPig"
+            android:rotation="360"/>
 
 
     </ConstraintSet>

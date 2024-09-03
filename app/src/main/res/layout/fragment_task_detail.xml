@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Hauptcontainer, der eine koordinatorbasierte Ansicht ermöglicht -->
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- AppBarLayout enthält die Toolbar und ein Bild, das scrollbar ist -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="192dp">
+
+        <!-- CollapsingToolbarLayout, um das Layout bei einem Scroll-Ereignis zusammenzufalten -->
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:toolbarId="@+id/toolbar"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:layout_scrollInterpolator="@android:anim/decelerate_interpolator"
+            app:contentScrim="?attr/colorPrimary">
+
+            <!-- Bild in der Toolbar -->
+            <ImageView
+                android:id="@+id/ivAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/title_pic"
+                android:src="@drawable/penguin_pc2"
+                app:layout_collapseParallaxMultiplier="@integer/material_motion_duration_medium_1"
+                android:scaleType="centerCrop" />
+
+            <!-- Toolbar innerhalb des CollapsingToolbarLayout -->
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Scrollbares Hauptlayout -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/md_theme_primaryContainer"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <!-- ConstraintLayout innerhalb des ScrollView -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/md_theme_primaryContainer"
+            tools:context=".ui.TaskDetailFragment">
+
+            <!-- Rundes Profilbild in einem CardView -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvPic"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="16dp"
+                app:cardCornerRadius="50dp"
+                app:layout_constraintBottom_toTopOf="@id/divider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/profilepic"
+                    android:src="@drawable/penguin_pc" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- Name des Nutzers -->
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="34dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/testName"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/lvl"
+                app:layout_constraintStart_toEndOf="@+id/cvPic"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Level-Anzeige -->
+            <TextView
+                android:id="@+id/lvl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="41dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/lv"
+                android:textColor="@color/md_theme_background"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toStartOf="@+id/lvlSymbol"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Level-Symbol (Lottie-Animation) -->
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lvlSymbol"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="196dp"
+                android:layout_marginTop="48dp"
+                app:layout_constraintStart_toEndOf="@+id/cvPic"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_fileName="seven.json" />
+
+            <!-- Rolle des Nutzers -->
+            <TextView
+                android:id="@+id/tvRole"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_alternates_light"
+                android:text="@string/dienstleister"
+                android:textColor="@color/md_theme_background"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tvName"
+                app:layout_constraintStart_toStartOf="@+id/tvName"
+                app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+            <!-- Trennlinie (Divider) -->
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="2sp"
+                android:layout_marginTop="32dp"
+                app:dividerColor="@color/md_theme_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvRole"
+                tools:ignore="SmallSp" />
+
+            <!-- Animation Symbol Scooter -->
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieAnimationView2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="50dp"
+                app:lottie_autoPlay="true"
+                android:clickable="true"
+                app:layout_constraintBottom_toBottomOf="@+id/lottieAnimationView"
+                app:layout_constraintEnd_toStartOf="@+id/lottieAnimationView"
+                app:layout_constraintTop_toBottomOf="@+id/divider"
+                app:lottie_fileName="scooter.json" />
+
+            <!-- Animation Symbol Rating -->
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieAnimationView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="40dp"
+                app:lottie_autoPlay="true"
+                android:clickable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider"
+                app:lottie_fileName="rate.json" />
+
+            <!-- Animation Symbol Call -->
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="40dp"
+                app:lottie_autoPlay="true"
+                android:clickable="true"
+                app:layout_constraintBottom_toBottomOf="@+id/lottieAnimationView"
+                app:layout_constraintStart_toEndOf="@+id/lottieAnimationView"
+                app:layout_constraintTop_toBottomOf="@+id/divider"
+                app:layout_constraintVertical_bias="0.0"
+                app:lottie_fileName="call.json" />
+
+            <!-- Überschrift "aktuelle Aufträge" -->
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/montserrat_alternates_light"
+                android:text="@string/actual1"
+                android:textColor="#000000"
+                android:textSize="26sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lottieAnimationView2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/montserrat_alternates_light"
+                android:text="@string/actual2"
+                android:textColor="@color/md_theme_background"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/textView4"
+                app:layout_constraintTop_toBottomOf="@+id/lottieAnimationView" />
+
+            <!-- Trennlinie (Divider) unter der Überschrift -->
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/materialDivider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:dividerColor="@color/md_theme_background"
+                app:dividerThickness="1sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+            <!-- RecyclerView für die Anzeige von Aufgaben -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialDivider"
+                tools:listitem="@layout/list_task" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- FloatingActionButton zum Hinzufügen neuer Aufgaben -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/taskbtn"
+        android:src="@android:drawable/ic_input_add"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
