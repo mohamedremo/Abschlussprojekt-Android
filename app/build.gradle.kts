@@ -47,11 +47,11 @@ dependencies {
 
     implementation(libs.androidx.ui.desktop)
     implementation(libs.androidx.datastore.core.android)
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
+    implementation (libs.androidx.activity.ktx.v131) 
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
@@ -63,8 +63,11 @@ dependencies {
 
     //VIEWMODEL
     implementation(libs.androidx.lifecycle.viewmodel.ktx.v262)
+
     //LIVE-DATA
     implementation(libs.androidx.lifecycle.livedata.ktx)
+
+
     //FRAGMENT
     implementation(libs.androidx.fragment.ktx)
 
@@ -106,5 +109,8 @@ dependencies {
 
     //LOTTIE
     implementation (libs.lottie)
+
+    //WEATHER
+    implementation (libs.play.services.location)
 
 }

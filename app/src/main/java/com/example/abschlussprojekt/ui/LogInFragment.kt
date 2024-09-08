@@ -7,15 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.example.abschlussprojekt.databinding.FragmentLogInBinding
-import androidx.fragment.app.viewModels
-import com.example.abschlussprojekt.ui.viewmodels.FirebaseViewModel
+import androidx.navigation.fragment.findNavController
+import com.example.abschlussprojekt.ui.viewmodel.FirebaseViewModel
 
 private const val TAG = "LogInFragment"
 
 class LogInFragment : Fragment() {
 
     private lateinit var binding: FragmentLogInBinding
-    private val viewModel: FirebaseViewModel by activityViewModels()
+    private val fireViewModel: FirebaseViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,13 +28,18 @@ class LogInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        fireViewModel.currentUser.observe(viewLifecycleOwner) {
+            if (it != null)
+                findNavController().navigate(
+                    LogInFragmentDirections.actionLogInFragmentToHomeFragment())
+        }
+
+        //Button zum Einloggen
         binding.button.setOnClickListener {
             val email = binding.appCompatEditText.text.toString()
             val password = binding.appCompatEditText2.text.toString()
-            viewModel.logIn(email, password)
-
-            viewModel.getUserProfile {
-            }
+            fireViewModel.logIn(email, password)
+            findNavController().navigate(LogInFragmentDirections.actionLogInFragmentToHomeFragment())
         }
     }
 

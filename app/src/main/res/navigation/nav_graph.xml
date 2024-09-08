@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_logInFragment_to_homeFragment2"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_logInFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -21,6 +24,9 @@
         <action
             android:id="@+id/action_registerFragment_to_logInFragment"
             app:destination="@id/logInFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -47,7 +53,11 @@
             app:destination="@id/homeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/taskDetailFragment"
-        android:name="com.example.abschlussprojekt.ui.TaskDetailFragment"
-        android:label="TaskDetailFragment" />
+        android:id="@+id/profileFragment"
+        android:name="com.example.abschlussprojekt.ui.ProfileFragment"
+        android:label="TaskDetailFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
+    </fragment>
 </navigation>

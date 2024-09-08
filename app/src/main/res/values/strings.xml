@@ -1,6 +1,8 @@
 <resources>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    
+    <string name="app_name">myButler</string>"
 
     <!-- REGISTER UND LOGIN STRINGS -->
     <string name="first_name">Vorname</string>
@@ -16,6 +18,10 @@
     <string name="penguin">Pinguin</string>
     <string name="forgot_password">Passwort vergessen?</string>
     <string name="license">Ich hab einen Führerschein!(Klasse B)</string>
+    <string name="password_nomatch">Die eingegebenen Passwörter stimmen nicht überein, bitte versuchen sie es nochmal</string>
+    <string name="password_sixchars">Das Passwort muss mindestens 6 Zeichen lang sein</string>
+    <string name="reg_allfields">Bitte füllen Sie alle Felder aus</string>
+    <string name="reg_success">Erfolgreich registriert</string>
 
     <!-- MENU STRING -->
     <string name="menu_logout">Logout</string>
@@ -36,6 +42,7 @@
 
 
     <!-- HOME STRINGS -->
+    <string name="welcome_home">Welcome</string>
     <string name="welcome_frank">Welcome Frank</string>
     <string name="_10">10</string>
     <string name="goodday">… Einen angenehmen Tag :)</string>

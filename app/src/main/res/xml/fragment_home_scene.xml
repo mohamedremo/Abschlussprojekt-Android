@@ -52,7 +52,11 @@
             motion:layout_editor_absoluteY="50dp"
             android:id="@+id/butle"
             motion:layout_constraintTop_toBottomOf="@+id/tvWelcome"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp" >
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="@android:color/black" />
+        </Constraint>
         <Constraint
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -73,7 +77,11 @@
             motion:layout_constraintTop_toBottomOf="@+id/tvWelcome"
             android:layout_marginTop="17dp"
             motion:layout_constraintVertical_bias="0.0"
-            android:layout_marginLeft="8dp" />
+            android:layout_marginLeft="8dp" >
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="@android:color/black" />
+        </Constraint>
         <Constraint
             motion:layout_constraintStart_toEndOf="@+id/butle"
             android:layout_width="wrap_content"
@@ -136,7 +144,11 @@
             android:layout_height="wrap_content"
             motion:layout_constraintTop_toBottomOf="@+id/locatorNeedle"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="7dp" />
+            android:layout_marginTop="7dp" >
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="@android:color/black" />
+        </Constraint>
         <Constraint
             android:id="@+id/weather"
             android:layout_width="25dp"
