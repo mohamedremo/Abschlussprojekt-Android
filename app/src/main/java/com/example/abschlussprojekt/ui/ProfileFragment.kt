@@ -30,6 +30,10 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.getTasks()
+
+        val nav = findNavController()
+
         binding.addBtn.setOnClickListener {
             fireViewModel.logOut()
         }
@@ -37,7 +41,7 @@ class ProfileFragment : Fragment() {
         //Wenn der User nicht eingeloggt ist wird er zum WelcomeFragment navigiert.
         fireViewModel.currentUser.observe(viewLifecycleOwner) {
             if (it == null)
-                findNavController().navigate(
+                nav.navigate(
                     ProfileFragmentDirections
                         .actionProfileFragmentToWelcomeFragment())
         }

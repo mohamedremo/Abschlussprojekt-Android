@@ -34,7 +34,6 @@ class HomeFragment : Fragment() {
     //ViewBinding, ActivityResultLauncher und ViewModel, die initialisiert werden.
     private lateinit var binding: FragmentHomeBinding
     private lateinit var getContent: ActivityResultLauncher<Intent>
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val viewModel: MainViewModel by activityViewModels()
     private val fireViewModel: FirebaseViewModel by activityViewModels()
 
@@ -49,9 +48,16 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val nav = findNavController()
+
+        //Initialisierung der ActivityResultLauncher
+        initContent()
+
         fireViewModel.currentUser.observe(viewLifecycleOwner) {
             if (it == null)
-                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToWelcomeFragment())
+                nav.navigate(
+                    HomeFragmentDirections
+                        .actionHomeFragmentToWelcomeFragment())
         }
 
         fireViewModel.profile.value?.addSnapshotListener { value, error ->
@@ -91,16 +97,7 @@ class HomeFragment : Fragment() {
             uploadImage()
         }
 
-        getContent =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == Activity.RESULT_OK) {
-                    val uri: Uri? = result.data?.data
-                    if (uri != null) {
-                        binding.ivProfilePic.setImageURI(uri)
-                        fireViewModel.uploadImage(uri)
-                    }
-                }
-            }
+
         try {
             binding.ivProfilePic.setImageURI(fireViewModel.currentUser.value?.photoUrl)
             Log.d(TAG, "onViewCreated: Profil Pic set!")
@@ -119,5 +116,21 @@ class HomeFragment : Fragment() {
         }
         getContent.launch(intent)
     }
+
+    private fun initContent() {
+        getContent =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == Activity.RESULT_OK) {
+                    val uri: Uri? = result.data?.data
+                    if (uri != null) {
+                        binding.ivProfilePic.setImageURI(uri)
+                        fireViewModel.uploadImage(uri)
+                    }
+                }
+            }
+
+    }
+
+
 
 }

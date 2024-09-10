@@ -1,14 +1,12 @@
 package com.example.abschlussprojekt.data
 
 import android.net.Uri
-import android.nfc.Tag
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.abschlussprojekt.MainActivity
 import com.example.abschlussprojekt.data.model.Profile
-import com.example.abschlussprojekt.data.model.WeatherResponse
 import com.example.abschlussprojekt.isValidEmail
 import com.example.abschlussprojekt.toast
 import com.google.firebase.auth.FirebaseAuth
@@ -77,13 +75,11 @@ class FirebaseRepository {
                     //Speichern der Daten in Firestore
                     saveInFirestore(firstName, surName, email, birthDate, driverLicense, readyForWork, profilePicture)
                     Log.d(TAG, "registerNewUser(if): ${task.result}")
-                } else {
-                    _currentUser.value = null // Wenn Registrierung fehlschlägt Benutzer auf null setzen
-                    Log.d(TAG, "registerNewUser(else): ${task.result}")
                 }
             }
         } catch (e: Exception) {
-            e.printStackTrace()
+            _currentUser.value = null
+            Log.d(TAG, "registerNewUser(TryCatch): ${e.message}")
         }
     }
 
@@ -95,15 +91,12 @@ class FirebaseRepository {
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         _currentUser.value = auth.currentUser
-                        Log.d(TAG, "logIn(if): ${task.result}")
-                    } else {
-                        _currentUser.value = null
-                        Log.d(TAG, "logIn(else): ${task.result}")
-                        task.exception?.printStackTrace()
+                        Log.d(TAG, "LogIn Success: ${task.result}")
                     }
                 }
             } catch (e: Exception) {
-                Log.e(TAG, "Fehler im TryCatch Block: ${e.message}")
+                _currentUser.value = null
+                Log.e(TAG, "Fehler im logIn() TryCatch Block: ${e.message}")
             }
         } else {
             Log.d(TAG, "Ungültige E-Mail")
@@ -204,10 +197,13 @@ class FirebaseRepository {
             //Speichern des Bildes
             storageRef.putFile(imageUri).addOnSuccessListener { //Erfolgreich -> Bild wird hochgeladen
                 Log.d(TAG, "Bild wurde erfolgreich hochgeladen")
+                _downloading.value = true
+                //Aktualisieren der Profilbild URL in der Firestore Datenbank
                 storageRef.downloadUrl.addOnSuccessListener {
                     (profileRef?.update("profilePicture", it.toString()))
                 }
             }.addOnFailureListener { //Fail -> Bild konnte nicht hochgeladen werden
+                _downloading.value = false
                 Log.d(TAG, "Bild konnte nicht hochgeladen werden")
             }
         }

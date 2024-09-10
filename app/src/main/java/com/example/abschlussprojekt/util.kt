@@ -2,11 +2,14 @@ package com.example.abschlussprojekt
 
 import android.content.Context
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.navigation.NavController
+import androidx.navigation.NavDirections
+import androidx.navigation.Navigation.findNavController
 import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.math.sqrt
+import kotlin.reflect.KClass
 
 
 //Checken ob Email korrekt Formatiert ist.
@@ -14,8 +17,9 @@ fun isValidEmail(email: String): Boolean {
     return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
 }
 
-fun toast(text: String,context: Context?) = Toast.makeText(context, text, Toast.LENGTH_LONG)
-    .show()
+fun toast (text: String,context: Context) {
+    Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
+}
 
 //Entfernung zwischen zwei Punkten berechnen
 fun calculateDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {

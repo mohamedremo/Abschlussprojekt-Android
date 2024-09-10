@@ -17,14 +17,6 @@ class Repository(
     private val butlerApi: ButlerApi,
 ) {
 
-    //Initialisiere Tasks und Profiles
-    init {
-        suspend {
-            getTasks()
-            getProfiles()
-        }
-    }
-
     private val _lastWeather = MutableLiveData<WeatherResponse>()
     val lastWeather: LiveData<WeatherResponse>
         get() = _lastWeather

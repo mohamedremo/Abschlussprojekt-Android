@@ -192,7 +192,11 @@
             motion:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
-            android:id="@+id/tvWelcome"/>
+            android:id="@+id/tvWelcome">
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="@android:color/holo_red_dark" />
+        </Constraint>
         <Constraint
             android:id="@+id/lvlSymbol"
             motion:layout_constraintStart_toEndOf="@+id/tvWelcome"

@@ -30,32 +30,26 @@ class WelcomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Navigation Controller setzen.
-        val navController = findNavController()
+        val nav = findNavController()
 
         //Wenn User bereits eingeloggt ist -> HomeFragment
         fireViewModel.currentUser.observe(viewLifecycleOwner) {
             if (it != null)
-                findNavController().navigate(
+                nav.navigate(
                     WelcomeFragmentDirections
                         .actionWelcomeFragmentToHomeFragment())
         }
 
-        //Animation Test
-        AnimationUtils.loadAnimation(requireContext(), R.anim.blink).also { anim ->
-            binding.registerBtn.startAnimation(anim)
-        }
-
         //LOGIN
         binding.loginBtn.setOnClickListener {
-            navController.navigate(
+            nav.navigate(
                 WelcomeFragmentDirections
                     .actionWelcomeFragmentToLogInFragment())
         }
 
         //REGISTER
         binding.registerBtn.setOnClickListener {
-           navController.navigate(
+           nav.navigate(
                WelcomeFragmentDirections
                    .actionWelcomeFragmentToRegisterFragment())
         }

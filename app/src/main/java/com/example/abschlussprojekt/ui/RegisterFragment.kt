@@ -31,64 +31,27 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val nav = findNavController()
+
         //Animation Testen
         binding.registerBtn.animate()
 
         //Wenn User bereits eingeloggt ist -> HomeFragment
         fireViewModel.currentUser.observe(viewLifecycleOwner) {
-            if (it != null)
-                findNavController().navigate(
-                    RegisterFragmentDirections
-                        .actionRegisterFragmentToHomeFragment())
+
         }
 
         //Register Button
         binding.registerBtn.setOnClickListener {
-            val email = binding.etMail.text.toString()
-            val password = binding.etPasswordOne.text.toString()
-            val password2 = binding.etPasswordTwo.text.toString()
-            val firstName = binding.etFirstName.text.toString()
-            val surName = binding.etSurName.text.toString()
-            val birthDate = binding.etBirthDate.text.toString()
-            val driverLicense = binding.radioButton.isChecked
-
-            //Wenn eines der benötigten Felder leer ist -> Toast!
-            if (email.isEmpty() || password.isEmpty() || password2.isEmpty() ||
-                firstName.isEmpty() || surName.isEmpty() || birthDate.isEmpty()
-            ) {
-                toast(getString(R.string.reg_allfields), context)
-                return@setOnClickListener
-            }
-
-            if (password != password2) { // Wenn Passwörter nur nicht überein stimmen -> Toast!
-                toast(getString(R.string.password_nomatch), context)
-                return@setOnClickListener
-
-            } else if (password.length < 6) { // Wenn Passwort weniger als 6 Zeichen -> Toast!
-                toast(getString(R.string.password_sixchars), context)
-                return@setOnClickListener
-
-            }else {
-                clearFields()
-                fireViewModel.registerNewUser( //Registrierung wird mit eingegebenen Daten probiert.
-                    email,
-                    password,
-                    firstName,
-                    surName,
-                    birthDate,
-                    driverLicense,
-                    readyForWork = false,
-                    profilePicture = ""
-
-                )
-                toast(getString(R.string.reg_success), context) //Toast wenn Registrierung Erfolgreich
-                findNavController().navigate(
+            if (registerUser()) {
+                nav.navigate(
                     RegisterFragmentDirections
-                        .actionRegisterFragmentToHomeFragment())
-            }
+                        .actionRegisterFragmentToHomeFragment()
+                )
+            } else
+                return@setOnClickListener
         }
     }
-
 
     //EditTexts leeren
     private fun clearFields() {
@@ -100,5 +63,49 @@ class RegisterFragment : Fragment() {
         binding.etPasswordTwo.text?.clear()
     }
 
+    private fun registerUser(): Boolean {
+        val email = binding.etMail.text.toString()
+        val password = binding.etPasswordOne.text.toString()
+        val password2 = binding.etPasswordTwo.text.toString()
+        val firstName = binding.etFirstName.text.toString()
+        val surName = binding.etSurName.text.toString()
+        val birthDate = binding.etBirthDate.text.toString()
+        val driverLicense = binding.radioButton.isChecked
+
+        //Wenn eines der benötigten Felder leer ist -> Toast!
+        if (email.isEmpty() || password.isEmpty() || password2.isEmpty() ||
+            firstName.isEmpty() || surName.isEmpty() || birthDate.isEmpty()
+        ) {
+            toast(getString(R.string.reg_allfields),requireContext())
+            return false
+        }
+
+        if (password != password2) { // Wenn Passwörter nur nicht überein stimmen -> Toast!
+            toast(getString(R.string.password_nomatch),requireContext())
+            return false
+
+        } else if (password.length < 6) { // Wenn Passwort weniger als 6 Zeichen -> Toast!
+            toast(getString(R.string.password_sixchars),requireContext())
+            return false
+
+        } else {
+            clearFields()
+            fireViewModel.registerNewUser( //Registrierung wird mit eingegebenen Daten probiert.
+                email,
+                password,
+                firstName,
+                surName,
+                birthDate,
+                driverLicense,
+                readyForWork = false,
+                profilePicture = ""
+            )
+            //Toast wenn Registrierung Erfolgreich
+            toast(getString(R.string.reg_success), requireContext())
+            return true
+        }
+    }
 }
+
+
 

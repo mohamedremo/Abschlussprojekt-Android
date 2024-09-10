@@ -28,10 +28,13 @@ class LogInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val nav = findNavController()
+
         fireViewModel.currentUser.observe(viewLifecycleOwner) {
             if (it != null)
-                findNavController().navigate(
-                    LogInFragmentDirections.actionLogInFragmentToHomeFragment())
+                nav.navigate(
+                    LogInFragmentDirections
+                        .actionLogInFragmentToHomeFragment())
         }
 
         //Button zum Einloggen
@@ -39,7 +42,10 @@ class LogInFragment : Fragment() {
             val email = binding.appCompatEditText.text.toString()
             val password = binding.appCompatEditText2.text.toString()
             fireViewModel.logIn(email, password)
-            findNavController().navigate(LogInFragmentDirections.actionLogInFragmentToHomeFragment())
+
+            nav.navigate(
+                LogInFragmentDirections
+                    .actionLogInFragmentToHomeFragment())
         }
     }
 
