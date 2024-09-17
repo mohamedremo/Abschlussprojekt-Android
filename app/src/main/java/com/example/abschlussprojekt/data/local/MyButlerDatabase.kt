@@ -1,13 +1,17 @@
 package com.example.abschlussprojekt.data.local
 
+import android.animation.TypeConverter
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.example.abschlussprojekt.data.local.converter.LocationConverter
 import com.example.abschlussprojekt.data.model.Profile
 import com.example.abschlussprojekt.data.model.Task
 
-@Database(entities = [Profile::class, Task::class], version = 1)
+@Database(entities = [Profile::class, Task::class], version = 1, exportSchema = false)
+@TypeConverters(LocationConverter::class)
 abstract class MyButlerDatabase : RoomDatabase() {
     abstract val dao: MyButlerDao
 
@@ -23,7 +27,7 @@ abstract class MyButlerDatabase : RoomDatabase() {
                     INSTANCE = Room.databaseBuilder(
                         context.applicationContext,
                         MyButlerDatabase::class.java,
-                        "name_database" //Datenbank Name
+                        "butler_database" //Datenbank Name
                     ).build()
                 }
                 return INSTANCE

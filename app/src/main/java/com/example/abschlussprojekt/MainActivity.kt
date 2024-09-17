@@ -17,8 +17,10 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
+import androidx.core.view.ViewCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.abschlussprojekt.data.model.Location
 import com.example.abschlussprojekt.ui.viewmodel.FirebaseViewModel
 import com.example.abschlussprojekt.ui.viewmodel.MainViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -99,8 +101,7 @@ class MainActivity : AppCompatActivity() {
                     val latitude = location.latitude
                     val longitude = location.longitude
                     fireViewModel.profile.value?.apply { // longitude und latitude in database abspeichern
-                        update("lastLatitude", latitude)
-                        update("lastLongitude", longitude)
+                        lastLocation = Location(latitude, longitude)
                     }
                     viewModel.getWeatherByLocation(latitude, longitude)
                 } else {
@@ -179,9 +180,9 @@ class MainActivity : AppCompatActivity() {
             if (ActivityCompat.checkSelfPermission(
                     this,
                     Manifest.permission.ACCESS_FINE_LOCATION
-                ) == PackageManager.PERMISSION_DENIED
+                ) == PackageManager.PERMISSION_GRANTED
             ) {
-                showSettingsDialog()
+               Log.d(TAG, "Permission granted")
             } else {
                 requestPermissionLauncher.launch(
                     arrayOf(

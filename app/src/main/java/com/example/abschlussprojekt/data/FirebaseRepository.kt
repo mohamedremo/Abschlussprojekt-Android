@@ -28,7 +28,6 @@ class FirebaseRepository {
     private val storage = FirebaseStorage.getInstance()
 
     private val storageRef = storage.reference
-    private var profileRef: DocumentReference? = null
 
 
     private val _currentUser = MutableLiveData<FirebaseUser?>(auth.currentUser)
@@ -39,19 +38,24 @@ class FirebaseRepository {
     val downloading: LiveData<Boolean>
         get() = _downloading
 
-    private val _profile = MutableLiveData<DocumentReference?>()
-    val profile: LiveData<DocumentReference?>
+    private val _profile = MutableLiveData<Profile?>()
+    val profile: LiveData<Profile?>
         get() = _profile
 
     //Initialisierung der Authentifizierung, wenn ein User eingeloggt ist.
     init {
         auth.addAuthStateListener { auth ->
             _currentUser.value = auth.currentUser
-            profileRef = auth.currentUser?.uid?.let {
-                firestore.collection("profiles")
+            auth.currentUser?.uid?.let {
+                val ref = firestore.collection("profiles")
                     .document(it)
+                ref.addSnapshotListener { value, error ->
+                    if (error == null) {
+                        val profile = value?.toObject(Profile::class.java)
+                        _profile.postValue(profile)
+                    }
+                }
             }
-                _profile.postValue(profileRef) // Aktuellen Benutzer in Live Data aktualisieren
         }
     }
 
@@ -70,10 +74,8 @@ class FirebaseRepository {
             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 //Wenn Registrierung erfolgreich
                 if (task.isSuccessful) {
-                    logIn(email,password)
-                    _currentUser.postValue(auth.currentUser) // Aktuellen Benutzer in Live Data aktualisieren
-                    //Speichern der Daten in Firestore
-                    saveInFirestore(firstName, surName, email, birthDate, driverLicense, readyForWork, profilePicture)
+                    _currentUser.postValue(task.result.user) // Aktuellen Benutzer in Live Data aktualisieren
+                    saveInFirestore(firstName, surName, email, birthDate, driverLicense, readyForWork, profilePicture) //Firestore Speichern
                     Log.d(TAG, "registerNewUser(if): ${task.result}")
                 }
             }
@@ -113,9 +115,10 @@ class FirebaseRepository {
 
     //Ausloggen Funktion
     fun logOut() {
-        auth.signOut()
+        _profile.postValue(null) // Profilreferenz zurücksetzen
         _currentUser.value = null // Setze den aktuellen Benutzer auf null um den Vorgang zu beenden.
         Log.d(TAG, "logOut Successful")
+        auth.signOut()
     }
 
     //Speichern der Daten in Firestore
@@ -140,9 +143,9 @@ class FirebaseRepository {
                 surName,
                 email,
                 birthDate,
-                driverLicense = driverLicense,
-                readyForWork = readyForWork,
-                profilePicture = profilePicture
+                driverLicense,
+                readyForWork,
+                profilePicture
             )
             //Speichern der Daten
             documentRef.set(userData)
@@ -154,6 +157,7 @@ class FirebaseRepository {
                 }
         }
     }
+
 
     //Abrufen der Daten aus Firestore
     fun getUserProfile(onResult: (Map<String, Any>?) -> Unit) {
@@ -177,16 +181,16 @@ class FirebaseRepository {
         }
     }
 
-    //Abrufen der Daten aus Firestore
-    suspend fun getValueFromDocument(collection: String, documentId: String, field: String): Double? {
-        return try {
-            val documentSnapshot = firestore.collection(collection).document(documentId).get().await()
-            documentSnapshot.getDouble(field) // Hier wird das Feld als Double abgefragt
-        } catch (e: Exception) {
-            e.printStackTrace()
-            null // Wenn ein Fehler auftritt, null zurückgeben
-        }
-    }
+//    //Abrufen der Daten aus Firestore
+//    suspend fun getValueFromDocument(collection: String, documentId: String, field: String): Double? {
+//        return try {
+//            val documentSnapshot = firestore.collection(collection).document(documentId).get().await()
+//            documentSnapshot.getDouble(field) // Hier wird das Feld als Double abgefragt
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//            null // Wenn ein Fehler auftritt, null zurückgeben
+//        }
+//    }
 
     //Speichern des Bildes in Firebase Storage
     fun uploadImage(imageUri: Uri) {
@@ -195,17 +199,36 @@ class FirebaseRepository {
             var storageRef = storageRef.child("images/${user.uid}/profilePicture")
 
             //Speichern des Bildes
-            storageRef.putFile(imageUri).addOnSuccessListener { //Erfolgreich -> Bild wird hochgeladen
-                Log.d(TAG, "Bild wurde erfolgreich hochgeladen")
-                _downloading.value = true
-                //Aktualisieren der Profilbild URL in der Firestore Datenbank
-                storageRef.downloadUrl.addOnSuccessListener {
-                    (profileRef?.update("profilePicture", it.toString()))
+            storageRef.putFile(imageUri)
+                .addOnSuccessListener { //Erfolgreich -> Bild wird hochgeladen
+                    Log.d(TAG, "Bild wurde erfolgreich auf Firestore hochgeladen")
+                    _downloading.value = true
+                    //Aktualisieren der Profilbild URL in der Firestore Datenbank
+                    storageRef.downloadUrl.addOnSuccessListener {
+                        //Downloading State wird auf false gesetzt
+                        _downloading.value = false
+                        Log.d(TAG, "Bild wurde erfolgreich vom Firestore heruntergeladen")
+                        _profile.value = _profile.value?.copy(profilePicture = it.toString())
+                        //Referenz zum Dokument im Firestore
+                        val profileRef = firestore.collection("profiles")
+                            .document(user.uid)
+                        //Aktualisieren der Daten im Firestore
+                        profileRef.update("profilePicture", it.toString())
+                            .addOnSuccessListener {
+                                Log.d(TAG, "Profilbild URL wurde erfolgreich im Firestore aktualisiert")
+                            }
+                            .addOnFailureListener { e ->
+                                Log.w(
+                                    TAG,
+                                    "Beim Aktualisieren der Profilbild URL im Firestore ist ein Fehler aufgetreten",
+                                    e
+                                )
+                            }
+                    } .addOnFailureListener { //Fail -> Bild konnte nicht hochgeladen werden
+
+                            Log.d(TAG, "Bild konnte nicht hochgeladen werden")
+                        }
                 }
-            }.addOnFailureListener { //Fail -> Bild konnte nicht hochgeladen werden
-                _downloading.value = false
-                Log.d(TAG, "Bild konnte nicht hochgeladen werden")
-            }
         }
     }
 }

@@ -1,20 +1,16 @@
 package com.example.abschlussprojekt.ui
 
-import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -22,10 +18,9 @@ import com.example.abschlussprojekt.databinding.FragmentHomeBinding
 import com.example.abschlussprojekt.setLottieByLevel
 import com.example.abschlussprojekt.ui.viewmodel.FirebaseViewModel
 import com.example.abschlussprojekt.ui.viewmodel.MainViewModel
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.location.Priority
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.MapView
+import com.google.type.LatLng
 
 private const val TAG = "HomeFragment"
 
@@ -36,19 +31,61 @@ class HomeFragment : Fragment() {
     private lateinit var getContent: ActivityResultLauncher<Intent>
     private val viewModel: MainViewModel by activityViewModels()
     private val fireViewModel: FirebaseViewModel by activityViewModels()
+    private lateinit var mapView: MapView
+
+    override fun onStart() {
+        super.onStart()
+        mapView.onStart()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mapView.onResume()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mapView.onDestroy()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mapView.onPause()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mapView.onStop()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        // View Binding initialisieren
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        // MapView aus dem Binding-Objekt holen
+        mapView = binding.mapView
+        mapView.onCreate(savedInstanceState)
+
         return binding.root
     }
 
+    @SuppressLint("MissingPermission")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val myPosition = com.google.android.gms.maps.model.LatLng(53.0793, 8.8017)
+
         val nav = findNavController()
+
+        //Initialisierung der MapView
+        mapView.getMapAsync{
+            it.isMyLocationEnabled = true
+            it.moveCamera(CameraUpdateFactory.newLatLngZoom(myPosition, 10f))
+        }
 
         //Initialisierung der ActivityResultLauncher
         initContent()
@@ -60,31 +97,37 @@ class HomeFragment : Fragment() {
                         .actionHomeFragmentToWelcomeFragment())
         }
 
-        fireViewModel.profile.value?.addSnapshotListener { value, error ->
-            if (error == null) {
 
-                val firstname = value?.get("firstName")
-                    .toString()
-                val points = value?.get("points")
-                    .toString()
+        fireViewModel.profile.observe(viewLifecycleOwner) { profile ->
+                if (profile != null) {
+                    val firstname = profile?.firstName
+                        .toString()
+                    val points = profile?.points
+                        .toString()
 
-                //Lottie Animation für Level Anzeige
-                val level = value?.get("level")
-                    .toString()
-                val lottieFile = setLottieByLevel(level.toInt())
+                    //Lottie Animation für Level Anzeige
+                    val level = profile?.level
+                        .toString()
+                    val lottieFile = setLottieByLevel(level.toInt())
 
-                //Lottie Animation laden und starten
-                binding.lvlSymbol.setAnimation(lottieFile)
-                binding.lvlSymbol.playAnimation()
+                    //Lottie Animation laden und starten
+                    binding.lvlSymbol.setAnimation(lottieFile)
+                    binding.lvlSymbol.playAnimation()
 
-                binding.tvWelcome.text = "Welcome" + " " + firstname
-                binding.tvPoints.text = points
+                    binding.tvWelcome.text = "Welcome $firstname"
+                    binding.tvPoints.text = points
 
-                Log.d(TAG, "onViewCreated: Profile wurde geladen ${value}")
+                    try {
+                        binding.ivProfilePic.setImageURI(fireViewModel.currentUser.value?.photoUrl)
+                        Log.d(TAG, "onViewCreated: Profil Pic set!")
+                    } catch (e: Exception) {
+                        Log.d(TAG, "onViewCreated: Cannot set Profil Pic!")
+                        e.printStackTrace()
+                    }
 
-            } else {
-                Log.d(TAG, "onViewCreated: Profile konnte nicht geladen werden")
-            }
+                    Log.d(TAG, "onViewCreated: Profile wurde geladen ${profile}")
+
+                }
         }
 
         //Wetter daten observieren und bei Änderung TextView aktualisieren
@@ -95,15 +138,6 @@ class HomeFragment : Fragment() {
         //ImageView für Profilbild änderung klickbar gemacht.
         binding.cvProfile.setOnClickListener {
             uploadImage()
-        }
-
-
-        try {
-            binding.ivProfilePic.setImageURI(fireViewModel.currentUser.value?.photoUrl)
-            Log.d(TAG, "onViewCreated: Profil Pic set!")
-        } catch (e: Exception) {
-            Log.d(TAG, "onViewCreated: Cannot set Profil Pic!")
-            e.printStackTrace()
         }
 
     }
@@ -128,9 +162,5 @@ class HomeFragment : Fragment() {
                     }
                 }
             }
-
     }
-
-
-
 }

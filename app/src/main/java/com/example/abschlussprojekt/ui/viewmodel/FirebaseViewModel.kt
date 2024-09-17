@@ -74,12 +74,14 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun uploadImage(imageUri: Uri) {
-        repository.uploadImage(imageUri)
-    }
-
-    fun getValueFromDocument(collection: String, documentId: String, field: String) {
         viewModelScope.launch {
-            repository.getValueFromDocument(collection, documentId, field )
+            repository.uploadImage(imageUri)
         }
     }
+
+//    fun getValueFromDocument(collection: String, documentId: String, field: String) {
+//        viewModelScope.launch {
+//            repository.getValueFromDocument(collection, documentId, field )
+//        }
+//    }
 }

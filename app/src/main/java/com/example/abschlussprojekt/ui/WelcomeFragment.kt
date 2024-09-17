@@ -49,9 +49,7 @@ class WelcomeFragment : Fragment() {
 
         //REGISTER
         binding.registerBtn.setOnClickListener {
-           nav.navigate(
-               WelcomeFragmentDirections
-                   .actionWelcomeFragmentToRegisterFragment())
+           nav.navigate(R.id.registerFragment)
         }
     }
 }

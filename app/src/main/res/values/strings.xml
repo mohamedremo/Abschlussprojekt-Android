@@ -1,7 +1,7 @@
 <resources>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    
+
     <string name="app_name">myButler</string>"
 
     <!-- REGISTER UND LOGIN STRINGS -->
@@ -51,7 +51,6 @@
     <string name="points">Points°</string>
     <string name="bremen_de">Bremen, DE</string>
     <string name="_28_c">28°C</string>
-
 
 
 </resources>

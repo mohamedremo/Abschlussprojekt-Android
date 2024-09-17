@@ -25,7 +25,7 @@ class Repository(
     val profiles: LiveData<List<Profile>>
         get() = _profiles
 
-    private val _tasks = MutableLiveData<List<Task>>()
+    private val _tasks = MutableLiveData<List<Task>>(listOf())
     val tasks: LiveData<List<Task>>
         get() = _tasks
 

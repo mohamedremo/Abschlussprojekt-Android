@@ -5,17 +5,16 @@
         android:title="@string/menu_home"
         android:icon="@drawable/home_24px" />
 
-    <item android:id="@id/profileFragment"
-        android:title="@string/menu_profile"
-        android:icon="@drawable/person_24px" />
-
-    <item android:id="@id/logInFragment"
-        android:title="@string/menu_settings"
-        android:icon="@drawable/settings_24px"
-        />
-
     <item android:id="@id/welcomeFragment"
-        android:title="@string/menu_logout"
-        android:icon="@drawable/logout_24px" />
+        android:title="letsButle"
+        android:icon="@drawable/concierge_24px" />
+    <item
+        android:id="@id/profileFragment"
+        android:icon="@drawable/person_24px"
+        android:title="@string/menu_profile" />
+    <item
+        android:id="@id/settingsFragment"
+        android:icon="@drawable/settings_24px"
+        android:title="@string/menu_settings" />
 
 </menu>

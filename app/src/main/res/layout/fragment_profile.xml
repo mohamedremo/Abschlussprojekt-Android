@@ -85,37 +85,31 @@
                 android:text="@string/testName"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/lvl"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/cvPic"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <!-- Level-Anzeige -->
-            <TextView
-                android:id="@+id/lvl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="41dp"
-                android:fontFamily="@font/montserrat"
-                android:text="@string/lv"
-                android:textColor="@color/md_theme_background"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/lvlSymbol"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <!-- Level-Symbol (Lottie-Animation) -->
+
+            <!-- Rolle des Nutzers -->
+
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/lvlSymbol"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="196dp"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="32dp"
                 app:layout_constraintStart_toEndOf="@+id/cvPic"
                 app:layout_constraintTop_toTopOf="parent"
                 app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                app:lottie_fileName="seven.json" />
+                app:lottie_fileName="seven.json"
+                app:lottie_loop="true" />
 
-            <!-- Rolle des Nutzers -->
+            <!-- Trennlinie (Divider) -->
             <TextView
                 android:id="@+id/tvRole"
                 android:layout_width="wrap_content"
@@ -125,11 +119,11 @@
                 android:textColor="@color/md_theme_background"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/tvName"
-                app:layout_constraintStart_toStartOf="@+id/tvName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.442"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
-            <!-- Trennlinie (Divider) -->
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/divider"
                 android:layout_width="match_parent"
@@ -148,7 +142,6 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="50dp"
-                app:lottie_autoPlay="true"
                 android:clickable="true"
                 app:layout_constraintBottom_toBottomOf="@+id/lottieAnimationView"
                 app:layout_constraintEnd_toStartOf="@+id/lottieAnimationView"
@@ -156,12 +149,12 @@
                 app:lottie_fileName="scooter.json" />
 
             <!-- Animation Symbol Rating -->
+
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/lottieAnimationView"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="40dp"
-                app:lottie_autoPlay="true"
                 android:clickable="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -170,12 +163,12 @@
                 app:lottie_fileName="rate.json" />
 
             <!-- Animation Symbol Call -->
+
             <com.airbnb.lottie.LottieAnimationView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="40dp"
-                app:lottie_autoPlay="true"
                 android:clickable="true"
                 app:layout_constraintBottom_toBottomOf="@+id/lottieAnimationView"
                 app:layout_constraintStart_toEndOf="@+id/lottieAnimationView"
@@ -184,6 +177,7 @@
                 app:lottie_fileName="call.json" />
 
             <!-- Überschrift "aktuelle Aufträge" -->
+
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
@@ -226,14 +220,14 @@
                 android:id="@+id/recyV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:paddingBottom="120dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/materialDivider"
-                app:layout_constraintBottom_toBottomOf="parent"
-                tools:listitem="@layout/list_task"
-                android:paddingBottom="120dp"
-                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
+                tools:listitem="@layout/list_task" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

@@ -50,9 +50,9 @@ class TaskAdapter(
         val distanceFormatted = String.format("%.1f", distance)
 
         //Text in TextView setzen
-        holder.binding.tvTask.text = item.category
+//        holder.binding.tvTask.text = item.category.displayName
         holder.binding.tvDescription.text = item.description
-        holder.binding.tvTitle.text = item.name
+        holder.binding.tvTitle.text = item.taskName
         holder.binding.tvPoints.text = item.butlePoints.toString()
         holder.binding.tvDistance.text = distanceFormatted
     }

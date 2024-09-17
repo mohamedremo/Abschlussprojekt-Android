@@ -33,23 +33,15 @@ class RegisterFragment : Fragment() {
 
         val nav = findNavController()
 
-        //Animation Testen
-        binding.registerBtn.animate()
-
         //Wenn User bereits eingeloggt ist -> HomeFragment
         fireViewModel.currentUser.observe(viewLifecycleOwner) {
-
+            if (it != null)
+            nav.navigate(R.id.action_registerFragment_to_homeFragment)
         }
 
         //Register Button
         binding.registerBtn.setOnClickListener {
-            if (registerUser()) {
-                nav.navigate(
-                    RegisterFragmentDirections
-                        .actionRegisterFragmentToHomeFragment()
-                )
-            } else
-                return@setOnClickListener
+            registerUser()
         }
     }
 
@@ -63,7 +55,7 @@ class RegisterFragment : Fragment() {
         binding.etPasswordTwo.text?.clear()
     }
 
-    private fun registerUser(): Boolean {
+    private fun registerUser() {
         val email = binding.etMail.text.toString()
         val password = binding.etPasswordOne.text.toString()
         val password2 = binding.etPasswordTwo.text.toString()
@@ -77,16 +69,13 @@ class RegisterFragment : Fragment() {
             firstName.isEmpty() || surName.isEmpty() || birthDate.isEmpty()
         ) {
             toast(getString(R.string.reg_allfields),requireContext())
-            return false
         }
 
         if (password != password2) { // Wenn Passwörter nur nicht überein stimmen -> Toast!
             toast(getString(R.string.password_nomatch),requireContext())
-            return false
 
         } else if (password.length < 6) { // Wenn Passwort weniger als 6 Zeichen -> Toast!
             toast(getString(R.string.password_sixchars),requireContext())
-            return false
 
         } else {
             clearFields()
@@ -102,7 +91,6 @@ class RegisterFragment : Fragment() {
             )
             //Toast wenn Registrierung Erfolgreich
             toast(getString(R.string.reg_success), requireContext())
-            return true
         }
     }
 }

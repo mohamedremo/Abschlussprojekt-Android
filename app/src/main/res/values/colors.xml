@@ -54,4 +54,6 @@
     <color name="md_theme_surfaceContainer">#FFFFFF</color>
     <color name="md_theme_surfaceContainerHigh">#E0E0E0</color>
     <color name="md_theme_surfaceContainerHighest">#F5F5F5</color>
+
+    <color name="transparent">#00FFFFFF</color>"
 </resources>

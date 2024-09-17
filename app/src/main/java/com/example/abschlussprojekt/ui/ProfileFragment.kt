@@ -54,15 +54,13 @@ class ProfileFragment : Fragment() {
         }
 
         //Profil Referenz aus dem Firestore wird beobachtet und bei änderungen angezeigt.
-        fireViewModel.profile.value?.addSnapshotListener { value, error ->
-            if (error == null) {
-                value?.let {
-                    val firstName = it.getString("firstName")
-                    val surName = it.getString("surName")
-                    binding.tvName.setText("${firstName.toString()} ${surName.toString()}")
+        fireViewModel.profile.observe(viewLifecycleOwner) { profile ->
+            profile?.let {
+                 val firstName = it.firstName
+                 val surName = it.surName
+                 binding.tvName.setText("$firstName $surName")
                 }
             }
         }
 
     }
-}
