@@ -182,10 +182,10 @@
             motion:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="54dp" />
         <Constraint
-            android:layout_height="400dp"
+            android:layout_height="50dp"
             motion:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="400dp"
-            motion:layout_constraintTop_toBottomOf="@+id/cardV"
+            android:layout_width="50dp"
+            motion:layout_constraintTop_toBottomOf="parent"
             android:id="@+id/cardVmaps" />
     </ConstraintSet>
 
@@ -299,10 +299,10 @@
             android:layout_marginStart="12dp"
             android:id="@+id/tvWeather"
             android:layout_marginTop="4dp">
-        <CustomAttribute
-            motion:attributeName="textColor"
-            motion:customColorValue="@android:color/white" />
-    </Constraint>
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="@android:color/white" />
+        </Constraint>
         <Constraint
             android:layout_height="25dp"
             android:layout_width="25dp"
@@ -315,4 +315,5 @@
 
 
     </ConstraintSet>
+
 </MotionScene>

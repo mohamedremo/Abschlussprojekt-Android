@@ -20,13 +20,15 @@ import androidx.core.app.ActivityCompat
 import androidx.core.view.ViewCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.example.abschlussprojekt.data.model.Location
+import com.example.abschlussprojekt.data.model.Profile
 import com.example.abschlussprojekt.ui.viewmodel.FirebaseViewModel
 import com.example.abschlussprojekt.ui.viewmodel.MainViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.firestore.GeoPoint
+import com.google.gson.Gson
 
 private const val TAG = "MainActivity"
 
@@ -67,6 +69,21 @@ class MainActivity : AppCompatActivity() {
                 .findFragmentById(binding.navHostFragmentContainer.id) as NavHostFragment
         binding.bottomNav.setupWithNavController(navHost.navController)
 
+/*
+FUNKTION FÜR MOCKDATEN IN FIREBASE SPEICHERN
+ */
+//        fun initProfilesLocalToFirebase() {
+//            val json = assets.open("profiles.json").bufferedReader().use {
+//                it.readText()
+//            }
+//            Log.e(TAG,json)
+//            val profileList = Gson().fromJson(json, Array<Profile>::class.java).toList()
+//            fireViewModel.saveAllProfiles(profileList)
+//        }
+//        initProfilesLocalToFirebase()
+
+
+
         //Bottom Navigation in bestimmten Fragmenten ausblenden.
         navHost.navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
@@ -101,7 +118,7 @@ class MainActivity : AppCompatActivity() {
                     val latitude = location.latitude
                     val longitude = location.longitude
                     fireViewModel.profile.value?.apply { // longitude und latitude in database abspeichern
-                        lastLocation = Location(latitude, longitude)
+                        lastLocation = GeoPoint(latitude, longitude)
                     }
                     viewModel.getWeatherByLocation(latitude, longitude)
                 } else {

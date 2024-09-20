@@ -30,7 +30,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getTasks()
+//        viewModel.getTasks() AUSGESTELLT WEIL TASK MODEL BEARBEITET WIRD UND DIE ABHÄNGIKEITEN NOCH GESETZT WERDEN MIT MOCKAPI LEIDER NICHT MÖGLICH SOLVE? DATENSÄTZE SELBER AUF FIRESTORE BALLERN
 
         val nav = findNavController()
 
@@ -46,12 +46,6 @@ class ProfileFragment : Fragment() {
                         .actionProfileFragmentToWelcomeFragment())
         }
 
-        //Tasks werden beobachtet und die Recycler View wird aktualisiert.
-        viewModel.tasks.observe(viewLifecycleOwner) {
-            binding.recyV.adapter = TaskAdapter(viewModel.tasks.value!!.sortedBy {
-                it.butlePoints
-            }, viewModel, fireViewModel)
-        }
 
         //Profil Referenz aus dem Firestore wird beobachtet und bei änderungen angezeigt.
         fireViewModel.profile.observe(viewLifecycleOwner) { profile ->

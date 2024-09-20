@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_homeFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_createTaskFragment"
+            app:destination="@id/createTaskFragment" />
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
@@ -62,6 +65,9 @@
         <action
             android:id="@+id/action_profileFragment_to_settingsFragment2"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_createTaskFragment"
+            app:destination="@id/createTaskFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -77,5 +83,35 @@
         <action
             android:id="@+id/action_settingsFragment_to_homeFragment2"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createTaskFragment"
+        android:name="com.example.abschlussprojekt.ui.CreateTaskFragment"
+        android:label="fragment_create_task"
+        tools:layout="@layout/fragment_create_task" >
+        <action
+            android:id="@+id/action_createTaskFragment_to_createTaskDetailFragment"
+            app:destination="@id/createTaskDetailFragment" />
+        <action
+            android:id="@+id/action_createTaskFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_createTaskFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/taskFragment"
+        android:name="com.example.abschlussprojekt.ui.TaskFragment"
+        android:label="TaskFragment" />
+    <fragment
+        android:id="@+id/createTaskDetailFragment"
+        android:name="com.example.abschlussprojekt.ui.CreateTaskDetailFragment"
+        android:label="CreateTaskDetailFragment" >
+        <action
+            android:id="@+id/action_createTaskDetailFragment_to_createTaskFragment"
+            app:destination="@id/createTaskFragment" />
+        <action
+            android:id="@+id/action_createTaskDetailFragment_to_taskFragment"
+            app:destination="@id/taskFragment" />
     </fragment>
 </navigation>

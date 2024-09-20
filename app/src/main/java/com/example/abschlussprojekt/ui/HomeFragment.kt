@@ -82,10 +82,10 @@ class HomeFragment : Fragment() {
         val nav = findNavController()
 
         //Initialisierung der MapView
-        mapView.getMapAsync{
-            it.isMyLocationEnabled = true
-            it.moveCamera(CameraUpdateFactory.newLatLngZoom(myPosition, 10f))
-        }
+//        mapView.getMapAsync{
+//            it.isMyLocationEnabled = true
+//            it.moveCamera(CameraUpdateFactory.newLatLngZoom(myPosition, 10f))
+//        }
 
         //Initialisierung der ActivityResultLauncher
         initContent()

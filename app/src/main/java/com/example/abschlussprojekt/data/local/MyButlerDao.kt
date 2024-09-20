@@ -11,8 +11,8 @@ interface MyButlerDao {
     @Query("SELECT * FROM profile_table")
     fun getProfile(): Profile
 
-//    @Query("SELECT * FROM task_table WHERE category = :category")
-//    fun getTasksByCategory(category: String): List<Task>
+    @Query("SELECT * FROM task_table WHERE category = :category")
+    fun getTasksByCategory(category: String): List<Task>
 
     @Insert
     suspend fun insertProfile(profile: Profile)

@@ -2,19 +2,17 @@ package com.example.abschlussprojekt.data
 
 import android.net.Uri
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.abschlussprojekt.MainActivity
+import com.example.abschlussprojekt.data.model.Category
 import com.example.abschlussprojekt.data.model.Profile
+import com.example.abschlussprojekt.data.model.Task
 import com.example.abschlussprojekt.isValidEmail
-import com.example.abschlussprojekt.toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.coroutines.tasks.await
 
 private const val TAG = "FirebaseRepository"
 
@@ -22,8 +20,10 @@ class FirebaseRepository {
 
     //Firebase Authentifizierung
     private val auth = FirebaseAuth.getInstance()
+
     //Firebase Firestore
     private val firestore = FirebaseFirestore.getInstance()
+
     //Firebase Storage
     private val storage = FirebaseStorage.getInstance()
 
@@ -71,14 +71,23 @@ class FirebaseRepository {
         profilePicture: String
     ) {
         try {
-            auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-                //Wenn Registrierung erfolgreich
-                if (task.isSuccessful) {
-                    _currentUser.postValue(task.result.user) // Aktuellen Benutzer in Live Data aktualisieren
-                    saveInFirestore(firstName, surName, email, birthDate, driverLicense, readyForWork, profilePicture) //Firestore Speichern
-                    Log.d(TAG, "registerNewUser(if): ${task.result}")
+            auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    //Wenn Registrierung erfolgreich
+                    if (task.isSuccessful) {
+                        _currentUser.postValue(task.result.user) // Aktuellen Benutzer in Live Data aktualisieren
+                        saveProfileInFireStore(
+                            firstName,
+                            surName,
+                            email,
+                            birthDate,
+                            driverLicense,
+                            readyForWork,
+                            profilePicture
+                        ) //Firestore Speichern
+                        Log.d(TAG, "registerNewUser(if): ${task.result}")
+                    }
                 }
-            }
         } catch (e: Exception) {
             _currentUser.value = null
             Log.d(TAG, "registerNewUser(TryCatch): ${e.message}")
@@ -87,15 +96,16 @@ class FirebaseRepository {
 
     //Login eines Users
     fun logIn(email: String, password: String) {
-        if (isValidEmail(email)){
+        if (isValidEmail(email)) {
             try {
                 //Login mit Email und Passwort
-                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        _currentUser.value = auth.currentUser
-                        Log.d(TAG, "LogIn Success: ${task.result}")
+                auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            _currentUser.value = auth.currentUser
+                            Log.d(TAG, "LogIn Success: ${task.result}")
+                        }
                     }
-                }
             } catch (e: Exception) {
                 _currentUser.value = null
                 Log.e(TAG, "Fehler im logIn() TryCatch Block: ${e.message}")
@@ -108,21 +118,23 @@ class FirebaseRepository {
 
     //Passwort vergessen Funktion
     fun forgotPassword(email: String) {
-        auth.sendPasswordResetEmail(email).addOnCompleteListener { task ->
-            Log.d(TAG, "forgotPassword: ${task.result}")
-        }
+        auth.sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                Log.d(TAG, "forgotPassword: ${task.result}")
+            }
     }
 
     //Ausloggen Funktion
     fun logOut() {
         _profile.postValue(null) // Profilreferenz zurücksetzen
-        _currentUser.value = null // Setze den aktuellen Benutzer auf null um den Vorgang zu beenden.
+        _currentUser.value =
+            null // Setze den aktuellen Benutzer auf null um den Vorgang zu beenden.
         Log.d(TAG, "logOut Successful")
         auth.signOut()
     }
 
     //Speichern der Daten in Firestore
-    fun saveInFirestore(
+    fun saveProfileInFireStore(
         firstName: String,
         surName: String,
         email: String,
@@ -150,10 +162,66 @@ class FirebaseRepository {
             //Speichern der Daten
             documentRef.set(userData)
                 .addOnSuccessListener {
-                    Log.d(TAG, "User Profil wurder Erfolgreich gespeichert")
+                    Log.d(TAG, "User Profil wurde Erfolgreich hochgeladen")
                 }
                 .addOnFailureListener { e ->
                     Log.w(TAG, "Beim Speichern des User-Profiles ist ein Fehler aufgetreten", e)
+                }
+        }
+    }
+
+    fun saveAllProfiles(profiles: List<Profile>) {
+        profiles.forEach {
+             firestore.collection("profiles")
+                .document()
+                .set(it)
+        }
+        Log.d(TAG, "Alle Profile wurden erfolgreich gespeichert")
+    }
+
+
+
+    fun saveTaskInFireStore(
+        taskName: String,
+        description: String,
+        createdAt: String,
+        expireDate: String,
+        category: Category,
+        tasks: List<String>,
+        butlePoints: Int,
+        location: GeoPoint,
+        isFinished: Boolean,
+
+    ) {
+        auth.currentUser?.let { user ->
+            //Referenz zum Dokument im Firestore
+            val documentRef = firestore
+                .collection("profiles")
+                .document(user.uid)
+                .collection("tasks")
+                .document(user.uid)
+
+            //Daten in ein Task Objekt packen
+            val userData = Task(
+                taskName,
+                description,
+                user.uid,
+                createdAt,
+                expireDate,
+                category,
+                tasks,
+                butlePoints,
+                location,
+                isFinished,
+
+            )
+            //Speichern der Daten
+            documentRef.set(userData)
+                .addOnSuccessListener {
+                    Log.d(TAG, "Task wurde Erfolgreich hochgeladen und angelegt.")
+                }
+                .addOnFailureListener { e ->
+                    Log.w(TAG, "Beim Speichern des Tasks ist ein Fehler aufgetreten", e)
                 }
         }
     }
@@ -163,9 +231,11 @@ class FirebaseRepository {
     fun getUserProfile(onResult: (Map<String, Any>?) -> Unit) {
         auth.currentUser?.let { user ->
             //Referenz zum Dokument im Firestore
-            val documentRef = firestore.collection("profiles").document(user.uid)
+            val profileRef = firestore.collection("profiles")
+                .document(user.uid)
 
-            documentRef.get().addOnSuccessListener { document -> //Erfolgreich -> widr aufgerufen wenn das Dokument erfolgreich abgerufen wurde
+            profileRef.get()
+                .addOnSuccessListener { document -> //Erfolgreich -> widr aufgerufen wenn das Dokument erfolgreich abgerufen wurde
                     if (document.exists()) {
                         // Daten abrufen und an die Callback-Funktion übergeben
                         val userData = document.data
@@ -174,8 +244,34 @@ class FirebaseRepository {
                         Log.d(TAG, "Dokument existiert nicht")
                         onResult(null)
                     }
-                }.addOnFailureListener { e -> //Fail -> wird aufgerufen wenn ein Fehler beim Abrufen des Dokuments auftritt
+                }
+                .addOnFailureListener { e -> //Fail -> wird aufgerufen wenn ein Fehler beim Abrufen des Dokuments auftritt
                     Log.w(TAG, "Beim Fetchen der Profil-Daten ist ein Fehler aufgetreten", e)
+                    onResult(null)
+                }
+        }
+    }
+
+    fun getTasks(onResult: (Map<String, Any>?) -> Unit) {
+        auth.currentUser?.let { user ->
+            //Referenz zum Dokument im Firestore
+            val taskRef = firestore.collection("profiles")
+                .document(user.uid)
+                .collection("tasks")
+                .document(user.uid)
+            taskRef.get()
+                .addOnSuccessListener { document -> //Erfolgreich -> widr aufgerufen wenn das Dokument erfolgreich abgerufen wurde
+                    if (document.exists()) {
+                        // Daten abrufen und an die Callback-Funktion übergeben
+                        val taskData = document.data
+                        onResult(taskData)
+                    } else {
+                        Log.d(TAG, "Dokument existiert nicht")
+                        onResult(null)
+                    }
+                }
+                .addOnFailureListener { e -> //Fail -> wird aufgerufen wenn ein Fehler beim Abrufen des Dokuments auftritt
+                    Log.w(TAG, "Beim Fetchen der Tasks ist ein Fehler aufgetreten", e)
                     onResult(null)
                 }
         }
@@ -192,46 +288,51 @@ class FirebaseRepository {
 //        }
 //    }
 
-    //Speichern des Bildes in Firebase Storage
-    fun uploadImage(imageUri: Uri) {
-        auth.currentUser?.let { user ->
-            //Referenz zum Speicherort im Firebase Storage
-            var storageRef = storageRef.child("images/${user.uid}/profilePicture")
+        //Speichern des Bildes in Firebase Storage
+        fun uploadImage(imageUri: Uri) {
+            auth.currentUser?.let { user ->
+                //Referenz zum Speicherort im Firebase Storage
+                var storageRef = storageRef.child("images/${user.uid}/profilePicture")
 
-            //Speichern des Bildes
-            storageRef.putFile(imageUri)
-                .addOnSuccessListener { //Erfolgreich -> Bild wird hochgeladen
-                    Log.d(TAG, "Bild wurde erfolgreich auf Firestore hochgeladen")
-                    _downloading.value = true
-                    //Aktualisieren der Profilbild URL in der Firestore Datenbank
-                    storageRef.downloadUrl.addOnSuccessListener {
-                        //Downloading State wird auf false gesetzt
-                        _downloading.value = false
-                        Log.d(TAG, "Bild wurde erfolgreich vom Firestore heruntergeladen")
-                        _profile.value = _profile.value?.copy(profilePicture = it.toString())
-                        //Referenz zum Dokument im Firestore
-                        val profileRef = firestore.collection("profiles")
-                            .document(user.uid)
-                        //Aktualisieren der Daten im Firestore
-                        profileRef.update("profilePicture", it.toString())
-                            .addOnSuccessListener {
-                                Log.d(TAG, "Profilbild URL wurde erfolgreich im Firestore aktualisiert")
-                            }
-                            .addOnFailureListener { e ->
-                                Log.w(
-                                    TAG,
-                                    "Beim Aktualisieren der Profilbild URL im Firestore ist ein Fehler aufgetreten",
-                                    e
-                                )
-                            }
-                    } .addOnFailureListener { //Fail -> Bild konnte nicht hochgeladen werden
-
-                            Log.d(TAG, "Bild konnte nicht hochgeladen werden")
+                //Speichern des Bildes
+                storageRef.putFile(imageUri)
+                    .addOnSuccessListener { //Erfolgreich -> Bild wird hochgeladen
+                        Log.d(TAG, "Bild wurde erfolgreich auf Firestore hochgeladen")
+                        _downloading.value = true
+                        //Aktualisieren der Profilbild URL in der Firestore Datenbank
+                        storageRef.downloadUrl.addOnSuccessListener {
+                            //Downloading State wird auf false gesetzt
+                            _downloading.value = false
+                            Log.d(TAG, "Bild wurde erfolgreich vom Firestore heruntergeladen")
+                            _profile.value = _profile.value?.copy(profilePicture = it.toString())
+                            //Referenz zum Dokument im Firestore
+                            val profileRef = firestore.collection("profiles")
+                                .document(user.uid)
+                            //Aktualisieren der Daten im Firestore
+                            profileRef.update("profilePicture", it.toString())
+                                .addOnSuccessListener {
+                                    Log.d(
+                                        TAG,
+                                        "Profilbild URL wurde erfolgreich im Firestore aktualisiert"
+                                    )
+                                }
+                                .addOnFailureListener { e ->
+                                    Log.w(
+                                        TAG,
+                                        "Beim Aktualisieren der Profilbild URL im Firestore ist ein Fehler aufgetreten",
+                                        e
+                                    )
+                                }
                         }
-                }
+                            .addOnFailureListener { //Fail -> Bild konnte nicht hochgeladen werden
+
+                                Log.d(TAG, "Bild konnte nicht hochgeladen werden")
+                            }
+                    }
+            }
         }
     }
-}
+
 
 
 

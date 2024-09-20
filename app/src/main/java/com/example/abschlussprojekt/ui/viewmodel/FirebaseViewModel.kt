@@ -5,6 +5,8 @@ import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.abschlussprojekt.data.FirebaseRepository
+import com.example.abschlussprojekt.data.model.Profile
+
 import kotlinx.coroutines.launch
 
 private const val TAG = "FirebaseViewModel"
@@ -66,7 +68,11 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
         readyForWork: Boolean,
         profilePicture: String
     ) {
-        repository.saveInFirestore(firstName, surName, email, birthDate, driverLicense, readyForWork,profilePicture)
+        repository.saveProfileInFireStore(firstName, surName, email, birthDate, driverLicense, readyForWork,profilePicture)
+    }
+
+    fun saveAllProfiles(profiles: List<Profile>) {
+        repository.saveAllProfiles(profiles)
     }
 
     fun getUserProfile(onResult: (Map<String, Any>?) -> Unit) {
@@ -78,6 +84,8 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
             repository.uploadImage(imageUri)
         }
     }
+
+
 
 //    fun getValueFromDocument(collection: String, documentId: String, field: String) {
 //        viewModelScope.launch {

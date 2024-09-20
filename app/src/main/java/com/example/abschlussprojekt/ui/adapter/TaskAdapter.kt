@@ -40,8 +40,8 @@ class TaskAdapter(
         val myLongitude = 8.8017
 
         //Längen und Breitengrad des Tasks
-        val itemLatitude = item.latitude
-        val itemLongitude = item.longitude
+        val itemLatitude = item.location.latitude
+        val itemLongitude = item.location.longitude
 
         //Entfernung zwischen User und Task berechnen
         val distance = calculateDistance(itemLatitude, itemLongitude, myLatitude, myLongitude)

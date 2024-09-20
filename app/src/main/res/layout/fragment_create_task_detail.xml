@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.CreateTaskFragment"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="184dp">
+
+    <Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_keyboard_arrow_left_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="Vorheriger Bildschirm"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </Toolbar>
+
+    <TextView
+        android:id="@+id/tvNewTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/montserrat"
+        android:text="Etwas für mich abholen!"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/what"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/round_edittext"
+        android:drawableStart="@drawable/location_on_24px"
+        android:hint="Was ? (Kleidung , Essen , etc.)"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.312"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNewTask" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/where"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/round_edittext"
+        android:drawableStart="@drawable/location_on_24px"
+        android:hint="Wo ?"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.312"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/what" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/wheen"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/round_edittext"
+        android:drawableStart="@drawable/location_on_24px"
+        android:hint="Wann ?"
+        android:inputType="textEmailAddress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/butlePoints" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/until"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/round_edittext"
+        android:drawableStart="@drawable/location_on_24px"
+        android:hint="Bis ?"
+        android:inputType="datetime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/butlePoints" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/butlePoints"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/round_edittext"
+        android:drawableStart="@drawable/location_on_24px"
+        android:hint="Vergütung ?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/where"
+        tools:layout_editor_absoluteY="285dp" />
+
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etDescription"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/round_edittext"
+        android:hint="Beschreibung"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wheen" />
+
+    <Button
+        android:id="@+id/createTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
+        android:text="TASK ERSTELLEN!"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etDescription" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

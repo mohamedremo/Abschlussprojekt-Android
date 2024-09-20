@@ -5,9 +5,9 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ground_1"
     app:layoutDescription="@xml/fragment_home_scene"
     tools:context=".ui.HomeFragment">
+
 
     <ImageView
         android:id="@+id/cardV"
@@ -16,10 +16,10 @@
         android:scaleType="fitXY"
         android:src="@drawable/card_view"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
-
 
     <TextView
         android:id="@+id/tvWelcome"
@@ -153,8 +153,8 @@
         android:id="@+id/cardVmaps"
         android:layout_width="400dp"
         android:layout_height="400dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.93"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardV">
 

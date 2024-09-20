@@ -10,3 +10,5 @@ data class Product(
     val isVegetarian: Boolean,
     val tags: List<String> = listOf()
 )
+
+
