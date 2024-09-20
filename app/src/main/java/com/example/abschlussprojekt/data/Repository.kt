@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.abschlussprojekt.data.local.MyButlerDatabase
+import com.example.abschlussprojekt.data.model.Category
 import com.example.abschlussprojekt.data.model.Profile
 import com.example.abschlussprojekt.data.model.Task
 import com.example.abschlussprojekt.data.model.WeatherResponse
@@ -19,6 +20,10 @@ class Repository(
     val lastWeather: LiveData<WeatherResponse>
         get() = _lastWeather
 
+    private val _selectedCategoy = MutableLiveData<Category>()
+    val selectedCategory: LiveData<Category>
+        get() = _selectedCategoy
+
     // Wetterdaten anhand von Koordinaten bei Weather API (openMeteo) abrufen
     suspend fun getWeatherByLocation(longitude: Double, latitude: Double) {
         try {
@@ -29,6 +34,10 @@ class Repository(
             e.printStackTrace()
             Log.d(TAG, "getWeatherByLocation: ${e.message}")
         }
+    }
+
+    suspend fun setSelectedCategory(category: Category) {
+        _selectedCategoy.value = category
     }
 
 }

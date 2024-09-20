@@ -53,24 +53,16 @@
             app:layout_constraintTop_toBottomOf="@+id/tvTask"
             app:layout_constraintVertical_bias="0.0" />
 
-        <ImageView
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/tvLvl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginTop="8dp"
-            android:src="@drawable/lvl_badge"
+            app:lottie_fileName="four.json"
+            app:lottie_autoPlay="true"
             app:layout_constraintStart_toEndOf="@+id/tvTitle"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="10"
-            android:textSize="8sp"
-            app:layout_constraintBottom_toBottomOf="@+id/tvLvl"
-            app:layout_constraintEnd_toEndOf="@+id/tvLvl"
-            app:layout_constraintStart_toStartOf="@+id/tvLvl"
-            app:layout_constraintTop_toTopOf="@+id/tvLvl" />
 
         <TextView
             android:id="@+id/tvPoints"

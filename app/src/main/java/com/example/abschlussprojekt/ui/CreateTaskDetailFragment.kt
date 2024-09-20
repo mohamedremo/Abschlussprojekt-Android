@@ -27,11 +27,11 @@ class CreateTaskDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        TODO("Hier muss noch die Logik des erstellen eines neuen Tasks rein" +
-                "Dabei muss beachtet werden das wir das where in einen anderen Datentypen als wie unten beschrieben" +
-                "rein packen müssen" +
-                "" +
-                "Die Dates würde ich gerne mit einem DateTimePicker Klären um den Vorgang der UX zu verbessern")
+//        ("Hier muss noch die Logik des erstellen eines neuen Tasks rein" +
+//                "Dabei muss beachtet werden das wir das where in einen anderen Datentypen als wie unten beschrieben" +
+//                "rein packen müssen" +
+//                "" +
+//                "Die Dates würde ich gerne mit einem DateTimePicker Klären um den Vorgang der UX zu verbessern")
 //        val currentUser = fireViewModel.currentUser.value?.uid
 //
 //        binding.createTask.setOnClickListener {
