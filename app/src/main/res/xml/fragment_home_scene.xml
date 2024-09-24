@@ -199,9 +199,6 @@
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:id="@+id/tvWelcome">
-            <CustomAttribute
-                motion:attributeName="textColor"
-                motion:customColorValue="@android:color/holo_red_dark" />
         </Constraint>
         <Constraint
             android:id="@+id/lvlSymbol"
@@ -312,25 +309,16 @@
             android:layout_marginStart="120dp"
             android:id="@+id/moneyPig"
             android:rotation="360"/>
+
         <Constraint
             android:id="@+id/swipeUp"
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="75dp"
             android:layout_height="75dp"
-            motion:layout_constraintTop_toBottomOf="@+id/cardV"
-            motion:layout_constraintHorizontal_bias="0.5"
             motion:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="8dp" />
-        <Constraint
-            android:id="@+id/swipeUp"
-            motion:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            motion:layout_constraintTop_toBottomOf="@+id/cardV"
-            motion:layout_constraintHorizontal_bias="0.5"
-            motion:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="170dp"
-            android:rotationX="360" />
+            android:rotationX="180"
+            motion:layout_constraintTop_toBottomOf="@+id/cardVmaps"
+            motion:layout_editor_absoluteY="425dp" />
 
 
     </ConstraintSet>
