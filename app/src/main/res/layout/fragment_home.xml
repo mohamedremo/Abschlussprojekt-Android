@@ -162,6 +162,28 @@
         app:lottie_fileName="swipe-up.json"
         app:lottie_loop="true" />
 
+    <TextView
+        android:id="@+id/swipeUpTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Swipe Hoch um die Aufgaben zu sehen"
+        android:textColor="#88454545"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/swipeUp" />
+
+    <TextView
+        android:id="@+id/swipeUpTxt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="12dp"
+        android:text="Zum Anzeigen der Karte"
+        android:textColor="#88454545"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardV" />
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardVmaps"
         android:layout_width="400dp"
