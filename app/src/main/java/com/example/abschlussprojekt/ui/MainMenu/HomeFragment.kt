@@ -18,6 +18,8 @@ import com.example.abschlussprojekt.databinding.FragmentHomeBinding
 import com.example.abschlussprojekt.setLottieByLevel
 import com.example.abschlussprojekt.ui.ViewModel.FirebaseViewModel
 import com.example.abschlussprojekt.ui.ViewModel.MainViewModel
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.MapView
 
 private const val TAG = "HomeFragment"
@@ -79,11 +81,11 @@ class HomeFragment : Fragment() {
 
         val nav = findNavController()
 
-        //Initialisierung der MapView
-//        mapView.getMapAsync{
-//            it.isMyLocationEnabled = true
-//            it.moveCamera(CameraUpdateFactory.newLatLngZoom(myPosition, 10f))
-//        }
+
+        mapView.getMapAsync{
+            it.isMyLocationEnabled = true
+            it.moveCamera(CameraUpdateFactory.newLatLngZoom(myPosition, 13f))
+        }
 
         //Initialisierung der ActivityResultLauncher
         initContent()
