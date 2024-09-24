@@ -1,24 +1,29 @@
 package com.example.abschlussprojekt
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Context
+import android.view.MotionEvent
+import android.view.View
 import android.widget.Toast
-import androidx.navigation.NavController
-import androidx.navigation.NavDirections
-import androidx.navigation.Navigation.findNavController
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.math.sqrt
-import kotlin.reflect.KClass
 
 
 //Checken ob Email korrekt Formatiert ist.
 fun isValidEmail(email: String): Boolean {
-    return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    return android.util.Patterns.EMAIL_ADDRESS.matcher(email)
+        .matches()
 }
 
-fun toast (text: String,context: Context) {
-    Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
+fun toast(text: String, context: Context) {
+    Toast.makeText(context, text, Toast.LENGTH_SHORT)
+        .show()
 }
 
 //Entfernung zwischen zwei Punkten berechnen
@@ -46,4 +51,60 @@ fun setLottieByLevel(level: Int): String {
         "seven.json", "eight.json", "nine.json", "ten.json"
     )
     return if (level in 1..10) lottieFiles[level - 1] else lottieFiles.last()
+}
+
+fun outsideTouch(view: View, event: MotionEvent): Boolean {
+    val location = IntArray(2)
+    view.getLocationOnScreen(location)
+    val x = event.rawX
+    val y = event.rawY
+
+    return x < location[0] || x > location[0] + view.width ||
+            y < location[1] || y > location[1] + view.height
+}
+
+
+fun showDateTimePicker(
+    context: Context,         // Übergib den Context als Parameter
+    onDateTimeSelected: (String) -> Unit   // Callback für das ausgewählte Datum und Uhrzeit
+) {
+    val calendar = Calendar.getInstance()
+
+    // DatePicker anzeigen
+    val dialog = DatePickerDialog(
+        context,
+        { _, year, month, dayOfMonth ->
+            // Nachdem das Datum ausgewählt wurde wird es in der Calendar-Instanz gespeichert
+            calendar.set(Calendar.YEAR, year)
+            calendar.set(Calendar.MONTH, month)
+            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+            // Nachdem das Datum ausgewählt wurde wird ein TimePickerDialog angezeigt
+            TimePickerDialog(
+                context,
+                { _, hourOfDay, minute ->
+                    // Wenn die Uhrzeit ausgewählt wurde wird diese auch in der Calendar-Instanz gespeichert
+                    calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                    calendar.set(Calendar.MINUTE, minute)
+
+                    // Hier wird das Datum und die Uhrzeit in der gewünschten Formatierung formatiert
+                    val dateFormat = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
+                    val formattedDateTime = dateFormat.format(calendar.time)
+
+                    // Callback aufrufen mit dem ausgewählten Datum und Uhrzeit
+                    onDateTimeSelected(formattedDateTime)
+
+                },
+                calendar.get(Calendar.HOUR_OF_DAY),
+                calendar.get(Calendar.MINUTE),
+                true // Hie
+            ).show()
+
+        },
+        calendar.get(Calendar.YEAR),
+        calendar.get(Calendar.MONTH),
+        calendar.get(Calendar.DAY_OF_MONTH)
+    )
+
+    dialog.show()
 }

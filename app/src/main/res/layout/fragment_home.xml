@@ -44,11 +44,11 @@
         android:layout_height="26dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="54dp"
-        app:lottie_fileName="ten.json"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
         app:layout_constraintStart_toEndOf="@+id/tvWelcome"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="ten.json"
+        app:lottie_loop="true" />
 
     <TextView
         android:id="@+id/day"
@@ -149,12 +149,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvWelcome" />
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/swipeUp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="170dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardV"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="swipe-up.json"
+        app:lottie_loop="true" />
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardVmaps"
         android:layout_width="400dp"
         android:layout_height="400dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.93"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardV">
 

@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.CreateTaskFragment"
     tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="184dp">
+    tools:layout_editor_absoluteY="184dp"
+    android:id="@+id/mainLayout">
 
     <Toolbar
         android:id="@+id/toolbar2"
@@ -66,11 +67,14 @@
         android:background="@drawable/round_edittext_green"
         android:drawableStart="@drawable/location_on_24px"
         android:hint="Wo ?"
+        android:focusable="false"
         android:inputType="textPostalAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.312"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/what" />
+
+
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/wheen"
@@ -93,6 +97,7 @@
         android:background="@drawable/round_edittext_pink"
         android:drawableStart="@drawable/location_on_24px"
         android:hint="Bis ?"
+        android:focusable="false"
         android:inputType="datetime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/butlePoints" />
@@ -135,5 +140,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etDescription" />
 
-
+    <com.google.android.gms.maps.MapView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp"
+        android:visibility="invisible"
+        android:id="@+id/mapView"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

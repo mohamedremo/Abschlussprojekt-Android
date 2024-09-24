@@ -35,5 +35,14 @@ class CreateTaskFragment : Fragment() {
         binding.etwasAbholen.setOnClickListener {
             nav.navigate(R.id.action_createTaskFragment_to_createTaskDetailFragment)
         }
+        binding.rent.setOnClickListener {
+            nav.navigate(R.id.action_createTaskFragment_to_createTaskDetailFragment)
+        }
+        binding.wish.setOnClickListener {
+            nav.navigate(R.id.action_createTaskFragment_to_createTaskDetailFragment)
+        }
+        binding.handyman.setOnClickListener {
+            nav.navigate(R.id.action_createTaskFragment_to_createTaskDetailFragment)
+        }
     }
 }

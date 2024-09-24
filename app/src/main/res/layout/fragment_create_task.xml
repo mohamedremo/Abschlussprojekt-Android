@@ -205,7 +205,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/wish"
+        android:id="@+id/rent"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_margin="12dp"
@@ -283,13 +283,14 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/wish"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_margin="12dp"
         app:cardCornerRadius="30dp"
         app:strokeColor="@color/md_theme_secondary"
         android:backgroundTint="@color/md_theme_secondary"
-        app:layout_constraintTop_toBottomOf="@id/wish">
+        app:layout_constraintTop_toBottomOf="@id/rent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

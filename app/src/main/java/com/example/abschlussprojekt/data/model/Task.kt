@@ -9,12 +9,11 @@ import com.google.firebase.firestore.GeoPoint
 data class Task(
     @PrimaryKey
     val taskName: String,
-    val description: String,
+    val description: String?,
     val createdFrom: String,
     val due: String,
     val expire: String,
     val category: Category,
-    val tasks: List<String>,
     val butlePoints: Int,
     val location: GeoPoint,
     val isFinished: Boolean,

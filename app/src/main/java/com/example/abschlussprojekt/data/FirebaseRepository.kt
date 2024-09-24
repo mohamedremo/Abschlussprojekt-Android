@@ -181,18 +181,7 @@ class FirebaseRepository {
 
 
 
-    fun saveTaskInFireStore(
-        taskName: String,
-        description: String,
-        createdAt: String,
-        expireDate: String,
-        category: Category,
-        tasks: List<String>,
-        butlePoints: Int,
-        location: GeoPoint,
-        isFinished: Boolean,
-
-    ) {
+    fun saveTaskInFireStore(newTask: Task) {
         auth.currentUser?.let { user ->
             //Referenz zum Dokument im Firestore
             val documentRef = firestore
@@ -201,22 +190,8 @@ class FirebaseRepository {
                 .collection("tasks")
                 .document(user.uid)
 
-            //Daten in ein Task Objekt packen
-            val userData = Task(
-                taskName,
-                description,
-                user.uid,
-                createdAt,
-                expireDate,
-                category,
-                tasks,
-                butlePoints,
-                location,
-                isFinished,
-
-            )
             //Speichern der Daten
-            documentRef.set(userData)
+            documentRef.set(newTask)
                 .addOnSuccessListener {
                     Log.d(TAG, "Task wurde Erfolgreich hochgeladen und angelegt.")
                 }

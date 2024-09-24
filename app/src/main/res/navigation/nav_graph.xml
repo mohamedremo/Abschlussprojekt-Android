@@ -38,7 +38,9 @@
             app:destination="@id/welcomeFragment" />
         <action
             android:id="@+id/action_homeFragment_to_createTaskFragment"
-            app:destination="@id/createTaskFragment" />
+            app:destination="@id/createTaskFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
@@ -94,7 +96,9 @@
             app:destination="@id/createTaskDetailFragment" />
         <action
             android:id="@+id/action_createTaskFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out" />
         <action
             android:id="@+id/action_createTaskFragment_to_profileFragment"
             app:destination="@id/profileFragment" />

@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.abschlussprojekt.data.FirebaseRepository
 import com.example.abschlussprojekt.data.model.Profile
+import com.example.abschlussprojekt.data.model.Task
 
 import kotlinx.coroutines.launch
 
@@ -59,7 +60,7 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
-    fun saveInFirestore(
+    fun saveProfileInFireStore(
         firstName: String,
         surName: String,
         email: String,
@@ -83,6 +84,13 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
         viewModelScope.launch {
             repository.uploadImage(imageUri)
         }
+    }
+
+    fun saveTaskInFireStore(newTask: Task) {
+        viewModelScope.launch {
+            repository.saveTaskInFireStore(newTask)
+        }
+
     }
 
 
