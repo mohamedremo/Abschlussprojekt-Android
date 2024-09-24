@@ -1,4 +1,4 @@
-package com.example.abschlussprojekt.ui
+package com.example.abschlussprojekt.ui.Task
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,10 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.abschlussprojekt.R
-import com.example.abschlussprojekt.data.model.Category
 import com.example.abschlussprojekt.databinding.FragmentCreateTaskBinding
-import com.example.abschlussprojekt.ui.viewmodel.MainViewModel
-import okhttp3.internal.wait
+import com.example.abschlussprojekt.ui.ViewModel.MainViewModel
 
 
 class CreateTaskFragment : Fragment() {
@@ -43,6 +41,10 @@ class CreateTaskFragment : Fragment() {
         }
         binding.handyman.setOnClickListener {
             nav.navigate(R.id.action_createTaskFragment_to_createTaskDetailFragment)
+        }
+
+        binding.backBtn.setOnClickListener {
+            nav.navigateUp()
         }
     }
 }

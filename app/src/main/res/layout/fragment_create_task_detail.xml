@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.CreateTaskFragment"
+    tools:context=".ui.Task.CreateTaskFragment"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="184dp"
     android:id="@+id/mainLayout">
@@ -19,6 +19,8 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/backBtn"
+            android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_keyboard_arrow_left_24" />

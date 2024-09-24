@@ -17,18 +17,15 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
-import androidx.core.view.ViewCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.example.abschlussprojekt.data.model.Profile
-import com.example.abschlussprojekt.ui.viewmodel.FirebaseViewModel
-import com.example.abschlussprojekt.ui.viewmodel.MainViewModel
+import com.example.abschlussprojekt.ui.ViewModel.FirebaseViewModel
+import com.example.abschlussprojekt.ui.ViewModel.MainViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.GeoPoint
-import com.google.gson.Gson
 
 private const val TAG = "MainActivity"
 

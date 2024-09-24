@@ -1,4 +1,4 @@
-package com.example.abschlussprojekt.ui
+package com.example.abschlussprojekt.ui.LoginAndRegister
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.abschlussprojekt.R
 import com.example.abschlussprojekt.databinding.FragmentRegisterBinding
 import com.example.abschlussprojekt.toast
-import com.example.abschlussprojekt.ui.viewmodel.FirebaseViewModel
+import com.example.abschlussprojekt.ui.ViewModel.FirebaseViewModel
 
 
 private const val TAG = "RegisterFragment"

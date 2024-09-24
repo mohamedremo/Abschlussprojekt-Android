@@ -5,9 +5,9 @@
         android:title="@string/menu_home"
         android:icon="@drawable/home_24px" />
 
-    <item android:id="@id/createTaskFragment"
+    <!--item android:id="@id/createTaskFragment"
         android:title="letsButle"
-        android:icon="@drawable/concierge_24px" />
+        android:icon="@drawable/concierge_24px"/> -->
     <item
         android:id="@id/profileFragment"
         android:icon="@drawable/person_24px"

@@ -1,4 +1,4 @@
-package com.example.abschlussprojekt.ui
+package com.example.abschlussprojekt.ui.Task
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -16,7 +15,7 @@ import com.example.abschlussprojekt.data.model.Task
 import com.example.abschlussprojekt.databinding.FragmentCreateTaskDetailBinding
 import com.example.abschlussprojekt.outsideTouch
 import com.example.abschlussprojekt.showDateTimePicker
-import com.example.abschlussprojekt.ui.viewmodel.FirebaseViewModel
+import com.example.abschlussprojekt.ui.ViewModel.FirebaseViewModel
 import com.google.android.gms.maps.MapView
 import com.google.firebase.firestore.GeoPoint
 
@@ -117,6 +116,10 @@ class CreateTaskDetailFragment : Fragment() {
             showDateTimePicker(requireContext()) { selectedDateTime ->
                 binding.until.setText(selectedDateTime)
             }
+        }
+
+        binding.backBtn.setOnClickListener {
+            nav.navigateUp()
         }
     }
 

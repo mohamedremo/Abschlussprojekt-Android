@@ -1,11 +1,10 @@
-package com.example.abschlussprojekt.ui
+package com.example.abschlussprojekt.ui.Task
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.abschlussprojekt.R
 import com.example.abschlussprojekt.databinding.FragmentTaskBinding
 
 class TaskFragment : Fragment() {

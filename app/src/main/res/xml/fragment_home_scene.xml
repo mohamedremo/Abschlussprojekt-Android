@@ -59,8 +59,7 @@
             android:id="@+id/day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="55dp"
-            android:layout_marginRight="55dp"
+            android:layout_marginEnd="40dp"
             motion:layout_constraintEnd_toStartOf="@+id/cvProfile"
             motion:layout_constraintTop_toBottomOf="@+id/tvWelcome"
             motion:layout_editor_absoluteY="48dp" />
@@ -185,6 +184,64 @@
             android:layout_height="50dp"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintTop_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/swipeUpTxt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2000dp"
+            android:layout_marginEnd="148dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/cardV" />
+        <Constraint
+            android:id="@+id/mySpaetiBtn"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="50dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/cardV" />
+
+        <Constraint
+            android:id="@+id/cardView2"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="70dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/cardV" />
+        <Constraint
+            android:id="@+id/ratesBtn"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="50dp"
+            motion:layout_constraintEnd_toStartOf="@id/cardView2"
+            motion:layout_constraintStart_toEndOf="@id/mySpaetiBtn"
+            motion:layout_constraintTop_toBottomOf="@+id/cardV" />
+        <Constraint
+            android:id="@+id/swipeUp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            motion:layout_constraintTop_toBottomOf="@+id/cardV"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="170dp" />
+        <Constraint
+            android:id="@+id/swipeUpTxt"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/swipeUp"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/floatingBtn"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="16dp" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
@@ -196,7 +253,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="34dp"
             motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintTop_toTopOf="parent"/>
+            motion:layout_constraintTop_toTopOf="parent" />
         <Constraint
             android:id="@+id/lvlSymbol"
             android:layout_width="23dp"
@@ -319,19 +376,65 @@
             android:id="@+id/swipeUpTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="100dp"
             motion:layout_constraintTop_toBottomOf="@+id/swipeUp" />
         <Constraint
-            android:layout_marginEnd="144dp"
+            android:id="@+id/swipeUpTxt2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="636dp"
-            android:layout_marginRight="144dp"
+            android:layout_marginTop="480dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/cardV" />
+        <Constraint
+            android:id="@+id/mySpaetiBtn"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            motion:layout_constraintEnd_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/cardV" />
+        <Constraint
+            android:id="@+id/cardV"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="255dp"
+            motion:layout_constraintHorizontal_bias="0.0"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/ratesBtn"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="120dp"
+            />
+        <Constraint
+            android:id="@+id/cardView2"
+            motion:layout_constraintStart_toEndOf="parent"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="16dp"
+            motion:layout_constraintTop_toBottomOf="@+id/cardV" />
+        <Constraint
+            android:id="@+id/cardVmaps"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            motion:layout_constraintTop_toBottomOf="@+id/cardV"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/floatingBtn"
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@+id/cardV"
-            android:id="@+id/swipeUpTxt2" />
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="16dp" />
 
 
     </ConstraintSet>

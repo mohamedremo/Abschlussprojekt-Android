@@ -5,7 +5,7 @@
     android:id="@+id/settingsFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.SettingsFragment">
+    tools:context=".ui.MainMenu.SettingsFragment">
 
     <Toolbar
         android:id="@+id/toolbar"

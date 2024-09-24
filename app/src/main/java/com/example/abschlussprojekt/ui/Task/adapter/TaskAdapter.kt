@@ -1,17 +1,13 @@
-package com.example.abschlussprojekt.ui.adapter
+package com.example.abschlussprojekt.ui.Task.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.abschlussprojekt.calculateDistance
 import com.example.abschlussprojekt.databinding.ListTaskBinding
-import com.example.abschlussprojekt.ui.viewmodel.MainViewModel
+import com.example.abschlussprojekt.ui.ViewModel.MainViewModel
 import com.example.abschlussprojekt.data.model.Task
-import com.example.abschlussprojekt.ui.viewmodel.FirebaseViewModel
-import kotlin.math.atan2
-import kotlin.math.cos
-import kotlin.math.sin
-import kotlin.math.sqrt
+import com.example.abschlussprojekt.ui.ViewModel.FirebaseViewModel
 
 
 class TaskAdapter(

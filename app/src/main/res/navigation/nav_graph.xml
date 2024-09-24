@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/logInFragment"
-        android:name="com.example.abschlussprojekt.ui.LogInFragment"
+        android:name="com.example.abschlussprojekt.ui.LoginAndRegister.LogInFragment"
         android:label="fragment_log_in"
         tools:layout="@layout/fragment_log_in" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.abschlussprojekt.ui.RegisterFragment"
+        android:name="com.example.abschlussprojekt.ui.LoginAndRegister.RegisterFragment"
         android:label="RegisterFragment" >
         <action
             android:id="@+id/action_registerFragment_to_logInFragment"
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.abschlussprojekt.ui.HomeFragment"
+        android:name="com.example.abschlussprojekt.ui.MainMenu.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.example.abschlussprojekt.ui.WelcomeFragment"
+        android:name="com.example.abschlussprojekt.ui.LoginAndRegister.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
         <action
@@ -59,7 +59,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.abschlussprojekt.ui.ProfileFragment"
+        android:name="com.example.abschlussprojekt.ui.MainMenu.ProfileFragment"
         android:label="TaskDetailFragment" >
         <action
             android:id="@+id/action_profileFragment_to_welcomeFragment"
@@ -73,7 +73,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.abschlussprojekt.ui.SettingsFragment"
+        android:name="com.example.abschlussprojekt.ui.MainMenu.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" >
         <action
@@ -88,7 +88,7 @@
     </fragment>
     <fragment
         android:id="@+id/createTaskFragment"
-        android:name="com.example.abschlussprojekt.ui.CreateTaskFragment"
+        android:name="com.example.abschlussprojekt.ui.Task.CreateTaskFragment"
         android:label="fragment_create_task"
         tools:layout="@layout/fragment_create_task" >
         <action
@@ -105,11 +105,11 @@
     </fragment>
     <fragment
         android:id="@+id/taskFragment"
-        android:name="com.example.abschlussprojekt.ui.TaskFragment"
+        android:name="com.example.abschlussprojekt.ui.Task.TaskFragment"
         android:label="TaskFragment" />
     <fragment
         android:id="@+id/createTaskDetailFragment"
-        android:name="com.example.abschlussprojekt.ui.CreateTaskDetailFragment"
+        android:name="com.example.abschlussprojekt.ui.Task.CreateTaskDetailFragment"
         android:label="CreateTaskDetailFragment" >
         <action
             android:id="@+id/action_createTaskDetailFragment_to_createTaskFragment"

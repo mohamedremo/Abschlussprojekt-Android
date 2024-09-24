@@ -1,4 +1,4 @@
-package com.example.abschlussprojekt.ui.viewmodel
+package com.example.abschlussprojekt.ui.ViewModel
 
 import android.app.Application
 import android.net.Uri

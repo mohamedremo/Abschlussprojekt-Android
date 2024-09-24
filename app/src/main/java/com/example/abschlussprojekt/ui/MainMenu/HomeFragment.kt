@@ -1,4 +1,4 @@
-package com.example.abschlussprojekt.ui
+package com.example.abschlussprojekt.ui.MainMenu
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -16,11 +16,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.abschlussprojekt.databinding.FragmentHomeBinding
 import com.example.abschlussprojekt.setLottieByLevel
-import com.example.abschlussprojekt.ui.viewmodel.FirebaseViewModel
-import com.example.abschlussprojekt.ui.viewmodel.MainViewModel
-import com.google.android.gms.maps.CameraUpdateFactory
+import com.example.abschlussprojekt.ui.ViewModel.FirebaseViewModel
+import com.example.abschlussprojekt.ui.ViewModel.MainViewModel
 import com.google.android.gms.maps.MapView
-import com.google.type.LatLng
 
 private const val TAG = "HomeFragment"
 
@@ -94,40 +92,41 @@ class HomeFragment : Fragment() {
             if (it == null)
                 nav.navigate(
                     HomeFragmentDirections
-                        .actionHomeFragmentToWelcomeFragment())
+                        .actionHomeFragmentToWelcomeFragment()
+                )
         }
 
 
         fireViewModel.profile.observe(viewLifecycleOwner) { profile ->
-                if (profile != null) {
-                    val firstname = profile?.firstName
-                        .toString()
-                    val points = profile?.points
-                        .toString()
+            if (profile != null) {
+                val firstname = profile?.firstName
+                    .toString()
+                val points = profile?.points
+                    .toString()
 
-                    //Lottie Animation für Level Anzeige
-                    val level = profile?.level
-                        .toString()
-                    val lottieFile = setLottieByLevel(level.toInt())
+                //Lottie Animation für Level Anzeige
+                val level = profile?.level
+                    .toString()
+                val lottieFile = setLottieByLevel(level.toInt())
 
-                    //Lottie Animation laden und starten
-                    binding.lvlSymbol.setAnimation(lottieFile)
-                    binding.lvlSymbol.playAnimation()
+                //Lottie Animation laden und starten
+                binding.lvlSymbol.setAnimation(lottieFile)
+                binding.lvlSymbol.playAnimation()
 
-                    binding.tvWelcome.text = "Welcome $firstname"
-                    binding.tvPoints.text = points
+                binding.tvWelcome.text = "Welcome $firstname"
+                binding.tvPoints.text = points
 
-                    try {
-                        binding.ivProfilePic.setImageURI(fireViewModel.currentUser.value?.photoUrl)
-                        Log.d(TAG, "onViewCreated: Profil Pic set!")
-                    } catch (e: Exception) {
-                        Log.d(TAG, "onViewCreated: Cannot set Profil Pic!")
-                        e.printStackTrace()
-                    }
-
-                    Log.d(TAG, "onViewCreated: Profile wurde geladen ${profile}")
-
+                try {
+                    binding.ivProfilePic.setImageURI(fireViewModel.currentUser.value?.photoUrl)
+                    Log.d(TAG, "onViewCreated: Profil Pic set!")
+                } catch (e: Exception) {
+                    Log.d(TAG, "onViewCreated: Cannot set Profil Pic!")
+                    e.printStackTrace()
                 }
+
+                Log.d(TAG, "onViewCreated: Profile wurde geladen ${profile}")
+
+            }
         }
 
         //Wetter daten observieren und bei Änderung TextView aktualisieren
@@ -140,8 +139,13 @@ class HomeFragment : Fragment() {
             uploadImage()
         }
 
+        binding.floatingBtn.setOnClickListener {
+            nav.navigate(HomeFragmentDirections.actionHomeFragmentToCreateTaskFragment())
+        }
+
     }
- //--------------------------------------------------------------------
+
+    //--------------------------------------------------------------------
     //Intent zum Foto Picken und dann mit uri hochladen.
     private fun uploadImage() {
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {

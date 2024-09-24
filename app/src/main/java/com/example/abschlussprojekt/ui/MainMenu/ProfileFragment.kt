@@ -1,4 +1,4 @@
-package com.example.abschlussprojekt.ui
+package com.example.abschlussprojekt.ui.MainMenu
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.abschlussprojekt.databinding.FragmentProfileBinding
-import com.example.abschlussprojekt.ui.adapter.TaskAdapter
-import com.example.abschlussprojekt.ui.viewmodel.FirebaseViewModel
-import com.example.abschlussprojekt.ui.viewmodel.MainViewModel
+import com.example.abschlussprojekt.ui.ViewModel.FirebaseViewModel
+import com.example.abschlussprojekt.ui.ViewModel.MainViewModel
 
 
 class ProfileFragment : Fragment() {
@@ -20,8 +19,7 @@ class ProfileFragment : Fragment() {
     private val viewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
@@ -35,26 +33,25 @@ class ProfileFragment : Fragment() {
         val nav = findNavController()
 
         binding.addBtn.setOnClickListener {
-            fireViewModel.logOut()
+            nav.navigate(ProfileFragmentDirections.actionProfileFragmentToCreateTaskFragment())
         }
 
         //Wenn der User nicht eingeloggt ist wird er zum WelcomeFragment navigiert.
         fireViewModel.currentUser.observe(viewLifecycleOwner) {
-            if (it == null)
-                nav.navigate(
-                    ProfileFragmentDirections
-                        .actionProfileFragmentToWelcomeFragment())
+            if (it == null) nav.navigate(
+                ProfileFragmentDirections.actionProfileFragmentToWelcomeFragment()
+            )
         }
 
 
         //Profil Referenz aus dem Firestore wird beobachtet und bei änderungen angezeigt.
         fireViewModel.profile.observe(viewLifecycleOwner) { profile ->
             profile?.let {
-                 val firstName = it.firstName
-                 val surName = it.surName
-                 binding.tvName.setText("$firstName $surName")
-                }
+                val firstName = it.firstName
+                val surName = it.surName
+                binding.tvName.setText("$firstName $surName")
             }
         }
-
     }
+
+}
