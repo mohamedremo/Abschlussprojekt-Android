@@ -81,6 +81,10 @@ class HomeFragment : Fragment() {
 
         val nav = findNavController()
 
+        binding.shopBtn.setOnClickListener {
+            binding.shoppingBags.playAnimation()
+            nav.navigate(HomeFragmentDirections.actionHomeFragmentToMySpaetiFragment())
+        }
 
         mapView.getMapAsync{
             it.isMyLocationEnabled = true

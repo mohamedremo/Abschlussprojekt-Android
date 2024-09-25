@@ -145,8 +145,8 @@
                 android:backgroundTint="#CC8EDA4F"
                 android:clickable="true"
                 app:cardCornerRadius="50dp"
-                app:layout_constraintBottom_toBottomOf="@+id/ratesBtn"
-                app:layout_constraintEnd_toStartOf="@+id/ratesBtn"
+                app:layout_constraintBottom_toBottomOf="@+id/shopBtn"
+                app:layout_constraintEnd_toStartOf="@+id/shopBtn"
                 app:layout_constraintTop_toBottomOf="@+id/divider">
 
                 <com.airbnb.lottie.LottieAnimationView
@@ -173,7 +173,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/statusBtn" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/ratesBtn"
+                android:id="@+id/shopBtn"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginTop="40dp"
@@ -205,7 +205,7 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ratesBtn" />
+                app:layout_constraintTop_toBottomOf="@+id/shopBtn" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView2"
@@ -216,8 +216,8 @@
                 android:backgroundTint="#CC89CFF0"
                 android:clickable="true"
                 app:cardCornerRadius="50dp"
-                app:layout_constraintBottom_toBottomOf="@+id/ratesBtn"
-                app:layout_constraintStart_toEndOf="@+id/ratesBtn"
+                app:layout_constraintBottom_toBottomOf="@+id/shopBtn"
+                app:layout_constraintStart_toEndOf="@+id/shopBtn"
                 app:layout_constraintTop_toBottomOf="@+id/divider"
                 app:layout_constraintVertical_bias="0.0">
 
@@ -270,7 +270,7 @@
                 android:textSize="26sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/textView4"
-                app:layout_constraintTop_toBottomOf="@+id/ratesBtn" />
+                app:layout_constraintTop_toBottomOf="@+id/shopBtn" />
 
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/materialDivider"

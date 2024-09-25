@@ -41,6 +41,9 @@
             app:destination="@id/createTaskFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_homeFragment_to_mySpaetiFragment"
+            app:destination="@id/mySpaetiFragment" />
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
@@ -117,5 +120,14 @@
         <action
             android:id="@+id/action_createTaskDetailFragment_to_taskFragment"
             app:destination="@id/taskFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mySpaetiFragment"
+        android:name="com.example.abschlussprojekt.ui.MySpaeti.MySpaetiFragment"
+        android:label="fragment_my_spaeti"
+        tools:layout="@layout/fragment_my_spaeti" >
+        <action
+            android:id="@+id/action_mySpaetiFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

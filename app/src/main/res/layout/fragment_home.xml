@@ -168,24 +168,25 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/ratesBtn"
+        android:id="@+id/shopBtn"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginTop="12dp"
         android:backgroundTint="#CCFF4081"
         app:cardCornerRadius="50dp"
+        android:clickable="true"
         app:layout_constraintTop_toBottomOf="@+id/cardV"
         tools:layout_editor_absoluteX="189dp">
 
         <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottieAnimationView"
+            android:id="@+id/shoppingBags"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             android:clickable="true"
-            app:lottie_fileName="rate.json" />
+            app:lottie_fileName="tasche.json" />
 
     </androidx.cardview.widget.CardView>
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
@@ -194,7 +195,7 @@
         android:backgroundTint="#CC89CFF0"
         android:clickable="true"
         app:cardCornerRadius="50dp"
-        app:layout_constraintStart_toEndOf="@+id/ratesBtn"
+        app:layout_constraintStart_toEndOf="@+id/shopBtn"
         app:layout_constraintTop_toBottomOf="@+id/cardV">
 
         <com.airbnb.lottie.LottieAnimationView

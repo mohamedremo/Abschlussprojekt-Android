@@ -9,7 +9,7 @@
         <!-- Secondary Color: Korallenorange -->
         <item name="colorSecondary">#FF7F50</item>
         <item name="colorOnSecondary">#FFFFFF</item> <!-- Weiß für guten Kontrast auf Orange -->
-        <item name="colorSecondaryContainer">#FFB59C</item> <!-- Hellere Variante des Sekundärfarbtons -->
+        <item name="colorSecondaryContainer">#2196F3</item> <!-- Hellere Variante des Sekundärfarbtons -->
         <item name="colorOnSecondaryContainer">#5A2B18</item> <!-- Dunklere Braunnuance für Kontrast -->
 
         <!-- Tertiary Color: Sattbraun -->

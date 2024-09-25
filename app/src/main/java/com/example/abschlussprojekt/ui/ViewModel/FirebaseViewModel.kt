@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.abschlussprojekt.data.FirebaseRepository
+import com.example.abschlussprojekt.data.model.Product
 import com.example.abschlussprojekt.data.model.Profile
 import com.example.abschlussprojekt.data.model.Task
 
@@ -74,6 +75,10 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
 
     fun saveAllProfiles(profiles: List<Profile>) {
         repository.saveAllProfiles(profiles)
+    }
+
+    fun saveAllProducts(products: List<Product>) {
+        repository.saveAllProducts(products)
     }
 
     fun getUserProfile(onResult: (Map<String, Any>?) -> Unit) {

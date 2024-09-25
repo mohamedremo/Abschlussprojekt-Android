@@ -1,0 +1,117 @@
+[
+    {
+        "name": "Chips",
+        "price": 2.49,
+        "imageUrl": "https://example.com/chips.jpg",
+        "isAlcoholic": false,
+        "isVegan": true,
+        "isVegetarian": true,
+        "tags": [
+            "bio",
+            "glutenfree"
+        ]
+    },
+    {
+        "name": "Schokolade",
+        "price": 1.99,
+        "imageUrl": "https://example.com/schokolade.jpg",
+        "isAlcoholic": false,
+        "isVegan": false,
+        "isVegetarian": true,
+        "tags": [
+            "halal",
+            "sugarfree"
+        ]
+    },
+    {
+        "name": "Energydrink",
+        "price": 1.79,
+        "imageUrl": "https://example.com/energydrink.jpg",
+        "isAlcoholic": false,
+        "isVegan": true,
+        "isVegetarian": true,
+        "tags": [
+            "sugarfree"
+        ]
+    },
+    {
+        "name": "Instantnudeln",
+        "price": 0.99,
+        "imageUrl": "https://example.com/instantnudeln.jpg",
+        "isAlcoholic": false,
+        "isVegan": true,
+        "isVegetarian": true,
+        "tags": [
+            "bio",
+            "glutenfree"
+        ]
+    },
+    {
+        "name": "Fruchtsaft",
+        "price": 2.29,
+        "imageUrl": "https://example.com/fruchtsaft.jpg",
+        "isAlcoholic": false,
+        "isVegan": true,
+        "isVegetarian": true,
+        "tags": [
+            "bio",
+            "sugarfree"
+        ]
+    },
+    {
+        "name": "Kekse",
+        "price": 1.49,
+        "imageUrl": "https://example.com/kekse.jpg",
+        "isAlcoholic": false,
+        "isVegan": false,
+        "isVegetarian": true,
+        "tags": [
+            "halal"
+        ]
+    },
+    {
+        "name": "N\u00fcsse",
+        "price": 3.99,
+        "imageUrl": "https://example.com/nuesse.jpg",
+        "isAlcoholic": false,
+        "isVegan": true,
+        "isVegetarian": true,
+        "tags": [
+            "bio",
+            "glutenfree"
+        ]
+    },
+    {
+        "name": "Gummib\u00e4rchen",
+        "price": 1.59,
+        "imageUrl": "https://example.com/gummibaerchen.jpg",
+        "isAlcoholic": false,
+        "isVegan": false,
+        "isVegetarian": true,
+        "tags": [
+            "sugarfree"
+        ]
+    },
+    {
+        "name": "Popcorn",
+        "price": 2.99,
+        "imageUrl": "https://example.com/popcorn.jpg",
+        "isAlcoholic": false,
+        "isVegan": true,
+        "isVegetarian": true,
+        "tags": [
+            "bio"
+        ]
+    },
+    {
+        "name": "Pudding",
+        "price": 1.89,
+        "imageUrl": "https://example.com/pudding.jpg",
+        "isAlcoholic": false,
+        "isVegan": false,
+        "isVegetarian": true,
+        "tags": [
+            "halal"
+        ]
+    }
+]

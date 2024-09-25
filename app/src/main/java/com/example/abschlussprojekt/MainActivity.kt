@@ -19,6 +19,7 @@ import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.abschlussprojekt.data.model.Product
 import com.example.abschlussprojekt.ui.ViewModel.FirebaseViewModel
 import com.example.abschlussprojekt.ui.ViewModel.MainViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -26,6 +27,7 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.GeoPoint
+import com.google.gson.Gson
 
 private const val TAG = "MainActivity"
 
@@ -70,16 +72,32 @@ class MainActivity : AppCompatActivity() {
 FUNKTION FÜR MOCKDATEN IN FIREBASE SPEICHERN
  */
 //        fun initProfilesLocalToFirebase() {
-//            val json = assets.open("profiles.json").bufferedReader().use {
+//            val json = assets.open("products.json").bufferedReader().use {
 //                it.readText()
 //            }
 //            Log.e(TAG,json)
-//            val profileList = Gson().fromJson(json, Array<Profile>::class.java).toList()
-//            fireViewModel.saveAllProfiles(profileList)
+//            val listToSave = Gson().fromJson(json, Array<Product>::class.java).toList()
+//            fireViewModel.saveAllProducts(listToSave) // hier wird immer die jeweilige funktion aus dem ViewModel geändert je nachdem welchen  Datentypen man hochladen will
 //        }
 //        initProfilesLocalToFirebase()
 
-
+        binding.bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.homeFragment -> {
+                    navHost.navController.navigate(R.id.homeFragment)
+                    true
+                }
+                R.id.profileFragment -> {
+                    navHost.navController.navigate(R.id.profileFragment)
+                    true
+                }
+                R.id.settingsFragment -> {
+                    navHost.navController.navigate(R.id.settingsFragment)
+                    true
+                }
+                else -> false
+            }
+        }
 
         //Bottom Navigation in bestimmten Fragmenten ausblenden.
         navHost.navController.addOnDestinationChangedListener { _, destination, _ ->
@@ -90,6 +108,8 @@ FUNKTION FÜR MOCKDATEN IN FIREBASE SPEICHERN
                 else -> binding.bottomNav.visibility = View.VISIBLE
             }
         }
+
+
 
         //Zurück Button Funktion
         onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {

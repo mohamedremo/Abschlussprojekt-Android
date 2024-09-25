@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.abschlussprojekt.data.model.Category
+import com.example.abschlussprojekt.data.model.Product
 import com.example.abschlussprojekt.data.model.Profile
 import com.example.abschlussprojekt.data.model.Task
 import com.example.abschlussprojekt.isValidEmail
@@ -179,6 +180,13 @@ class FirebaseRepository {
         Log.d(TAG, "Alle Profile wurden erfolgreich gespeichert")
     }
 
+    fun saveAllProducts(products: List<Product>) {
+        products.forEach {
+            firestore.collection("products")
+                .document(it.name)
+                .set(it)
+        }
+    }
 
 
     fun saveTaskInFireStore(newTask: Task) {
