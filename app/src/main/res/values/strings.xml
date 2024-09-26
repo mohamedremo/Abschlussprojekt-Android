@@ -16,7 +16,7 @@
     <string name="noAccount">Ich habe noch kein Konto.</string>
     <string name="welcome">Willkommen bei myButler!</string>
     <string name="penguin">Pinguin</string>
-    <string name="forgot_password">Passwort vergessen?</string>
+    <string name="forgot_password">Passwort vergessen? ></string>
     <string name="license">Ich hab einen Führerschein!(Klasse B)</string>
     <string name="password_nomatch">Die eingegebenen Passwörter stimmen nicht überein, bitte versuchen sie es nochmal</string>
     <string name="password_sixchars">Das Passwort muss mindestens 6 Zeichen lang sein</string>

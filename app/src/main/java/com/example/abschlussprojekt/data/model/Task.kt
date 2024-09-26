@@ -18,6 +18,7 @@ data class Task(
     val location: GeoPoint,
     val isFinished: Boolean,
 )
+
 enum class Category(var displayName: String) {
     DIENSTLEISTUNG("Dienstleistung"),
     FAHRT("Fahrt"),

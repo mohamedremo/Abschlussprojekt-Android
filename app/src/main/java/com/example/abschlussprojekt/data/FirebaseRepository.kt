@@ -4,7 +4,6 @@ import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.abschlussprojekt.data.model.Category
 import com.example.abschlussprojekt.data.model.Product
 import com.example.abschlussprojekt.data.model.Profile
 import com.example.abschlussprojekt.data.model.Task
@@ -12,7 +11,6 @@ import com.example.abschlussprojekt.isValidEmail
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.storage.FirebaseStorage
 
 private const val TAG = "FirebaseRepository"
@@ -173,7 +171,7 @@ class FirebaseRepository {
 
     fun saveAllProfiles(profiles: List<Profile>) {
         profiles.forEach {
-             firestore.collection("profiles")
+            firestore.collection("profiles")
                 .document()
                 .set(it)
         }
@@ -271,50 +269,50 @@ class FirebaseRepository {
 //        }
 //    }
 
-        //Speichern des Bildes in Firebase Storage
-        fun uploadImage(imageUri: Uri) {
-            auth.currentUser?.let { user ->
-                //Referenz zum Speicherort im Firebase Storage
-                var storageRef = storageRef.child("images/${user.uid}/profilePicture")
+    //Speichern des Bildes in Firebase Storage
+    fun uploadImage(imageUri: Uri) {
+        auth.currentUser?.let { user ->
+            //Referenz zum Speicherort im Firebase Storage
+            var storageRef = storageRef.child("images/${user.uid}/profilePicture")
 
-                //Speichern des Bildes
-                storageRef.putFile(imageUri)
-                    .addOnSuccessListener { //Erfolgreich -> Bild wird hochgeladen
-                        Log.d(TAG, "Bild wurde erfolgreich auf Firestore hochgeladen")
-                        _downloading.value = true
-                        //Aktualisieren der Profilbild URL in der Firestore Datenbank
-                        storageRef.downloadUrl.addOnSuccessListener {
-                            //Downloading State wird auf false gesetzt
-                            _downloading.value = false
-                            Log.d(TAG, "Bild wurde erfolgreich vom Firestore heruntergeladen")
-                            _profile.value = _profile.value?.copy(profilePicture = it.toString())
-                            //Referenz zum Dokument im Firestore
-                            val profileRef = firestore.collection("profiles")
-                                .document(user.uid)
-                            //Aktualisieren der Daten im Firestore
-                            profileRef.update("profilePicture", it.toString())
-                                .addOnSuccessListener {
-                                    Log.d(
-                                        TAG,
-                                        "Profilbild URL wurde erfolgreich im Firestore aktualisiert"
-                                    )
-                                }
-                                .addOnFailureListener { e ->
-                                    Log.w(
-                                        TAG,
-                                        "Beim Aktualisieren der Profilbild URL im Firestore ist ein Fehler aufgetreten",
-                                        e
-                                    )
-                                }
-                        }
-                            .addOnFailureListener { //Fail -> Bild konnte nicht hochgeladen werden
-
-                                Log.d(TAG, "Bild konnte nicht hochgeladen werden")
+            //Speichern des Bildes
+            storageRef.putFile(imageUri)
+                .addOnSuccessListener { //Erfolgreich -> Bild wird hochgeladen
+                    Log.d(TAG, "Bild wurde erfolgreich auf Firestore hochgeladen")
+                    _downloading.value = true
+                    //Aktualisieren der Profilbild URL in der Firestore Datenbank
+                    storageRef.downloadUrl.addOnSuccessListener {
+                        //Downloading State wird auf false gesetzt
+                        _downloading.value = false
+                        Log.d(TAG, "Bild wurde erfolgreich vom Firestore heruntergeladen")
+                        _profile.value = _profile.value?.copy(profilePicture = it.toString())
+                        //Referenz zum Dokument im Firestore
+                        val profileRef = firestore.collection("profiles")
+                            .document(user.uid)
+                        //Aktualisieren der Daten im Firestore
+                        profileRef.update("profilePicture", it.toString())
+                            .addOnSuccessListener {
+                                Log.d(
+                                    TAG,
+                                    "Profilbild URL wurde erfolgreich im Firestore aktualisiert"
+                                )
+                            }
+                            .addOnFailureListener { e ->
+                                Log.w(
+                                    TAG,
+                                    "Beim Aktualisieren der Profilbild URL im Firestore ist ein Fehler aufgetreten",
+                                    e
+                                )
                             }
                     }
-            }
+                        .addOnFailureListener { //Fail -> Bild konnte nicht hochgeladen werden
+
+                            Log.d(TAG, "Bild konnte nicht hochgeladen werden")
+                        }
+                }
         }
     }
+}
 
 
 

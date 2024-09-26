@@ -1,6 +1,5 @@
 package com.example.abschlussprojekt.data.local
 
-import android.animation.TypeConverter
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
@@ -21,14 +20,15 @@ abstract class MyButlerDatabase : RoomDatabase() {
         private lateinit var INSTANCE: MyButlerDatabase
 
         //Datenbank initialisieren wenn sie noch nicht existiert
-        fun getDatabase(context: Context): MyButlerDatabase{
+        fun getDatabase(context: Context): MyButlerDatabase {
             synchronized(MyButlerDatabase::class.java) {
                 if (!::INSTANCE.isInitialized) {
                     INSTANCE = Room.databaseBuilder(
                         context.applicationContext,
                         MyButlerDatabase::class.java,
                         "butler_database" //Datenbank Name
-                    ).build()
+                    )
+                        .build()
                 }
                 return INSTANCE
             }

@@ -1,10 +1,10 @@
 package com.example.abschlussprojekt.ui.LoginAndRegister
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.abschlussprojekt.R
@@ -36,19 +36,21 @@ class WelcomeFragment : Fragment() {
             if (it != null)
                 nav.navigate(
                     WelcomeFragmentDirections
-                        .actionWelcomeFragmentToHomeFragment())
+                        .actionWelcomeFragmentToHomeFragment()
+                )
         }
 
         //LOGIN
         binding.loginBtn.setOnClickListener {
             nav.navigate(
                 WelcomeFragmentDirections
-                    .actionWelcomeFragmentToLogInFragment())
+                    .actionWelcomeFragmentToLogInFragment()
+            )
         }
 
         //REGISTER
         binding.registerBtn.setOnClickListener {
-           nav.navigate(R.id.registerFragment)
+            nav.navigate(R.id.registerFragment)
         }
     }
 }

@@ -18,7 +18,6 @@ import com.example.abschlussprojekt.databinding.FragmentHomeBinding
 import com.example.abschlussprojekt.setLottieByLevel
 import com.example.abschlussprojekt.ui.ViewModel.FirebaseViewModel
 import com.example.abschlussprojekt.ui.ViewModel.MainViewModel
-import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.MapView
 
@@ -86,7 +85,7 @@ class HomeFragment : Fragment() {
             nav.navigate(HomeFragmentDirections.actionHomeFragmentToMySpaetiFragment())
         }
 
-        mapView.getMapAsync{
+        mapView.getMapAsync {
             it.isMyLocationEnabled = true
             it.moveCamera(CameraUpdateFactory.newLatLngZoom(myPosition, 13f))
         }

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ground_1"
     android:orientation="vertical"
     tools:context=".ui.LoginAndRegister.LogInFragment">
 
@@ -14,7 +13,7 @@
         android:layout_height="200dp"
         android:layout_margin="30dp"
         android:layout_marginTop="100dp"
-        android:src="@drawable/penguin_pc"
+        android:src="@mipmap/ic_launcher_round"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +72,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
-        android:backgroundTint="#d14518"
+        android:backgroundTint="@color/md_theme_tertiaryFixed"
         android:text="@string/login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

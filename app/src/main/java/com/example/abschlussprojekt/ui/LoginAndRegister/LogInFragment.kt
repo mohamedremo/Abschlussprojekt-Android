@@ -1,13 +1,13 @@
 package com.example.abschlussprojekt.ui.LoginAndRegister
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.example.abschlussprojekt.databinding.FragmentLogInBinding
 import androidx.navigation.fragment.findNavController
+import com.example.abschlussprojekt.databinding.FragmentLogInBinding
 import com.example.abschlussprojekt.ui.ViewModel.FirebaseViewModel
 
 private const val TAG = "LogInFragment"
@@ -34,7 +34,8 @@ class LogInFragment : Fragment() {
             if (it != null)
                 nav.navigate(
                     LogInFragmentDirections
-                        .actionLogInFragmentToHomeFragment())
+                        .actionLogInFragmentToHomeFragment()
+                )
         }
 
         //Button zum Einloggen
@@ -45,7 +46,8 @@ class LogInFragment : Fragment() {
 
             nav.navigate(
                 LogInFragmentDirections
-                    .actionLogInFragmentToHomeFragment())
+                    .actionLogInFragmentToHomeFragment()
+            )
         }
     }
 

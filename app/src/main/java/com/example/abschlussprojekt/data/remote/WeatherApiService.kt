@@ -18,25 +18,28 @@ private val logger = HttpLoggingInterceptor().apply { level = HttpLoggingInterce
 
 // HttpClient für Retrofit
 private val httpClient = OkHttpClient.Builder()
-        .addInterceptor(logger)
-        .build()
+    .addInterceptor(logger)
+    .build()
 
 // Moshi für JSON Konvertierung
 private val moshi = Moshi.Builder()
-        .add(KotlinJsonAdapterFactory())
-        .build()
+    .add(KotlinJsonAdapterFactory())
+    .build()
 
 // Retrofit für API Calls
 private val retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .client(httpClient)
-        .addConverterFactory(MoshiConverterFactory.create(moshi))
-        .build()
+    .baseUrl(BASE_URL)
+    .client(httpClient)
+    .addConverterFactory(MoshiConverterFactory.create(moshi))
+    .build()
 
 // Hier Interface für die API Endpunkte
 interface WeatherApiService {
     @GET("forecast?&current_weather=true")
-    suspend fun getCurrentWeather(@Query ("latitude") latitude: Double, @Query ("longitude") longitude: Double): WeatherResponse
+    suspend fun getCurrentWeather(
+        @Query("latitude") latitude: Double,
+        @Query("longitude") longitude: Double
+    ): WeatherResponse
 }
 
 // API Objekt

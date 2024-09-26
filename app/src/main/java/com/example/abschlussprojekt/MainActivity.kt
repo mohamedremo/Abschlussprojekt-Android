@@ -9,17 +9,16 @@ import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import com.example.abschlussprojekt.databinding.ActivityMainBinding
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.example.abschlussprojekt.data.model.Product
+import com.example.abschlussprojekt.databinding.ActivityMainBinding
 import com.example.abschlussprojekt.ui.ViewModel.FirebaseViewModel
 import com.example.abschlussprojekt.ui.ViewModel.MainViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -27,7 +26,6 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.GeoPoint
-import com.google.gson.Gson
 
 private const val TAG = "MainActivity"
 
@@ -50,7 +48,8 @@ class MainActivity : AppCompatActivity() {
                     this,
                     "Bitte erteile die vollständigen Berechtigungen um die App nutzen zu können",
                     Toast.LENGTH_SHORT
-                ).show()
+                )
+                    .show()
             }
         }
     }
@@ -68,9 +67,9 @@ class MainActivity : AppCompatActivity() {
                 .findFragmentById(binding.navHostFragmentContainer.id) as NavHostFragment
         binding.bottomNav.setupWithNavController(navHost.navController)
 
-/*
-FUNKTION FÜR MOCKDATEN IN FIREBASE SPEICHERN
- */
+        /*
+        FUNKTION FÜR MOCKDATEN IN FIREBASE SPEICHERN
+         */
 //        fun initProfilesLocalToFirebase() {
 //            val json = assets.open("products.json").bufferedReader().use {
 //                it.readText()
@@ -87,14 +86,17 @@ FUNKTION FÜR MOCKDATEN IN FIREBASE SPEICHERN
                     navHost.navController.navigate(R.id.homeFragment)
                     true
                 }
+
                 R.id.profileFragment -> {
                     navHost.navController.navigate(R.id.profileFragment)
                     true
                 }
+
                 R.id.settingsFragment -> {
                     navHost.navController.navigate(R.id.settingsFragment)
                     true
                 }
+
                 else -> false
             }
         }
@@ -108,7 +110,6 @@ FUNKTION FÜR MOCKDATEN IN FIREBASE SPEICHERN
                 else -> binding.bottomNav.visibility = View.VISIBLE
             }
         }
-
 
 
         //Zurück Button Funktion
@@ -216,7 +217,7 @@ FUNKTION FÜR MOCKDATEN IN FIREBASE SPEICHERN
                     Manifest.permission.ACCESS_FINE_LOCATION
                 ) == PackageManager.PERMISSION_GRANTED
             ) {
-               Log.d(TAG, "Permission granted")
+                Log.d(TAG, "Permission granted")
             } else {
                 requestPermissionLauncher.launch(
                     arrayOf(

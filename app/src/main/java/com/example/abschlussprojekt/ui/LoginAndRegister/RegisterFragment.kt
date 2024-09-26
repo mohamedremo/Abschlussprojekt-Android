@@ -1,10 +1,10 @@
 package com.example.abschlussprojekt.ui.LoginAndRegister
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.abschlussprojekt.R
@@ -36,7 +36,7 @@ class RegisterFragment : Fragment() {
         //Wenn User bereits eingeloggt ist -> HomeFragment
         fireViewModel.currentUser.observe(viewLifecycleOwner) {
             if (it != null)
-            nav.navigate(R.id.action_registerFragment_to_homeFragment)
+                nav.navigate(R.id.action_registerFragment_to_homeFragment)
         }
 
         //Register Button
@@ -68,14 +68,14 @@ class RegisterFragment : Fragment() {
         if (email.isEmpty() || password.isEmpty() || password2.isEmpty() ||
             firstName.isEmpty() || surName.isEmpty() || birthDate.isEmpty()
         ) {
-            toast(getString(R.string.reg_allfields),requireContext())
+            toast(getString(R.string.reg_allfields), requireContext())
         }
 
         if (password != password2) { // Wenn Passwörter nur nicht überein stimmen -> Toast!
-            toast(getString(R.string.password_nomatch),requireContext())
+            toast(getString(R.string.password_nomatch), requireContext())
 
         } else if (password.length < 6) { // Wenn Passwort weniger als 6 Zeichen -> Toast!
-            toast(getString(R.string.password_sixchars),requireContext())
+            toast(getString(R.string.password_sixchars), requireContext())
 
         } else {
             clearFields()

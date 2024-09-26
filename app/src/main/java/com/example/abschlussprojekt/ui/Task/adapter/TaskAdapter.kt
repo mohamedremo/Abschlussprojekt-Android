@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.abschlussprojekt.calculateDistance
-import com.example.abschlussprojekt.databinding.ListTaskBinding
-import com.example.abschlussprojekt.ui.ViewModel.MainViewModel
 import com.example.abschlussprojekt.data.model.Task
+import com.example.abschlussprojekt.databinding.ListTaskBinding
 import com.example.abschlussprojekt.ui.ViewModel.FirebaseViewModel
+import com.example.abschlussprojekt.ui.ViewModel.MainViewModel
 
 
 class TaskAdapter(

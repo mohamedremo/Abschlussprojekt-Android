@@ -30,5 +30,4 @@ interface MyButlerDao {
     suspend fun deleteTasks()
 
 
-
 }

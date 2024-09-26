@@ -3,10 +3,7 @@ package com.example.abschlussprojekt.data
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.abschlussprojekt.data.local.MyButlerDatabase
 import com.example.abschlussprojekt.data.model.Category
-import com.example.abschlussprojekt.data.model.Profile
-import com.example.abschlussprojekt.data.model.Task
 import com.example.abschlussprojekt.data.model.WeatherResponse
 import com.example.abschlussprojekt.data.remote.WeatherApi
 

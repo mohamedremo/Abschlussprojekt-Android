@@ -2,9 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.gms.google-services")
-    id("com.google.devtools.ksp")version "2.0.10-1.0.24"
+    id("com.google.devtools.ksp") version "2.0.10-1.0.24"
     id("androidx.navigation.safeargs.kotlin")
-    id ("kotlin-kapt")
+    id("kotlin-kapt")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
@@ -53,7 +53,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
-    implementation (libs.androidx.activity.ktx.v131) 
+    implementation(libs.androidx.activity.ktx.v131)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
@@ -103,17 +103,17 @@ dependencies {
     implementation(libs.gson)
 
     //EXOPLAYER
-    implementation (libs.exoplayer)
+    implementation(libs.exoplayer)
 
     //GLIDE
-    implementation (libs.glide)
-    annotationProcessor (libs.compiler)
+    implementation(libs.glide)
+    annotationProcessor(libs.compiler)
 
     //LOTTIE
-    implementation (libs.lottie)
+    implementation(libs.lottie)
 
     //WEATHER
-    implementation (libs.play.services.location)
+    implementation(libs.play.services.location)
 
 }
 

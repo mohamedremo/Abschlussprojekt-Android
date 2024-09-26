@@ -1,25 +1,26 @@
-package com.example.abschlussprojekt.ui.Task
+package com.example.abschlussprojekt.ui.Settings
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.abschlussprojekt.databinding.FragmentTaskBinding
+import com.example.abschlussprojekt.databinding.FragmentNewsletterSettingsBinding
 
-class TaskFragment : Fragment() {
+class NewsletterSettingsFragment : Fragment() {
 
-    private lateinit var binding: FragmentTaskBinding
+    private lateinit var binding: FragmentNewsletterSettingsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentTaskBinding.inflate(inflater, container, false)
+        binding = FragmentNewsletterSettingsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
     }
 }

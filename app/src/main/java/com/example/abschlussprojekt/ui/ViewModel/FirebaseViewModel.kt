@@ -70,7 +70,15 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
         readyForWork: Boolean,
         profilePicture: String
     ) {
-        repository.saveProfileInFireStore(firstName, surName, email, birthDate, driverLicense, readyForWork,profilePicture)
+        repository.saveProfileInFireStore(
+            firstName,
+            surName,
+            email,
+            birthDate,
+            driverLicense,
+            readyForWork,
+            profilePicture
+        )
     }
 
     fun saveAllProfiles(profiles: List<Profile>) {
@@ -97,7 +105,6 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
         }
 
     }
-
 
 
 //    fun getValueFromDocument(collection: String, documentId: String, field: String) {

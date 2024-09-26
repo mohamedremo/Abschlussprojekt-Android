@@ -27,6 +27,9 @@ class MySpaetiAllProductsAdapter(
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
 
+        holder.binding.tvTitle.text = item.name
+        holder.binding.tvPrice.text = item.price.toString() + " €"
+
     }
 
 }
