@@ -27,5 +27,4 @@ class geoConverter {
     fun toStringList(value: String): List<String> {
         return value.split(",")
     }
-
 }

@@ -28,6 +28,10 @@ class MySpaetiFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.recyclerView.adapter = MySpaetiAllProductsAdapter(viewModel.products, viewModel)
+
+        binding.cartBtn.setOnClickListener {
+            MySpaetiFragmentDirections.actionMySpaetiFragmentToMySpaetiCartFragment()
+        }
     }
 }
 

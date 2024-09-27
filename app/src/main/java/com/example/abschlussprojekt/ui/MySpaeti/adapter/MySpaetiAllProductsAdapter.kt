@@ -1,8 +1,12 @@
 package com.example.abschlussprojekt.ui.MySpaeti.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import coil.transform.CircleCropTransformation
+import com.example.abschlussprojekt.R
 import com.example.abschlussprojekt.data.model.Product
 import com.example.abschlussprojekt.databinding.ListAllProductBinding
 import com.example.abschlussprojekt.ui.ViewModel.MainViewModel
@@ -29,6 +33,10 @@ class MySpaetiAllProductsAdapter(
 
         holder.binding.tvTitle.text = item.name
         holder.binding.tvPrice.text = item.price.toString() + " €"
+        holder.binding.ivProduct.load(item.imageUrl).job.invokeOnCompletion {
+                holder.binding.progressBar.visibility = View.GONE
+            }
+
 
     }
 

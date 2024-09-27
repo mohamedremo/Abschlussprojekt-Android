@@ -101,5 +101,12 @@
         android:rotation="12"
         android:src="@drawable/hot_sale" />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+
+
 </com.google.android.material.card.MaterialCardView>
 
