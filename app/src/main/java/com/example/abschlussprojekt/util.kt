@@ -3,6 +3,10 @@ package com.example.abschlussprojekt
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
+import android.os.Build
+import android.os.VibrationEffect
+import android.os.Vibrator
+import android.os.VibratorManager
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
@@ -107,4 +111,21 @@ fun showDateTimePicker(
     )
 
     dialog.show()
+}
+
+fun vibratePhone(context: Context) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) { // hier wird gecheckt welche Android Version man Installiert hat.
+        //
+        val vibratorManager = context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+        val vibrator = vibratorManager.defaultVibrator
+        val vibrationEffect = VibrationEffect.createOneShot(500, VibrationEffect.EFFECT_CLICK)
+        vibrator.vibrate(vibrationEffect)
+    } else {
+
+        val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        if (vibrator.hasVibrator()) {
+            val vibrationEffect = VibrationEffect.createOneShot(500, VibrationEffect.EFFECT_CLICK)
+            vibrator.vibrate(vibrationEffect)
+        }
+    }
 }

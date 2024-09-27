@@ -36,8 +36,6 @@ class MySpaetiAllProductsAdapter(
         holder.binding.ivProduct.load(item.imageUrl).job.invokeOnCompletion {
                 holder.binding.progressBar.visibility = View.GONE
             }
-
-
     }
 
 }

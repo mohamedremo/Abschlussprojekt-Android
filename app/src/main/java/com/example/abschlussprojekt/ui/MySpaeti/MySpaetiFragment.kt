@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.abschlussprojekt.data.model.Product
 import com.example.abschlussprojekt.databinding.FragmentMySpaetiBinding
 import com.example.abschlussprojekt.ui.MySpaeti.adapter.MySpaetiAllProductsAdapter
@@ -30,7 +31,7 @@ class MySpaetiFragment : Fragment() {
         binding.recyclerView.adapter = MySpaetiAllProductsAdapter(viewModel.products, viewModel)
 
         binding.cartBtn.setOnClickListener {
-            MySpaetiFragmentDirections.actionMySpaetiFragmentToMySpaetiCartFragment()
+            findNavController().navigate(MySpaetiFragmentDirections.actionMySpaetiFragmentToMySpaetiCartFragment())
         }
     }
 }

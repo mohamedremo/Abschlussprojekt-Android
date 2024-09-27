@@ -137,5 +137,9 @@
         android:id="@+id/mySpaetiCartFragment"
         android:name="com.example.abschlussprojekt.ui.MySpaeti.MySpaetiCartFragment"
         android:label="fragment_my_spaeti_cart"
-        tools:layout="@layout/fragment_my_spaeti_cart" />
+        tools:layout="@layout/fragment_my_spaeti_cart" >
+        <action
+            android:id="@+id/action_mySpaetiCartFragment_to_mySpaetiFragment"
+            app:destination="@id/mySpaetiFragment" />
+    </fragment>
 </navigation>

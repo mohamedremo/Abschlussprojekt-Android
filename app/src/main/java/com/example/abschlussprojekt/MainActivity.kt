@@ -107,6 +107,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.logInFragment -> binding.bottomNav.visibility = View.GONE
                 R.id.registerFragment -> binding.bottomNav.visibility = View.GONE
                 R.id.welcomeFragment -> binding.bottomNav.visibility = View.GONE
+                R.id.mySpaetiCartFragment -> binding.bottomNav.visibility = View.GONE
                 else -> binding.bottomNav.visibility = View.VISIBLE
             }
         }

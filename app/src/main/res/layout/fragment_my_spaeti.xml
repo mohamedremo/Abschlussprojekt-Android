@@ -47,6 +47,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="12dp"
         android:layout_margin="12dp"
+        android:clickable="true"
         android:backgroundTint="@color/transparent"
         android:src="@drawable/shopping_bag_24px"
         app:layout_constraintEnd_toEndOf="parent"
