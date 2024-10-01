@@ -15,7 +15,8 @@ import com.example.abschlussprojekt.data.model.Task
 import com.example.abschlussprojekt.databinding.FragmentCreateTaskDetailBinding
 import com.example.abschlussprojekt.outsideTouch
 import com.example.abschlussprojekt.showDateTimePicker
-import com.example.abschlussprojekt.ui.ViewModel.FirebaseViewModel
+import com.example.abschlussprojekt.ui.LoginAndRegister.viewmodel.FirebaseViewModel
+import com.example.abschlussprojekt.ui.Task.viewmodel.TaskViewModel
 import com.google.android.gms.maps.MapView
 import com.google.firebase.firestore.GeoPoint
 

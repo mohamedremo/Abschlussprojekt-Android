@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.abschlussprojekt.databinding.FragmentLogInBinding
-import com.example.abschlussprojekt.ui.ViewModel.FirebaseViewModel
+import com.example.abschlussprojekt.ui.LoginAndRegister.viewmodel.FirebaseViewModel
 
 private const val TAG = "LogInFragment"
 

@@ -8,7 +8,10 @@ data class Product(
     val isVegan: Boolean,
     val isVegetarian: Boolean,
     val tags: List<String> = listOf()
-)
+) {
+    constructor() : this("", 0.0, "", false, false, false, listOf())
+}
+
 
 
 

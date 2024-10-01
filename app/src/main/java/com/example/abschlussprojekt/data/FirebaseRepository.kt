@@ -28,7 +28,6 @@ class FirebaseRepository {
 
     private val storageRef = storage.reference
 
-
     private val _currentUser = MutableLiveData<FirebaseUser?>(auth.currentUser)
     val currentUser: MutableLiveData<FirebaseUser?>
         get() = _currentUser
@@ -311,6 +310,26 @@ class FirebaseRepository {
                         }
                 }
         }
+    }
+
+    fun getAllProductsFromDatabase(onResult: (List<Product>) -> Unit) {
+
+        val products = mutableListOf<Product>()
+
+        firestore.collection("products")
+            .get()
+            .addOnSuccessListener { collection ->
+                for (document in collection) {
+                    val product = document.toObject(Product::class.java)
+                    products.add(product)
+                }
+                onResult(products)
+
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Beim Abrufen der Produkte ist ein Fehler aufgetreten", e)
+                onResult(emptyList())
+            }
     }
 }
 

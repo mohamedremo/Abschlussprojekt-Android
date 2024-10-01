@@ -9,7 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.abschlussprojekt.R
 import com.example.abschlussprojekt.databinding.FragmentCreateTaskBinding
-import com.example.abschlussprojekt.ui.ViewModel.MainViewModel
+import com.example.abschlussprojekt.ui.MainMenu.viewmodel.MainViewModel
 
 
 class CreateTaskFragment : Fragment() {

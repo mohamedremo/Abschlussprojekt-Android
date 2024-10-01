@@ -169,7 +169,18 @@
         android:elevation="50dp"
         app:strokeWidth="0dp"
         android:visibility="invisible"
-        app:cardCornerRadius="400dp">
+        app:cardCornerRadius="100dp">
+
+        <TextView
+            android:id="@+id/tvThanksSucces"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VIELEN DANK MOHAMED!"
+            android:fontFamily="@font/montserrat"
+            android:textSize="20dp"
+            android:textColor="@color/md_theme_tertiaryFixed"
+            android:layout_gravity="top|center"
+            android:layout_marginTop="50dp"/>
 
         <com.airbnb.lottie.LottieAnimationView
             android:layout_width="250dp"
@@ -177,6 +188,18 @@
             app:lottie_fileName="delivery-truck.json"
             android:layout_gravity="center"
             app:lottie_autoPlay="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deine Bestellung ist unterwegs!"
+            android:fontFamily="@font/montserrat_alternates_light"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/md_theme_tertiaryFixed"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="50dp"/>
+
 
     </com.google.android.material.card.MaterialCardView>
 

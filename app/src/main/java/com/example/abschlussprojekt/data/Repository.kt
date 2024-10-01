@@ -17,9 +17,9 @@ class Repository(
     val lastWeather: LiveData<WeatherResponse>
         get() = _lastWeather
 
-    private val _selectedCategoy = MutableLiveData<Category>()
+    private val _selectedCategory = MutableLiveData<Category>()
     val selectedCategory: LiveData<Category>
-        get() = _selectedCategoy
+        get() = _selectedCategory
 
     // Wetterdaten anhand von Koordinaten bei Weather API (openMeteo) abrufen
     suspend fun getWeatherByLocation(longitude: Double, latitude: Double) {
@@ -34,7 +34,7 @@ class Repository(
     }
 
     suspend fun setSelectedCategory(category: Category) {
-        _selectedCategoy.value = category
+        _selectedCategory.value = category
     }
 
 }

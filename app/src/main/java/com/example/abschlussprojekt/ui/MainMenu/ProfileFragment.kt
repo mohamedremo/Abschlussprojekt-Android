@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.abschlussprojekt.databinding.FragmentProfileBinding
-import com.example.abschlussprojekt.ui.ViewModel.FirebaseViewModel
-import com.example.abschlussprojekt.ui.ViewModel.MainViewModel
+import com.example.abschlussprojekt.ui.LoginAndRegister.viewmodel.FirebaseViewModel
+import com.example.abschlussprojekt.ui.MainMenu.viewmodel.MainViewModel
 
 
 class ProfileFragment : Fragment() {

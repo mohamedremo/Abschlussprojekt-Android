@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.abschlussprojekt.calculateDistance
 import com.example.abschlussprojekt.data.model.Task
 import com.example.abschlussprojekt.databinding.ListTaskBinding
-import com.example.abschlussprojekt.ui.ViewModel.FirebaseViewModel
-import com.example.abschlussprojekt.ui.ViewModel.MainViewModel
+import com.example.abschlussprojekt.ui.LoginAndRegister.viewmodel.FirebaseViewModel
+import com.example.abschlussprojekt.ui.MainMenu.viewmodel.MainViewModel
 
 
 class TaskAdapter(

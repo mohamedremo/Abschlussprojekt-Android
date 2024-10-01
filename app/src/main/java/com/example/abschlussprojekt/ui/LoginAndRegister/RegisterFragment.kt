@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.abschlussprojekt.R
 import com.example.abschlussprojekt.databinding.FragmentRegisterBinding
 import com.example.abschlussprojekt.toast
-import com.example.abschlussprojekt.ui.ViewModel.FirebaseViewModel
+import com.example.abschlussprojekt.ui.LoginAndRegister.viewmodel.FirebaseViewModel
 
 
 private const val TAG = "RegisterFragment"

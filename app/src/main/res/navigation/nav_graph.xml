@@ -132,6 +132,9 @@
         <action
             android:id="@+id/action_mySpaetiFragment_to_mySpaetiCartFragment"
             app:destination="@id/mySpaetiCartFragment" />
+        <action
+            android:id="@+id/action_mySpaetiFragment_to_mySpaetiProductDetail"
+            app:destination="@id/mySpaetiProductDetail" />
     </fragment>
     <fragment
         android:id="@+id/mySpaetiCartFragment"
@@ -141,5 +144,20 @@
         <action
             android:id="@+id/action_mySpaetiCartFragment_to_mySpaetiFragment"
             app:destination="@id/mySpaetiFragment" />
+        <action
+            android:id="@+id/action_mySpaetiCartFragment_to_mySpaetiProductDetail"
+            app:destination="@id/mySpaetiProductDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/mySpaetiProductDetail"
+        android:name="com.example.abschlussprojekt.ui.MySpaeti.MySpaetiProductDetailFragment"
+        android:label="fragment_my_spaeti_product_detail"
+        tools:layout="@layout/fragment_my_spaeti_product_detail" >
+        <action
+            android:id="@+id/action_mySpaetiProductDetail_to_mySpaetiFragment"
+            app:destination="@id/mySpaetiFragment" />
+        <action
+            android:id="@+id/action_mySpaetiProductDetail_to_mySpaetiCartFragment"
+            app:destination="@id/mySpaetiCartFragment" />
     </fragment>
 </navigation>

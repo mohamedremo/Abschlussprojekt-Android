@@ -5,8 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.abschlussprojekt.data.model.Product
 import com.example.abschlussprojekt.databinding.ListCartProductsBinding
-import com.example.abschlussprojekt.ui.ViewModel.MainViewModel
-import com.example.abschlussprojekt.vibratePhone
+import com.example.abschlussprojekt.ui.MainMenu.viewmodel.MainViewModel
 
 class MySpaetiCartAdapter(
     private val dataset: List<Product>,

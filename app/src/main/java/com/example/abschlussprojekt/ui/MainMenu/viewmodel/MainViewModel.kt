@@ -1,4 +1,4 @@
-package com.example.abschlussprojekt.ui.ViewModel
+package com.example.abschlussprojekt.ui.MainMenu.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -21,7 +21,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         Product(
             name = "Chips",
             price = 2.49,
-            imageUrl = "https://example.com/chips.jpg",
+            imageUrl = "https://firebasestorage.googleapis.com/v0/b/abschlussandroidmodul.appspot.com/o/productPics%2FChips.png?alt=media&token=4c79d2c7-39df-4eda-9aa4-7a3f013aba0a",
             isAlcoholic = false,
             isVegan = true,
             isVegetarian = true,

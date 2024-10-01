@@ -14,10 +14,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import coil.load
 import com.example.abschlussprojekt.databinding.FragmentHomeBinding
 import com.example.abschlussprojekt.setLottieByLevel
-import com.example.abschlussprojekt.ui.ViewModel.FirebaseViewModel
-import com.example.abschlussprojekt.ui.ViewModel.MainViewModel
+import com.example.abschlussprojekt.ui.LoginAndRegister.viewmodel.FirebaseViewModel
+import com.example.abschlussprojekt.ui.MainMenu.viewmodel.MainViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.MapView
 
@@ -113,6 +114,17 @@ class HomeFragment : Fragment() {
                 val level = profile?.level
                     .toString()
                 val lottieFile = setLottieByLevel(level.toInt())
+
+                val profilePic = profile?.profilePicture
+
+                if (profilePic != null) {
+                    try {
+                        binding.ivProfilePic.load(profilePic)
+                    } catch (e: Exception) {
+                        Log.d(TAG, "Cannot set Profil Pic!")
+                        e.printStackTrace()
+                    }
+                }
 
                 //Lottie Animation laden und starten
                 binding.lvlSymbol.setAnimation(lottieFile)

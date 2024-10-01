@@ -19,8 +19,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.abschlussprojekt.databinding.ActivityMainBinding
-import com.example.abschlussprojekt.ui.ViewModel.FirebaseViewModel
-import com.example.abschlussprojekt.ui.ViewModel.MainViewModel
+import com.example.abschlussprojekt.ui.LoginAndRegister.viewmodel.FirebaseViewModel
+import com.example.abschlussprojekt.ui.MainMenu.viewmodel.MainViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels()
     private val fireViewModel: FirebaseViewModel by viewModels() // ist das so Ok ????
 
-    //Permission Launcher
+    //Permission Launcher für den Zugriff auf die Standortberechtigungen
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
     ) { permissions ->
@@ -53,7 +53,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -213,6 +212,7 @@ class MainActivity : AppCompatActivity() {
                 )
             }
         } else {
+
             if (ActivityCompat.checkSelfPermission(
                     this,
                     Manifest.permission.ACCESS_FINE_LOCATION
