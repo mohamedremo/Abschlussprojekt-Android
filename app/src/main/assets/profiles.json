@@ -355,8 +355,410 @@
       "firstName": "Markus",
       "surName": "Seidel",
       "email": "markus.seidel@example.com",
-      "birthDate": "1982-10-02",
-      "driverLicense": true,
+      "birthDate": "1982-10-02", [
+   {
+     "firstName": "Max",
+     "surName": "Mustermann",
+     "email": "max.mustermann@example.com",
+     "birthDate": "1990-01-15",
+     "driverLicense": true,
+     "readyForWork": true,
+     "profilePicture": "profile1.png",
+     "role": "Dienstleister",
+     "level": 2,
+     "points": 120,
+     "lastLocation": {
+       "latitude": 53.0794,
+       "longitude": 8.8015
+     }
+   },
+   {
+     "firstName": "Anna",
+     "surName": "Beispiel",
+     "email": "anna.beispiel@example.com",
+     "birthDate": "1985-05-23",
+     "driverLicense": false,
+     "readyForWork": true,
+     "profilePicture": "profile2.png",
+     "role": "Dienstleistungsnehmer",
+     "level": 1,
+     "points": 80,
+     "lastLocation": {
+       "latitude": 53.0751,
+       "longitude": 8.7982
+     }
+   },
+   {
+     "firstName": "Leon",
+     "surName": "Schmidt",
+     "email": "leon.schmidt@example.com",
+     "birthDate": "1992-07-30",
+     "driverLicense": true,
+     "readyForWork": false,
+     "profilePicture": "profile3.png",
+     "role": "Dienstleister",
+     "level": 3,
+     "points": 200,
+     "lastLocation": {
+       "latitude": 53.0842,
+       "longitude": 8.8113
+     }
+   },
+   {
+     "firstName": "Laura",
+     "surName": "Müller",
+     "email": "laura.mueller@example.com",
+     "birthDate": "1994-09-12",
+     "driverLicense": false,
+     "readyForWork": true,
+     "profilePicture": "profile4.png",
+     "role": "Dienstleistungsnehmer",
+     "level": 2,
+     "points": 150,
+     "lastLocation": {
+       "latitude": 53.0710,
+       "longitude": 8.8041
+     }
+   },
+   {
+     "firstName": "Jan",
+     "surName": "Koch",
+     "email": "jan.koch@example.com",
+     "birthDate": "1997-03-05",
+     "driverLicense": true,
+     "readyForWork": true,
+     "profilePicture": "profile5.png",
+     "role": "Dienstleister",
+     "level": 4,
+     "points": 300,
+     "lastLocation": {
+       "latitude": 53.0824,
+       "longitude": 8.8123
+     }
+   },
+   {
+     "firstName": "Sophie",
+     "surName": "Weber",
+     "email": "sophie.weber@example.com",
+     "birthDate": "1988-11-11",
+     "driverLicense": false,
+     "readyForWork": true,
+     "profilePicture": "profile6.png",
+     "role": "Dienstleistungsnehmer",
+     "level": 1,
+     "points": 60,
+     "lastLocation": {
+       "latitude": 53.0777,
+       "longitude": 8.7909
+     }
+   },
+   {
+     "firstName": "Tom",
+     "surName": "Kaiser",
+     "email": "tom.kaiser@example.com",
+     "birthDate": "1996-06-21",
+     "driverLicense": true,
+     "readyForWork": false,
+     "profilePicture": "profile7.png",
+     "role": "Dienstleister",
+     "level": 3,
+     "points": 210,
+     "lastLocation": {
+       "latitude": 53.0732,
+       "longitude": 8.8087
+     }
+   },
+   {
+     "firstName": "Nina",
+     "surName": "Klein",
+     "email": "nina.klein@example.com",
+     "birthDate": "1991-12-01",
+     "driverLicense": true,
+     "readyForWork": true,
+     "profilePicture": "profile8.png",
+     "role": "Dienstleistungsnehmer",
+     "level": 2,
+     "points": 140,
+     "lastLocation": {
+       "latitude": 53.0803,
+       "longitude": 8.8156
+     }
+   },
+   {
+     "firstName": "Felix",
+     "surName": "Bauer",
+     "email": "felix.bauer@example.com",
+     "birthDate": "1993-04-15",
+     "driverLicense": true,
+     "readyForWork": true,
+     "profilePicture": "profile9.png",
+     "role": "Dienstleister",
+     "level": 2,
+     "points": 180,
+     "lastLocation": {
+       "latitude": 53.0789,
+       "longitude": 8.8011
+     }
+   },
+   {
+     "firstName": "Lena",
+     "surName": "Fischer",
+     "email": "lena.fischer@example.com",
+     "birthDate": "1989-08-19",
+     "driverLicense": false,
+     "readyForWork": true,
+     "profilePicture": "profile10.png",
+     "role": "Dienstleistungsnehmer",
+     "level": 1,
+     "points": 70,
+     "lastLocation": {
+       "latitude": 53.0744,
+       "longitude": 8.8132
+     }
+   },
+   {
+     "firstName": "Jonas",
+     "surName": "Walter",
+     "email": "jonas.walter@example.com",
+     "birthDate": "1984-07-09",
+     "driverLicense": true,
+     "readyForWork": true,
+     "profilePicture": "profile11.png",
+     "role": "Dienstleister",
+     "level": 4,
+     "points": 320,
+     "lastLocation": {
+       "latitude": 53.0863,
+       "longitude": 8.7904
+     }
+   },
+   {
+     "firstName": "Mia",
+     "surName": "Krüger",
+     "email": "mia.krueger@example.com",
+     "birthDate": "1995-03-17",
+     "driverLicense": true,
+     "readyForWork": false,
+     "profilePicture": "profile12.png",
+     "role": "Dienstleistungsnehmer",
+     "level": 1,
+     "points": 90,
+     "lastLocation": {
+       "latitude": 53.0784,
+       "longitude": 8.7965
+     }
+   },
+   {
+     "firstName": "Lukas",
+     "surName": "Hoffmann",
+     "email": "lukas.hoffmann@example.com",
+     "birthDate": "1998-09-27",
+     "driverLicense": false,
+     "readyForWork": true,
+     "profilePicture": "profile13.png",
+     "role": "Dienstleister",
+     "level": 2,
+     "points": 140,
+     "lastLocation": {
+       "latitude": 53.0759,
+       "longitude": 8.7987
+     }
+   },
+   {
+     "firstName": "Lisa",
+     "surName": "Mayer",
+     "email": "lisa.mayer@example.com",
+     "birthDate": "1983-10-20",
+     "driverLicense": true,
+     "readyForWork": true,
+     "profilePicture": "profile14.png",
+     "role": "Dienstleistungsnehmer",
+     "level": 3,
+     "points": 190,
+     "lastLocation": {
+       "latitude": 53.0725,
+       "longitude": 8.8091
+     }
+   },
+   {
+     "firstName": "Timo",
+     "surName": "Schneider",
+     "email": "timo.schneider@example.com",
+     "birthDate": "1991-11-30",
+     "driverLicense": true,
+     "readyForWork": true,
+     "profilePicture": "profile15.png",
+     "role": "Dienstleister",
+     "level": 3,
+     "points": 250,
+     "lastLocation": {
+       "latitude": 53.0851,
+       "longitude": 8.8163
+     }
+   },
+   {
+     "firstName": "Julia",
+     "surName": "Schulz",
+     "email": "julia.schulz@example.com",
+     "birthDate": "1990-02-11",
+     "driverLicense": true,
+     "readyForWork": false,
+     "profilePicture": "profile16.png",
+     "role": "Dienstleistungsnehmer",
+     "level": 2,
+     "points": 120,
+     "lastLocation": {
+       "latitude": 53.0734,
+       "longitude": 8.8019
+     }
+   },
+   {
+     "firstName": "David",
+     "surName": "Schmitt",
+     "email": "david.schmitt@example.com",
+     "birthDate": "1992-05-08",
+     "driverLicense": false,
+     "readyForWork": true,
+     "profilePicture": "profile17.png",
+     "role": "Dienstleister",
+     "level": 1,
+     "points": 90,
+     "lastLocation": {
+       "latitude": 53.0815,
+       "longitude": 8.7931
+     }
+   },
+   {
+     "firstName": "Hanna",
+     "surName": "Richter",
+     "email": "hanna.richter@example.com",
+     "birthDate": "1987-06-22",
+     "driverLicense": true,
+     "readyForWork": true,
+     "profilePicture": "profile18.png",
+     "role": "Dienstleistungsnehmer",
+     "level": 2,
+     "points": 110,
+     "lastLocation": {
+       "latitude": 53.0767,
+       "longitude": 8.8099
+     }
+   },
+   {
+     "firstName": "Sebastian",
+     "surName": "Winkler",
+     "email": "sebastian.winkler@example.com",
+     "birthDate": "1990-12-10",
+     "driverLicense": true,
+     "readyForWork": true,
+     "profilePicture": "profile19.png",
+     "role": "Dienstleister",
+     "level": 3,
+     "points": 240,
+     "lastLocation": {
+       "latitude": 53.0845,
+       "longitude": 8.7956
+     }
+   },
+   {
+     "firstName": "Sarah",
+     "surName": "Fuchs",
+     "email": "sarah.fuchs@example.com",
+     "birthDate": "1986-04-04",
+     "driverLicense": false,
+     "readyForWork": true,
+     "profilePicture": "profile20.png",
+     "role": "Dienstleistungsnehmer",
+     "level": 1,
+     "points": 50,
+     "lastLocation": {
+       "latitude": 53.0712,
+       "longitude": 8.8143
+     }
+   },
+   {
+     "firstName": "Paul",
+     "surName": "Becker",
+     "email": "paul.becker@example.com",
+     "birthDate": "1993-08-12",
+     "driverLicense": true,
+     "readyForWork": true,
+     "profilePicture": "profile21.png",
+     "role": "Dienstleister",
+     "level": 3,
+     "points": 230,
+     "lastLocation": {
+       "latitude": 53.0781,
+       "longitude": 8.8029
+     }
+   },
+   {
+     "firstName": "Clara",
+     "surName": "Jung",
+     "email": "clara.jung@example.com",
+     "birthDate": "1997-03-29",
+     "driverLicense": false,
+     "readyForWork": true,
+     "profilePicture": "profile22.png",
+     "role": "Dienstleistungsnehmer",
+     "level": 2,
+     "points": 130,
+     "lastLocation": {
+       "latitude": 53.0742,
+       "longitude": 8.7967
+     }
+   },
+   {
+     "firstName": "Markus",
+     "surName": "Seidel",
+     "email": "markus.seidel@example.com",
+     "birthDate": "1982-10-02",
+     "driverLicense": true,
+     "readyForWork": false,
+     "profilePicture": "profile23.png",
+     "role": "Dienstleister",
+     "level": 4,
+     "points": 310,
+     "lastLocation": {
+       "latitude": 53.0807,
+       "longitude": 8.8182
+     }
+   },
+   {
+     "firstName": "Theresa",
+     "surName": "Lang",
+     "email": "theresa.lang@example.com",
+     "birthDate": "1985-07-14",
+     "driverLicense": true,
+     "readyForWork": true,
+     "profilePicture": "profile24.png",
+     "role": "Dienstleistungsnehmer",
+     "level": 1,
+     "points": 100,
+     "lastLocation": {
+       "latitude": 53.0729,
+       "longitude": 8.8027
+     }
+   },
+   {
+     "firstName": "Patrick",
+     "surName": "Peters",
+     "email": "patrick.peters@example.com",
+     "birthDate": "1991-09-03",
+     "driverLicense": true,
+     "readyForWork": true,
+     "profilePicture": "profile25.png",
+     "role": "Dienstleister",
+     "level": 3,
+     "points": 240,
+     "lastLocation": {
+       "latitude": 53.0831,
+       "longitude": 8.8120
+     }
+   }
+ ],
+
+   "driverLicense": true,
       "readyForWork": false,
       "profilePicture": "profile23.png",
       "role": "Dienstleister",

@@ -134,7 +134,7 @@
             app:destination="@id/mySpaetiCartFragment" />
         <action
             android:id="@+id/action_mySpaetiFragment_to_mySpaetiProductDetail"
-            app:destination="@id/mySpaetiProductDetail" />
+            app:destination="@id/mySpaetiProductDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/mySpaetiCartFragment"
@@ -146,10 +146,10 @@
             app:destination="@id/mySpaetiFragment" />
         <action
             android:id="@+id/action_mySpaetiCartFragment_to_mySpaetiProductDetail"
-            app:destination="@id/mySpaetiProductDetail" />
+            app:destination="@id/mySpaetiProductDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/mySpaetiProductDetail"
+        android:id="@+id/mySpaetiProductDetailFragment"
         android:name="com.example.abschlussprojekt.ui.MySpaeti.MySpaetiProductDetailFragment"
         android:label="fragment_my_spaeti_product_detail"
         tools:layout="@layout/fragment_my_spaeti_product_detail" >

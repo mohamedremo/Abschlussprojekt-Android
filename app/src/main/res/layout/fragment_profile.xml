@@ -43,6 +43,7 @@
 
     <!-- Scrollbares Hauptlayout -->
     <androidx.core.widget.NestedScrollView
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
@@ -67,6 +68,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    android:id="@+id/ivProfilePic"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/profilepic"
@@ -80,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/montserrat"
+                android:fontFamily="@font/montserrat_alternates_light"
                 android:text="@string/testName"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -102,7 +104,7 @@
                 android:id="@+id/lvlSymbol"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="28dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -114,14 +116,13 @@
                 android:id="@+id/tvRole"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="39dp"
                 android:layout_marginTop="4dp"
-                android:fontFamily="@font/montserrat_alternates_light"
+                android:fontFamily="@font/montserrat_alternates_thin"
                 android:text="seit 2015 dabei"
-                android:textColor="@color/md_theme_primary"
+                android:textColor="#000000"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/cvPic"
+                app:layout_constraintStart_toStartOf="@+id/tvName"
                 app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
             <com.google.android.material.divider.MaterialDivider

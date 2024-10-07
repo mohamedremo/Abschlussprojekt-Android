@@ -9,7 +9,7 @@ import com.example.abschlussprojekt.data.local.converter.geoConverter
 import com.example.abschlussprojekt.data.model.Profile
 import com.example.abschlussprojekt.data.model.Task
 
-@Database(entities = [Profile::class, Task::class], version = 1, exportSchema = false)
+@Database(entities = [Profile::class, Task::class], version = 2, exportSchema = false)
 @TypeConverters(geoConverter::class)
 abstract class MyButlerDatabase : RoomDatabase() {
     abstract val dao: MyButlerDao

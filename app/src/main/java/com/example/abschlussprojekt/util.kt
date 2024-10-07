@@ -3,16 +3,14 @@ package com.example.abschlussprojekt
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
-import android.os.Build
-import android.os.VibrationEffect
-import android.os.Vibrator
-import android.os.VibratorManager
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
+import java.util.UUID
 import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.sin
@@ -48,6 +46,7 @@ fun calculateDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): D
     return distance / 1000 // Entfernung in Kilometern
 }
 
+//Lottie Animation anhand des im Profil gespeicherten Levels
 fun setLottieByLevel(level: Int): String {
     val lottieFiles = listOf(
         "one.json", "two.json", "three.json",
@@ -57,6 +56,8 @@ fun setLottieByLevel(level: Int): String {
     return if (level in 1..10) lottieFiles[level - 1] else lottieFiles.last()
 }
 
+//Ein Funktion die es ermöglicht eine View zu fokussieren um somit klicks ausserhalb dieser View zu erkennen
+// (Wird meistens für Schwebende UI Elemente benutzt.
 fun outsideTouch(view: View, event: MotionEvent): Boolean {
     val location = IntArray(2)
     view.getLocationOnScreen(location)
@@ -67,7 +68,7 @@ fun outsideTouch(view: View, event: MotionEvent): Boolean {
             y < location[1] || y > location[1] + view.height
 }
 
-
+//Funktion zum anzeigen von Datum und Uhrzeit Picker
 fun showDateTimePicker(
     context: Context,         // Übergib den Context als Parameter
     onDateTimeSelected: (String) -> Unit   // Callback für das ausgewählte Datum und Uhrzeit
@@ -91,7 +92,7 @@ fun showDateTimePicker(
                     calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
                     calendar.set(Calendar.MINUTE, minute)
 
-                    // Hier wird das Datum und die Uhrzeit in der gewünschten Formatierung formatiert
+                    // Hier wird das Datum und die Uhrzeit in die gewünschten Formatierung formatiert
                     val dateFormat = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
                     val formattedDateTime = dateFormat.format(calendar.time)
 
@@ -101,7 +102,7 @@ fun showDateTimePicker(
                 },
                 calendar.get(Calendar.HOUR_OF_DAY),
                 calendar.get(Calendar.MINUTE),
-                true // Hie
+                true // Hier wird die Uhrzeit in 24-Stunden-Formatierung angezeigt
             ).show()
 
         },
@@ -113,19 +114,17 @@ fun showDateTimePicker(
     dialog.show()
 }
 
-fun vibratePhone(context: Context) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) { // hier wird gecheckt welche Android Version man Installiert hat.
-        //
-        val vibratorManager = context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
-        val vibrator = vibratorManager.defaultVibrator
-        val vibrationEffect = VibrationEffect.createOneShot(500, VibrationEffect.EFFECT_CLICK)
-        vibrator.vibrate(vibrationEffect)
-    } else {
+//Funktion zum Formatieren von Double-Zahlen auf 2 Stellen nach dem Komma und im Euro Format.
+fun formatToEuro(value: Double?): String {
+    return String.format(Locale.GERMANY, "%.2f €", value ?: 0.0)
+}
 
-        val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        if (vibrator.hasVibrator()) {
-            val vibrationEffect = VibrationEffect.createOneShot(500, VibrationEffect.EFFECT_CLICK)
-            vibrator.vibrate(vibrationEffect)
-        }
-    }
+fun getCurrentTime(): String {
+    val dateFormat = SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.getDefault())
+    return dateFormat.format(Date()) // Hier wird das aktuelle Datum formatiert und zurückgegeben
+}
+
+fun generateUUID(): String {
+    return UUID.randomUUID()
+        .toString()
 }

@@ -6,14 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.abschlussprojekt.calculateDistance
 import com.example.abschlussprojekt.data.model.Task
 import com.example.abschlussprojekt.databinding.ListTaskBinding
-import com.example.abschlussprojekt.ui.LoginAndRegister.viewmodel.FirebaseViewModel
-import com.example.abschlussprojekt.ui.MainMenu.viewmodel.MainViewModel
 
 
 class TaskAdapter(
     private val dataset: List<Task>,
-    private val viewModel: MainViewModel,
-    private val firebaseViewModel: FirebaseViewModel
 ) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     inner class TaskViewHolder(val binding: ListTaskBinding) : RecyclerView.ViewHolder(binding.root)
@@ -46,7 +42,7 @@ class TaskAdapter(
         val distanceFormatted = String.format("%.1f", distance)
 
         //Text in TextView setzen
-//        holder.binding.tvTask.text = item.category.displayName
+        holder.binding.tvTask.text = item.category.displayName
         holder.binding.tvDescription.text = item.description
         holder.binding.tvTitle.text = item.taskName
         holder.binding.tvPoints.text = item.butlePoints.toString()

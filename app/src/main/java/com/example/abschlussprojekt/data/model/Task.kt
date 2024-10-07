@@ -11,13 +11,15 @@ data class Task(
     val taskName: String,
     val description: String?,
     val createdFrom: String,
-    val due: String,
+    val created: String,
     val expire: String,
     val category: Category,
     val butlePoints: Int,
     val location: GeoPoint,
     val isFinished: Boolean,
-)
+){
+    constructor() : this("", "", "", "", "", Category.SONSTIGES, 0, GeoPoint(0.0, 0.0), false)
+}
 
 enum class Category(var displayName: String) {
     DIENSTLEISTUNG("Dienstleistung"),

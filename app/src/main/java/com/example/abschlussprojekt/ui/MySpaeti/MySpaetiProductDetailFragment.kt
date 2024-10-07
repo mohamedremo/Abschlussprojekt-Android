@@ -29,17 +29,33 @@ class MySpaetiProductDetailFragment : Fragment() {
 
         val nav = findNavController()
 
-        val count = 0
 
         viewModel.selectedProduct.observe(viewLifecycleOwner) {
             binding.tvPrice.text = it?.price.toString()
             binding.ivProduct.load(it?.imageUrl)
-            binding.tvCount.text = count.toString()
+        }
+
+        viewModel.productCount.observe(viewLifecycleOwner) {
+            binding.tvCount.text = it.toString()
         }
 
         binding.lottiePlus.setOnClickListener {
+            binding.lottiePlus.speed = 2f
             binding.lottiePlus.playAnimation()
+            viewModel.increaseProductCount()
+        }
 
+        binding.lottieMinus.setOnClickListener {
+            if (viewModel.productCount.value!! > 0) {
+                binding.lottieMinus.speed = 2f
+                binding.lottieMinus.playAnimation()
+                viewModel.decreaseProductCount()
+            }
+        }
+
+        binding.btnAddToCart.setOnClickListener {
+            viewModel.addProductToCart()
+            nav.navigateUp()
         }
 
         binding.backBtn.setOnClickListener {

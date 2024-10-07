@@ -81,12 +81,18 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
         )
     }
 
+    // Die 3 nachfolgenden Funktionen sind Funktionen zum Initialisieren von Testdaten im Firestore.
+
     fun saveAllProfiles(profiles: List<Profile>) {
         repository.saveAllProfiles(profiles)
     }
 
     fun saveAllProducts(products: List<Product>) {
         repository.saveAllProducts(products)
+    }
+
+    fun saveAllTasks(tasks: List<Task>) {
+        repository.saveAllTasks(tasks)
     }
 
     fun getUserProfile(onResult: (Map<String, Any>?) -> Unit) {
@@ -104,6 +110,10 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
             repository.saveTaskInFireStore(newTask)
         }
 
+    }
+
+    fun getMyTasks(onResult: (Map<String, Any>?) -> Unit) {
+        repository.getMyTasks(onResult)
     }
 
 

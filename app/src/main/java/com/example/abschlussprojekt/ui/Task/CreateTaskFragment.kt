@@ -9,13 +9,13 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.abschlussprojekt.R
 import com.example.abschlussprojekt.databinding.FragmentCreateTaskBinding
-import com.example.abschlussprojekt.ui.MainMenu.viewmodel.MainViewModel
+import com.example.abschlussprojekt.ui.MainMenu.viewmodel.WeatherViewModel
 
 
 class CreateTaskFragment : Fragment() {
 
     private lateinit var binding: FragmentCreateTaskBinding
-    private val viewModel: MainViewModel by activityViewModels()
+    private val viewModel: WeatherViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

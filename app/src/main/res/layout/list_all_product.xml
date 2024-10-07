@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView3"
+            android:id="@+id/imageBackground"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             app:cardBackgroundColor="@color/md_theme_primary"
@@ -53,7 +53,7 @@
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+            app:layout_constraintTop_toBottomOf="@+id/imageBackground" />
 
         <TextView
             android:id="@+id/tvPrice"
@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/montserrat_alternates_light"
-            android:text=" / Stk"
+            android:text="@string/stk"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -86,10 +86,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="16dp"
+            android:clickable="true"
             android:src="@drawable/chevron_right_24px"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+            app:layout_constraintTop_toBottomOf="@+id/imageBackground" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -99,13 +100,14 @@
         android:layout_height="30dp"
         android:layout_gravity="top|end"
         android:rotation="12"
+        android:visibility="gone"
         android:src="@drawable/hot_sale" />
 
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center" />
 
 
 </com.google.android.material.card.MaterialCardView>

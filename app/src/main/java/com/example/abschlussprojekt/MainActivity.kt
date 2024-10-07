@@ -20,7 +20,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.abschlussprojekt.databinding.ActivityMainBinding
 import com.example.abschlussprojekt.ui.LoginAndRegister.viewmodel.FirebaseViewModel
-import com.example.abschlussprojekt.ui.MainMenu.viewmodel.MainViewModel
+import com.example.abschlussprojekt.ui.MainMenu.viewmodel.WeatherViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: WeatherViewModel by viewModels()
     private val fireViewModel: FirebaseViewModel by viewModels() // ist das so Ok ????
 
     //Permission Launcher für den Zugriff auf die Standortberechtigungen
@@ -67,17 +67,26 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.setupWithNavController(navHost.navController)
 
         /*
+        ---------------------------------------------------------------------------------------------
         FUNKTION FÜR MOCKDATEN IN FIREBASE SPEICHERN
          */
 //        fun initProfilesLocalToFirebase() {
-//            val json = assets.open("products.json").bufferedReader().use {
-//                it.readText()
-//            }
-//            Log.e(TAG,json)
-//            val listToSave = Gson().fromJson(json, Array<Product>::class.java).toList()
-//            fireViewModel.saveAllProducts(listToSave) // hier wird immer die jeweilige funktion aus dem ViewModel geändert je nachdem welchen  Datentypen man hochladen will
+//            val json = assets.open("tasks.json")
+//                .bufferedReader()
+//                .use {
+//                    it.readText()
+//                }
+//            Log.e(TAG, json)
+//            val listToSave = Gson().fromJson(json, Array<Task>::class.java)
+//                .toList()
+//            fireViewModel.saveAllTasks(listToSave) // hier wird immer die jeweilige funktion aus dem ViewModel geändert je nachdem welchen  Datentypen man hochladen will
+//            Log.d(TAG, "Anzahl der geladenen Tasks: ${listToSave.size}")
 //        }
 //        initProfilesLocalToFirebase()
+        /*
+        FUNKTION FÜR MOCKDATEN IN FIREBASE SPEICHERN
+        ---------------------------------------------------------------------------------------------
+         */
 
         binding.bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -107,6 +116,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.registerFragment -> binding.bottomNav.visibility = View.GONE
                 R.id.welcomeFragment -> binding.bottomNav.visibility = View.GONE
                 R.id.mySpaetiCartFragment -> binding.bottomNav.visibility = View.GONE
+                R.id.mySpaetiProductDetailFragment -> binding.bottomNav.visibility = View.GONE
                 else -> binding.bottomNav.visibility = View.VISIBLE
             }
         }

@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/ivProduct"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_marginStart="10dp"
@@ -32,10 +32,11 @@
             android:fontFamily="@font/montserrat_alternates_light"
             android:text="Burger, Fries and Cola"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toEndOf="@+id/ivProduct"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/tvDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -44,7 +45,7 @@
             android:text="FastFood"
             android:textSize="14dp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toEndOf="@+id/ivProduct"
             app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
         <androidx.cardview.widget.CardView
@@ -59,6 +60,7 @@
             app:layout_constraintVertical_bias="0.7">
 
             <TextView
+                android:id="@+id/tvCount"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/montserrat_alternates_light"
@@ -94,6 +96,7 @@
             app:lottie_fileName="minus.json" />
 
         <TextView
+            android:id="@+id/tvPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"

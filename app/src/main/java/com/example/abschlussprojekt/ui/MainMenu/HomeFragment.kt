@@ -18,7 +18,7 @@ import coil.load
 import com.example.abschlussprojekt.databinding.FragmentHomeBinding
 import com.example.abschlussprojekt.setLottieByLevel
 import com.example.abschlussprojekt.ui.LoginAndRegister.viewmodel.FirebaseViewModel
-import com.example.abschlussprojekt.ui.MainMenu.viewmodel.MainViewModel
+import com.example.abschlussprojekt.ui.MainMenu.viewmodel.WeatherViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.MapView
 
@@ -29,7 +29,7 @@ class HomeFragment : Fragment() {
     //ViewBinding, ActivityResultLauncher und ViewModel, die initialisiert werden.
     private lateinit var binding: FragmentHomeBinding
     private lateinit var getContent: ActivityResultLauncher<Intent>
-    private val viewModel: MainViewModel by activityViewModels()
+    private val viewModel: WeatherViewModel by activityViewModels()
     private val fireViewModel: FirebaseViewModel by activityViewModels()
     private lateinit var mapView: MapView
 
@@ -105,6 +105,13 @@ class HomeFragment : Fragment() {
 
         fireViewModel.profile.observe(viewLifecycleOwner) { profile ->
             if (profile != null) {
+                binding.ivProfilePic.visibility = View.VISIBLE
+                binding.tvWelcome.visibility = View.VISIBLE
+                binding.tvPoints.visibility = View.VISIBLE
+                binding.lvlSymbol.visibility = View.VISIBLE
+                binding.tvLocation.visibility = View.VISIBLE
+                binding.tvWeather.visibility = View.VISIBLE
+
                 val firstname = profile?.firstName
                     .toString()
                 val points = profile?.points

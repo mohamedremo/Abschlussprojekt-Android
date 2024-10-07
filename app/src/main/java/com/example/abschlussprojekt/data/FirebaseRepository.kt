@@ -4,6 +4,8 @@ import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.abschlussprojekt.data.model.Category
+import com.example.abschlussprojekt.data.model.Order
 import com.example.abschlussprojekt.data.model.Product
 import com.example.abschlussprojekt.data.model.Profile
 import com.example.abschlussprojekt.data.model.Task
@@ -11,7 +13,10 @@ import com.example.abschlussprojekt.isValidEmail
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.storage.FirebaseStorage
+import kotlinx.coroutines.tasks.await
+import java.io.File
 
 private const val TAG = "FirebaseRepository"
 
@@ -26,16 +31,20 @@ class FirebaseRepository {
     //Firebase Storage
     private val storage = FirebaseStorage.getInstance()
 
+    //Eine Referenz zum Speicherort im Firebase Storage
     private val storageRef = storage.reference
 
+    //Der aktuelle Benutzer
     private val _currentUser = MutableLiveData<FirebaseUser?>(auth.currentUser)
     val currentUser: MutableLiveData<FirebaseUser?>
         get() = _currentUser
+
 
     private val _downloading = MutableLiveData(false)
     val downloading: LiveData<Boolean>
         get() = _downloading
 
+    //Das aktuelle Profil
     private val _profile = MutableLiveData<Profile?>()
     val profile: LiveData<Profile?>
         get() = _profile
@@ -114,14 +123,6 @@ class FirebaseRepository {
         }
     }
 
-    //Passwort vergessen Funktion
-    fun forgotPassword(email: String) {
-        auth.sendPasswordResetEmail(email)
-            .addOnCompleteListener { task ->
-                Log.d(TAG, "forgotPassword: ${task.result}")
-            }
-    }
-
     //Ausloggen Funktion
     fun logOut() {
         _profile.postValue(null) // Profilreferenz zurücksetzen
@@ -131,7 +132,15 @@ class FirebaseRepository {
         auth.signOut()
     }
 
-    //Speichern der Daten in Firestore
+    //Passwort vergessen Funktion
+    fun forgotPassword(email: String) {
+        auth.sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                Log.d(TAG, "forgotPassword: ${task.result}")
+            }
+    }
+
+    //Speichern eines Profile im Firestore mit der dazugehörigen UUID
     fun saveProfileInFireStore(
         firstName: String,
         surName: String,
@@ -168,6 +177,7 @@ class FirebaseRepository {
         }
     }
 
+    //Speichern einer Liste von Profile im Firestore
     fun saveAllProfiles(profiles: List<Profile>) {
         profiles.forEach {
             firestore.collection("profiles")
@@ -177,37 +187,7 @@ class FirebaseRepository {
         Log.d(TAG, "Alle Profile wurden erfolgreich gespeichert")
     }
 
-    fun saveAllProducts(products: List<Product>) {
-        products.forEach {
-            firestore.collection("products")
-                .document(it.name)
-                .set(it)
-        }
-    }
-
-
-    fun saveTaskInFireStore(newTask: Task) {
-        auth.currentUser?.let { user ->
-            //Referenz zum Dokument im Firestore
-            val documentRef = firestore
-                .collection("profiles")
-                .document(user.uid)
-                .collection("tasks")
-                .document(user.uid)
-
-            //Speichern der Daten
-            documentRef.set(newTask)
-                .addOnSuccessListener {
-                    Log.d(TAG, "Task wurde Erfolgreich hochgeladen und angelegt.")
-                }
-                .addOnFailureListener { e ->
-                    Log.w(TAG, "Beim Speichern des Tasks ist ein Fehler aufgetreten", e)
-                }
-        }
-    }
-
-
-    //Abrufen der Daten aus Firestore
+    //Abrufen des aktuellen Users
     fun getUserProfile(onResult: (Map<String, Any>?) -> Unit) {
         auth.currentUser?.let { user ->
             //Referenz zum Dokument im Firestore
@@ -232,13 +212,34 @@ class FirebaseRepository {
         }
     }
 
-    fun getTasks(onResult: (Map<String, Any>?) -> Unit) {
+    //Speichern EINER Task in Firestore
+    fun saveTaskInFireStore(newTask: Task) {
         auth.currentUser?.let { user ->
             //Referenz zum Dokument im Firestore
-            val taskRef = firestore.collection("profiles")
+            val documentRef = firestore
+                .collection("profiles")
                 .document(user.uid)
                 .collection("tasks")
                 .document(user.uid)
+
+            //Speichern der Daten
+            documentRef.set(newTask)
+                .addOnSuccessListener {
+                    Log.d(TAG, "Task wurde Erfolgreich hochgeladen und angelegt.")
+                }
+                .addOnFailureListener { e ->
+                    Log.w(TAG, "Beim Speichern des Tasks ist ein Fehler aufgetreten", e)
+                }
+        }
+    }
+
+    //Abrufen des zuletzt erstellenten Tasks
+    fun getMyTasks(onResult: (Map<String, Any>?) -> Unit) {
+        auth.currentUser?.let { user ->
+            //Referenz zum Dokument im Firestore
+            val taskRef = firestore.collection("tasks")
+                .document(user.email.toString())
+
             taskRef.get()
                 .addOnSuccessListener { document -> //Erfolgreich -> widr aufgerufen wenn das Dokument erfolgreich abgerufen wurde
                     if (document.exists()) {
@@ -257,18 +258,100 @@ class FirebaseRepository {
         }
     }
 
-//    //Abrufen der Daten aus Firestore
-//    suspend fun getValueFromDocument(collection: String, documentId: String, field: String): Double? {
-//        return try {
-//            val documentSnapshot = firestore.collection(collection).document(documentId).get().await()
-//            documentSnapshot.getDouble(field) // Hier wird das Feld als Double abgefragt
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//            null // Wenn ein Fehler auftritt, null zurückgeben
-//        }
-//    }
+    suspend fun fetchTasks(): List<Task> {
+        val taskList = firestore.collection("tasks")
+            .get()
+            .await().documents.map { document ->
+                document.toObject(Task::class.java)
+                    ?.copy(
+                        location = document.getGeoPoint("location") ?: GeoPoint(0.0, 0.0)
+                    ) ?: Task(
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    Category.DIENSTLEISTUNG,
+                    0,
+                    GeoPoint(0.0, 0.0),
+                    false
+                )
+            }
+        return taskList
+    }
 
-    //Speichern des Bildes in Firebase Storage
+    //Speichern einer Liste von Produkten im Firestore
+    fun saveAllProducts(products: List<Product>) {
+        products.forEach {
+            firestore.collection("products")
+                .document(it.name)
+                .set(it)
+        }
+    }
+
+    //Speichern einer Liste von Tasks im Firestore
+    fun saveAllTasks(tasks: List<Task>) {
+        tasks.forEach {
+            firestore.collection("tasks")
+                .document(it.createdFrom)
+                .set(it)
+        }
+    }
+
+    //Alle Produkte aus Firestore abrufen
+    fun getAllProductsFromFirestore(onResult: (List<Product>) -> Unit) {
+
+        val products = mutableListOf<Product>()
+
+        firestore.collection("products")
+            .get()
+            .addOnSuccessListener { collection ->
+                for (document in collection) {
+                    val product = document.toObject(Product::class.java)
+                    products.add(product)
+                }
+                onResult(products)
+
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Beim Abrufen der Produkte ist ein Fehler aufgetreten", e)
+                onResult(emptyList())
+            }
+    }
+
+    //Speichern der Bestellung in Firestore
+    fun saveOrderInFireStore(order: Order) {
+        auth.currentUser?.let { user ->
+            //Referenz zum Dokument im Firestore
+            val documentRef = firestore
+                .collection("orders")
+                .document(order.orderId)
+                .set(order)
+                .addOnSuccessListener {
+                    Log.d(TAG, "Order wurde Erfolgreich hochgeladen und angelegt.")
+                }
+                .addOnFailureListener { e ->
+                    Log.w(TAG, "Beim Speichern des Orders ist ein Fehler aufgetreten", e)
+                }
+        }
+    }
+
+    //Speichern einer PDF in Firebase Storage
+    fun uploadPdfToFirebaseStorage(filePath: String, orderId: String) {
+        val file = File(filePath)
+        val storageRef = FirebaseStorage.getInstance()
+            .getReference("orders/$orderId.pdf")
+
+        val uploadTask = storageRef.putFile(Uri.fromFile(file))
+        uploadTask.addOnSuccessListener {
+            Log.d("Firebase", "PDF erfolgreich hochgeladen.")
+        }
+            .addOnFailureListener { e ->
+                Log.e("Firebase", "Fehler beim Hochladen des PDFs: ${e.message}")
+            }
+    }
+
+    //Speichern eines Profil-Bildes in Firebase Storage
     fun uploadImage(imageUri: Uri) {
         auth.currentUser?.let { user ->
             //Referenz zum Speicherort im Firebase Storage
@@ -311,29 +394,4 @@ class FirebaseRepository {
                 }
         }
     }
-
-    fun getAllProductsFromDatabase(onResult: (List<Product>) -> Unit) {
-
-        val products = mutableListOf<Product>()
-
-        firestore.collection("products")
-            .get()
-            .addOnSuccessListener { collection ->
-                for (document in collection) {
-                    val product = document.toObject(Product::class.java)
-                    products.add(product)
-                }
-                onResult(products)
-
-            }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Beim Abrufen der Produkte ist ein Fehler aufgetreten", e)
-                onResult(emptyList())
-            }
-    }
 }
-
-
-
-
-

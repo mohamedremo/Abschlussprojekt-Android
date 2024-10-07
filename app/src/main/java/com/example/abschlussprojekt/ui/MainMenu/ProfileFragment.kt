@@ -1,22 +1,25 @@
 package com.example.abschlussprojekt.ui.MainMenu
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import coil.load
 import com.example.abschlussprojekt.databinding.FragmentProfileBinding
-import com.example.abschlussprojekt.ui.LoginAndRegister.viewmodel.FirebaseViewModel
-import com.example.abschlussprojekt.ui.MainMenu.viewmodel.MainViewModel
+import com.example.abschlussprojekt.setLottieByLevel
+import com.example.abschlussprojekt.ui.Task.adapter.TaskAdapter
+import com.example.abschlussprojekt.ui.Task.viewmodel.TaskViewModel
 
+private const val TAG = "ProfileFragment"
 
 class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
-    private val fireViewModel: FirebaseViewModel by activityViewModels()
-    private val viewModel: MainViewModel by activityViewModels()
+    private val viewModel: TaskViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -28,29 +31,38 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        viewModel.getTasks() AUSGESTELLT WEIL TASK MODEL BEARBEITET WIRD UND DIE ABHÄNGIKEITEN NOCH GESETZT WERDEN MIT MOCKAPI LEIDER NICHT MÖGLICH SOLVE? DATENSÄTZE SELBER AUF FIRESTORE BALLERN
-
         val nav = findNavController()
 
         binding.addBtn.setOnClickListener {
             nav.navigate(ProfileFragmentDirections.actionProfileFragmentToCreateTaskFragment())
         }
 
-        //Wenn der User nicht eingeloggt ist wird er zum WelcomeFragment navigiert.
-        fireViewModel.currentUser.observe(viewLifecycleOwner) {
-            if (it == null) nav.navigate(
-                ProfileFragmentDirections.actionProfileFragmentToWelcomeFragment()
-            )
-        }
-
-
         //Profil Referenz aus dem Firestore wird beobachtet und bei änderungen angezeigt.
-        fireViewModel.profile.observe(viewLifecycleOwner) { profile ->
+        viewModel.profile.observe(viewLifecycleOwner) { profile ->
             profile?.let {
+
                 val firstName = it.firstName
                 val surName = it.surName
+
                 binding.tvName.setText("$firstName $surName")
+                binding.tvRole.setText(it.role)
+
+                setLottieByLevel(it.level)
+
+                try {
+                    binding.ivProfilePic.load(it.profilePicture)
+                    binding.ivAppBar.load(it.profilePicture)
+                    Log.d(TAG, "onViewCreated: Profil Pic set!")
+                } catch (e: Exception) {
+                    Log.d(TAG, "onViewCreated: Cannot set Profil Pic!")
+                    e.printStackTrace()
+                }
+
             }
+        }
+        viewModel.fetchTasks()
+        viewModel.tasks.observe(viewLifecycleOwner) { tasks ->
+            binding.recyV.adapter = TaskAdapter(tasks)
         }
     }
 

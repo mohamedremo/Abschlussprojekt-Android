@@ -1,0 +1,702 @@
+[
+  {
+    "taskName": "Einkauf erledigen",
+    "description": "Bitte erledige den Wocheneinkauf im Supermarkt.",
+    "createdFrom": "max.mustermann@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 50,
+    "location": {
+      "_latitude": 53.0794,
+      "_longitude": 8.8015
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Paket abholen",
+    "description": "Ein Paket von der Post abholen.",
+    "createdFrom": "max.mustermann@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "FAHRT",
+    "butlePoints": 30,
+    "location": {
+      "_latitude": 53.0794,
+      "_longitude": 8.8015
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Reinigung abgeben",
+    "description": "Bringe meine Hemden zur Reinigung.",
+    "createdFrom": "anna.beispiel@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "FAHRT",
+    "butlePoints": 20,
+    "location": {
+      "_latitude": 53.0751,
+      "_longitude": 8.7982
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Büro aufräumen",
+    "description": "Hilf mir dabei, mein Büro aufzuräumen.",
+    "createdFrom": "anna.beispiel@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 40,
+    "location": {
+      "_latitude": 53.0751,
+      "_longitude": 8.7982
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Auto waschen",
+    "description": "Wasche mein Auto gründlich.",
+    "createdFrom": "leon.schmidt@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 60,
+    "location": {
+      "_latitude": 53.0842,
+      "_longitude": 8.8113
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Rasen mähen",
+    "description": "Den Rasen im Garten mähen.",
+    "createdFrom": "leon.schmidt@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 50,
+    "location": {
+      "_latitude": 53.0842,
+      "_longitude": 8.8113
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Blumen gießen",
+    "description": "Gieße meine Blumen, während ich im Urlaub bin.",
+    "createdFrom": "laura.mueller@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 25,
+    "location": {
+      "_latitude": 53.0710,
+      "_longitude": 8.8041
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Haustiere füttern",
+    "description": "Füttere meine Katzen für eine Woche.",
+    "createdFrom": "laura.mueller@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 35,
+    "location": {
+      "_latitude": 53.0710,
+      "_longitude": 8.8041
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Fahrrad reparieren",
+    "description": "Repariere mein Fahrrad, der Reifen ist platt.",
+    "createdFrom": "jan.koch@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 40,
+    "location": {
+      "_latitude": 53.0824,
+      "_longitude": 8.8123
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Garten umgraben",
+    "description": "Hilf mir dabei, den Garten umzugraben.",
+    "createdFrom": "jan.koch@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 50,
+    "location": {
+      "_latitude": 53.0824,
+      "_longitude": 8.8123
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Bücher zurückgeben",
+    "description": "Gebe die ausgeliehenen Bücher in der Bibliothek zurück.",
+    "createdFrom": "sophie.weber@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 15,
+    "location": {
+      "_latitude": 53.0800,
+      "_longitude": 8.8000
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Rechnung bezahlen",
+    "description": "Bezahl die Stromrechnung bis zum nächsten Freitag.",
+    "createdFrom": "sophie.weber@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 20,
+    "location": {
+      "_latitude": 53.0800,
+      "_longitude": 8.8000
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Kaffee holen",
+    "description": "Hole Kaffee für das Team.",
+    "createdFrom": "tom.kaiser@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 10,
+    "location": {
+      "_latitude": 53.0810,
+      "_longitude": 8.8020
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Schreibtisch organisieren",
+    "description": "Organisiere meinen Schreibtisch neu.",
+    "createdFrom": "tom.kaiser@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 30,
+    "location": {
+      "_latitude": 53.0810,
+      "_longitude": 8.8020
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Fisch füttern",
+    "description": "Füttere meine Fische, während ich im Urlaub bin.",
+    "createdFrom": "nina.klein@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 25,
+    "location": {
+      "_latitude": 53.0795,
+      "_longitude": 8.8030
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Auto tanken",
+    "description": "Tanke das Auto vor dem Wochenende.",
+    "createdFrom": "nina.klein@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "FAHRT",
+    "butlePoints": 40,
+    "location": {
+      "_latitude": 53.0795,
+      "_longitude": 8.8030
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Umzug helfen",
+    "description": "Hilf mir beim Umzug.",
+    "createdFrom": "felix.bauer@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 70,
+    "location": {
+      "_latitude": 53.0805,
+      "_longitude": 8.8045
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Essen liefern",
+    "description": "Liefer das Essen zu meiner Wohnung.",
+    "createdFrom": "felix.bauer@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 50,
+    "location": {
+      "_latitude": 53.0805,
+      "_longitude": 8.8045
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Kleidung spenden",
+    "description": "Spende alte Kleidung in der Kleiderkammer.",
+    "createdFrom": "lena.fischer@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 20,
+    "location": {
+      "_latitude": 53.0815,
+      "_longitude": 8.8050
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Gartenpflege",
+    "description": "Pflege den Garten von Nachbarn.",
+    "createdFrom": "lena.fischer@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 35,
+    "location": {
+      "_latitude": 53.0815,
+      "_longitude": 8.8050
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Computer reparieren",
+    "description": "Repariere meinen kaputten Computer.",
+    "createdFrom": "jonas.walter@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 60,
+    "location": {
+      "_latitude": 53.0802,
+      "_longitude": 8.8060
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Musikunterricht geben",
+    "description": "Gebe einer Schülerin Musikunterricht.",
+    "createdFrom": "jonas.walter@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 40,
+    "location": {
+      "_latitude": 53.0802,
+      "_longitude": 8.8060
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Kinoabend organisieren",
+    "description": "Organisiere einen Kinoabend mit Freunden.",
+    "createdFrom": "mia.krueger@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 15,
+    "location": {
+      "_latitude": 53.0812,
+      "_longitude": 8.8070
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Fahrrad waschen",
+    "description": "Wasche mein Fahrrad.",
+    "createdFrom": "mia.krueger@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 20,
+    "location": {
+      "_latitude": 53.0812,
+      "_longitude": 8.8070
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Catering organisieren",
+    "description": "Organisiere das Catering für eine Veranstaltung.",
+    "createdFrom": "lukas.hoffmann@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 50,
+    "location": {
+      "_latitude": 53.0808,
+      "_longitude": 8.8080
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Reise planen",
+    "description": "Plane eine Reise nach Paris.",
+    "createdFrom": "lukas.hoffmann@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 30,
+    "location": {
+      "_latitude": 53.0808,
+      "_longitude": 8.8080
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Hochzeit planen",
+    "description": "Plane meine Hochzeit.",
+    "createdFrom": "lisa.mayer@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 80,
+    "location": {
+      "_latitude": 53.0810,
+      "_longitude": 8.8090
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Keller aufräumen",
+    "description": "Räume den Keller auf.",
+    "createdFrom": "lisa.mayer@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 30,
+    "location": {
+      "_latitude": 53.0810,
+      "_longitude": 8.8090
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Schreibtisch reparieren",
+    "description": "Repariere meinen Schreibtisch.",
+    "createdFrom": "timo.schneider@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 40,
+    "location": {
+      "_latitude": 53.0809,
+      "_longitude": 8.8100
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Tisch decken",
+    "description": "Decke den Tisch für das Abendessen.",
+    "createdFrom": "timo.schneider@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 15,
+    "location": {
+      "_latitude": 53.0809,
+      "_longitude": 8.8100
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Abfall entsorgen",
+    "description": "Entsorge den Abfall.",
+    "createdFrom": "julia.schulz@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 10,
+    "location": {
+      "_latitude": 53.0815,
+      "_longitude": 8.8115
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Post abholen",
+    "description": "Hole die Post ab.",
+    "createdFrom": "julia.schulz@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 15,
+    "location": {
+      "_latitude": 53.0815,
+      "_longitude": 8.8115
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Kunstwerk bewerten",
+    "description": "Bewerte das Kunstwerk in der Galerie.",
+    "createdFrom": "david.schmitt@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 25,
+    "location": {
+      "_latitude": 53.0803,
+      "_longitude": 8.8122
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Kulturveranstaltung besuchen",
+    "description": "Besuche die Kulturveranstaltung in der Stadt.",
+    "createdFrom": "david.schmitt@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 35,
+    "location": {
+      "_latitude": 53.0803,
+      "_longitude": 8.8122
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Wochenende planen",
+    "description": "Plane dein Wochenende.",
+    "createdFrom": "hanna.richter@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 20,
+    "location": {
+      "_latitude": 53.0801,
+      "_longitude": 8.8110
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Handwerkliche Arbeiten erledigen",
+    "description": "Erledige handwerkliche Arbeiten in meiner Wohnung.",
+    "createdFrom": "hanna.richter@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 60,
+    "location": {
+      "_latitude": 53.0801,
+      "_longitude": 8.8110
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Nachhilfe geben",
+    "description": "Gebe Nachhilfe in Mathematik.",
+    "createdFrom": "sebastian.winkler@example.com",
+    "created": "2024-10-16",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 30,
+    "location": {
+      "_latitude": 53.0799,
+      "_longitude": 8.8105
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Fitness-Training geben",
+    "description": "Gebe Fitness-Training für eine Gruppe.",
+    "createdFrom": "sebastian.winkler@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 50,
+    "location": {
+      "_latitude": 53.0799,
+      "_longitude": 8.8105
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Ernährungsberatung anbieten",
+    "description": "Biete Ernährungsberatung an.",
+    "createdFrom": "sarah.fuchs@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 40,
+    "location": {
+      "_latitude": 53.0796,
+      "_longitude": 8.8114
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Kochen",
+    "description": "Koche ein leckeres Abendessen.",
+    "createdFrom": "sarah.fuchs@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 30,
+    "location": {
+      "_latitude": 53.0796,
+      "_longitude": 8.8114
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Aufräumen",
+    "description": "Räume das Wohnzimmer auf.",
+    "createdFrom": "paul.becker@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 15,
+    "location": {
+      "_latitude": 53.0798,
+      "_longitude": 8.8101
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Einkauf erledigen",
+    "description": "Erledige den Einkauf im Supermarkt.",
+    "createdFrom": "paul.becker@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 50,
+    "location": {
+      "_latitude": 53.0798,
+      "_longitude": 8.8101
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Nachricht senden",
+    "description": "Sende eine Nachricht an einen Freund.",
+    "createdFrom": "clara.jung@example.com",
+    "created": "2024-10-16",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 10,
+    "location": {
+      "_latitude": 53.0804,
+      "_longitude": 8.8106
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Kaffee machen",
+    "description": "Mach Kaffee für mich.",
+    "createdFrom": "clara.jung@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 5,
+    "location": {
+      "_latitude": 53.0804,
+      "_longitude": 8.8106
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Abholung organisieren",
+    "description": "Organisiere die Abholung eines Pakets.",
+    "createdFrom": "markus.seidel@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 15,
+    "location": {
+      "_latitude": 53.0815,
+      "_longitude": 8.8125
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Pflanzen umtopfen",
+    "description": "Topfe meine Pflanzen um.",
+    "createdFrom": "markus.seidel@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 20,
+    "location": {
+      "_latitude": 53.0815,
+      "_longitude": 8.8125
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Essensreste entsorgen",
+    "description": "Entsorge die Essensreste.",
+    "createdFrom": "theresa.lang@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 10,
+    "location": {
+      "_latitude": 53.0820,
+      "_longitude": 8.8130
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Besuch organisieren",
+    "description": "Organisiere einen Besuch bei mir.",
+    "createdFrom": "theresa.lang@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 20,
+    "location": {
+      "_latitude": 53.0820,
+      "_longitude": 8.8130
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Überraschung planen",
+    "description": "Plane eine Überraschung für einen Freund.",
+    "createdFrom": "patrick.peters@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 25,
+    "location": {
+      "_latitude": 53.0822,
+      "_longitude": 8.8132
+    },
+    "isFinished": false
+  },
+  {
+    "taskName": "Spieleabend organisieren",
+    "description": "Organisiere einen Spieleabend.",
+    "createdFrom": "patrick.peters@example.com",
+    "created": "2024-10-07",
+    "expire": "2024-10-16",
+    "category": "DIENSTLEISTUNG",
+    "butlePoints": 30,
+    "location": {
+      "_latitude": 53.0822,
+      "_longitude": 8.8132
+    },
+    "isFinished": false
+  }
+]

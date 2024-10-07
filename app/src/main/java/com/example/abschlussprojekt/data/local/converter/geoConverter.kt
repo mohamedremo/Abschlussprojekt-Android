@@ -3,6 +3,7 @@ package com.example.abschlussprojekt.data.local.converter
 import androidx.room.TypeConverter
 import com.google.firebase.firestore.GeoPoint
 
+//Diese Klasse dient als Converter für die Room Datenbank und Ihre damit enthaltenen Objekte.
 
 class geoConverter {
     @TypeConverter
