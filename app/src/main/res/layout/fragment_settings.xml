@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
-            android:text="Settings"
+            android:text="Einstellungen"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -50,7 +50,9 @@
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cvProfile"
                 android:layout_width="match_parent"
+                android:clickable="true"
                 android:layout_height="150dp"
                 android:layout_margin="12dp"
                 app:cardCornerRadius="30dp"
@@ -105,6 +107,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
                     <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/lvlAnimation"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginTop="12dp"
@@ -130,59 +133,59 @@
             </androidx.cardview.widget.CardView>
 
             <!--Profileinstellungen-->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/profileSettings"
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:layout_margin="12dp"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="5dp"
-                app:cardPreventCornerOverlap="false"
-                app:cardUseCompatPadding="true">
+            <!--  <androidx.cardview.widget.CardView
+                  android:id="@+id/profileSettings"
+                  android:layout_width="match_parent"
+                  android:layout_height="75dp"
+                  android:layout_margin="12dp"
+                  app:cardCornerRadius="15dp"
+                  app:cardElevation="5dp"
+                  app:cardPreventCornerOverlap="false"
+                  app:cardUseCompatPadding="true">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                  <androidx.constraintlayout.widget.ConstraintLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent">
 
-                    <ImageView
-                        android:id="@+id/profileIcon"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/person_24px"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                      <ImageView
+                          android:id="@+id/profileIcon"
+                          android:layout_width="40dp"
+                          android:layout_height="40dp"
+                          android:layout_marginStart="16dp"
+                          android:layout_marginTop="10dp"
+                          android:src="@drawable/person_24px"
+                          app:layout_constraintStart_toStartOf="parent"
+                          app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="13dp"
-                        android:fontFamily="@font/montserrat"
-                        android:text="Profileinstellungen"
-                        android:textSize="20sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/profileIcon"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.5" />
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginStart="13dp"
+                          android:fontFamily="@font/montserrat"
+                          android:text="Profileinstellungen"
+                          android:textSize="20sp"
+                          app:layout_constraintBottom_toBottomOf="parent"
+                          app:layout_constraintStart_toEndOf="@+id/profileIcon"
+                          app:layout_constraintTop_toTopOf="parent"
+                          app:layout_constraintVertical_bias="0.5" />
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginEnd="16dp"
-                        android:src="@drawable/arrow_right_24px"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.5" />
+                      <ImageView
+                          android:layout_width="30dp"
+                          android:layout_height="30dp"
+                          android:layout_marginEnd="16dp"
+                          android:src="@drawable/arrow_right_24px"
+                          app:layout_constraintBottom_toBottomOf="parent"
+                          app:layout_constraintEnd_toEndOf="parent"
+                          app:layout_constraintTop_toTopOf="parent"
+                          app:layout_constraintVertical_bias="0.5" />
 
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-            <!--Profileinstellungen ENDE-->
+                  </androidx.constraintlayout.widget.ConstraintLayout>
+              </androidx.cardview.widget.CardView>
+              Profileinstellungen ENDE-->
 
             <!--Kontoeinstellungen-->
-            <androidx.cardview.widget.CardView
+            <!--<androidx.cardview.widget.CardView
                 android:id="@+id/accountSettings"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
@@ -230,7 +233,7 @@
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>-->
             <!--Kontoeinstellungen ENDE -->
 
             <!--Zahlungseinstellungen-->
@@ -316,7 +319,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="13dp"
                         android:fontFamily="@font/montserrat"
-                        android:text="App-Einstellunge"
+                        android:text="App-Einstellungen"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/settingsIcon"
@@ -338,7 +341,7 @@
             </androidx.cardview.widget.CardView>
             <!--Appeinstellungen ENDE-->
 
-            <androidx.cardview.widget.CardView
+            <!--<androidx.cardview.widget.CardView
                 android:id="@+id/newsletter"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
@@ -386,7 +389,7 @@
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView> -->
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/service"

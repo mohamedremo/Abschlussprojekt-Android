@@ -3,6 +3,7 @@ package com.example.abschlussprojekt.data.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.firebase.firestore.GeoPoint
+import com.google.firebase.firestore.PropertyName
 
 
 @Entity(tableName = "task_table")
@@ -16,6 +17,7 @@ data class Task(
     val category: Category,
     val butlePoints: Int,
     val location: GeoPoint,
+    @PropertyName("finished") //Der Name wie er in Firestore gespeichert wird
     val isFinished: Boolean,
 ){
     constructor() : this("", "", "", "", "", Category.SONSTIGES, 0, GeoPoint(0.0, 0.0), false)

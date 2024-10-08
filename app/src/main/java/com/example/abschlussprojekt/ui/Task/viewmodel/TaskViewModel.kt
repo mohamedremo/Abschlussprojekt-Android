@@ -19,23 +19,12 @@ class TaskViewModel(application: Application): AndroidViewModel(application) {
 
     val currentUser = repository.currentUser
     val profile = repository.profile
-
-    private val _tasks = MutableLiveData<List<Task>>()
-    val tasks: LiveData<List<Task>>
-        get() = _tasks
-
-
+    val tasks = repository.tasks
+    val selectedTask = repository.selectedTask
 
     fun fetchTasks() {
         viewModelScope.launch {
-            try {
-                val taskList = repository.fetchTasks()
-                Log.d(TAG, "fetchTasks: $taskList")
-                _tasks.value = taskList
-            } catch (e: Exception) {
-                Log.e(TAG, "Error fetching tasks: ${e.message}")
-                _tasks.value = emptyList()
-            }
+            repository.fetchTasks()
         }
     }
 

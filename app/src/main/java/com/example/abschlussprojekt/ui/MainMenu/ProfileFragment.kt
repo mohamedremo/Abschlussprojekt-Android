@@ -43,20 +43,35 @@ class ProfileFragment : Fragment() {
 
                 val firstName = it.firstName
                 val surName = it.surName
+                val lottieFile = setLottieByLevel(it.level)
 
                 binding.tvName.setText("$firstName $surName")
                 binding.tvRole.setText(it.role)
-
-                setLottieByLevel(it.level)
+                binding.lvlSymbol.load(lottieFile) {
+                    crossfade(true)
+                    crossfade(500)
+                }
 
                 try {
-                    binding.ivProfilePic.load(it.profilePicture)
-                    binding.ivAppBar.load(it.profilePicture)
+                    binding.ivProfilePic.load(it.profilePicture) {
+                        crossfade(true)
+                        crossfade(500)
+                    }
+                    binding.ivAppBar.load(it.profilePicture) {
+                        crossfade(true)
+                        crossfade(500)
+                    }
                     Log.d(TAG, "onViewCreated: Profil Pic set!")
                 } catch (e: Exception) {
                     Log.d(TAG, "onViewCreated: Cannot set Profil Pic!")
                     e.printStackTrace()
                 }
+
+                binding.tvName.visibility = View.VISIBLE
+                binding.tvRole.visibility = View.VISIBLE
+                binding.lvlSymbol.visibility = View.VISIBLE
+                binding.ivProfilePic.visibility = View.VISIBLE
+                binding.ivAppBar.visibility = View.VISIBLE
 
             }
         }

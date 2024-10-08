@@ -39,15 +39,18 @@ class FirebaseRepository {
     val currentUser: MutableLiveData<FirebaseUser?>
         get() = _currentUser
 
-
-    private val _downloading = MutableLiveData(false)
-    val downloading: LiveData<Boolean>
-        get() = _downloading
-
     //Das aktuelle Profil
     private val _profile = MutableLiveData<Profile?>()
     val profile: LiveData<Profile?>
         get() = _profile
+
+    private val _tasks = MutableLiveData<List<Task>>()
+    val tasks: MutableLiveData<List<Task>>
+        get() = _tasks
+
+    private val _selectedTask = MutableLiveData<Task>()
+    val selectedTask: LiveData<Task>
+        get() = _selectedTask
 
     //Initialisierung der Authentifizierung, wenn ein User eingeloggt ist.
     init {
@@ -258,7 +261,7 @@ class FirebaseRepository {
         }
     }
 
-    suspend fun fetchTasks(): List<Task> {
+    suspend fun fetchTasks() {
         val taskList = firestore.collection("tasks")
             .get()
             .await().documents.map { document ->
@@ -277,7 +280,7 @@ class FirebaseRepository {
                     false
                 )
             }
-        return taskList
+        _tasks.postValue(taskList)
     }
 
     //Speichern einer Liste von Produkten im Firestore
@@ -361,11 +364,9 @@ class FirebaseRepository {
             storageRef.putFile(imageUri)
                 .addOnSuccessListener { //Erfolgreich -> Bild wird hochgeladen
                     Log.d(TAG, "Bild wurde erfolgreich auf Firestore hochgeladen")
-                    _downloading.value = true
                     //Aktualisieren der Profilbild URL in der Firestore Datenbank
                     storageRef.downloadUrl.addOnSuccessListener {
                         //Downloading State wird auf false gesetzt
-                        _downloading.value = false
                         Log.d(TAG, "Bild wurde erfolgreich vom Firestore heruntergeladen")
                         _profile.value = _profile.value?.copy(profilePicture = it.toString())
                         //Referenz zum Dokument im Firestore
@@ -393,5 +394,39 @@ class FirebaseRepository {
                         }
                 }
         }
+    }
+
+    fun updateProfile(firstName: String, surName: String, birthDate: String) {
+        auth.currentUser?.let { user ->
+            val profileRef = firestore.collection("profiles")
+                .document(user.uid)
+            profileRef.update("firstName", firstName)
+            profileRef.update("surName", surName)
+            profileRef.update("birthDate", birthDate)
+                .addOnSuccessListener {
+                    Log.d(TAG, "Profile erfolgreich aktualisiert")
+                }
+                .addOnFailureListener { e ->
+                    Log.w(TAG, "Beim Aktualisieren des Profiles ist ein Fehler aufgetreten", e)
+                }
+        }
+    }
+
+    fun setOnlineStatus(status: Boolean) {
+        auth.currentUser?.let { user ->
+            val profileRef = firestore.collection("profiles")
+                .document(user.uid)
+            profileRef.update("readyForWork", status)
+                .addOnSuccessListener {
+                    Log.d(TAG, "Status erfolgreich aktualisiert")
+                }
+                .addOnFailureListener { e ->
+                    Log.w(TAG, "Beim Aktualisieren des Status ist ein Fehler aufgetreten", e)
+                }
+        }
+    }
+
+    fun setSelectedTask(task: Task) {
+        _selectedTask.value = task
     }
 }

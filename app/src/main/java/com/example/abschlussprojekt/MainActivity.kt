@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val viewModel: WeatherViewModel by viewModels()
-    private val fireViewModel: FirebaseViewModel by viewModels() // ist das so Ok ????
+    private val fireViewModel: FirebaseViewModel by viewModels()
 
     //Permission Launcher für den Zugriff auf die Standortberechtigungen
     private val requestPermissionLauncher = registerForActivityResult(
@@ -44,6 +44,8 @@ class MainActivity : AppCompatActivity() {
             if (isGranted) {
                 Log.i(TAG, "Berechtigung wurde erteilt: $permission")
             } else {
+                Log.i(TAG, "Berechtigung wurde abgelehnt: $permission")
+                showSettingsDialog()
                 Toast.makeText(
                     this,
                     "Bitte erteile die vollständigen Berechtigungen um die App nutzen zu können",
@@ -62,31 +64,14 @@ class MainActivity : AppCompatActivity() {
 
         //Bottom Navigation
         val navHost =
-            supportFragmentManager
-                .findFragmentById(binding.navHostFragmentContainer.id) as NavHostFragment
+            supportFragmentManager.findFragmentById(binding.navHostFragmentContainer.id) as NavHostFragment
+
         binding.bottomNav.setupWithNavController(navHost.navController)
 
-        /*
-        ---------------------------------------------------------------------------------------------
-        FUNKTION FÜR MOCKDATEN IN FIREBASE SPEICHERN
-         */
-//        fun initProfilesLocalToFirebase() {
-//            val json = assets.open("tasks.json")
-//                .bufferedReader()
-//                .use {
-//                    it.readText()
-//                }
-//            Log.e(TAG, json)
-//            val listToSave = Gson().fromJson(json, Array<Task>::class.java)
-//                .toList()
-//            fireViewModel.saveAllTasks(listToSave) // hier wird immer die jeweilige funktion aus dem ViewModel geändert je nachdem welchen  Datentypen man hochladen will
-//            Log.d(TAG, "Anzahl der geladenen Tasks: ${listToSave.size}")
-//        }
-//        initProfilesLocalToFirebase()
-        /*
-        FUNKTION FÜR MOCKDATEN IN FIREBASE SPEICHERN
-        ---------------------------------------------------------------------------------------------
-         */
+        // Wird für Mockdaten verwendet.
+        //initTasksFromJsonToFirebase(TAG, fireViewModel, assets)
+        //initProfilesLocalToFirebase(TAG, fireViewModel, assets)
+
 
         binding.bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -134,10 +119,13 @@ class MainActivity : AppCompatActivity() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         //Permissions für die LocationServices checken.
+        locationCheck()
+    }
+
+    private fun locationCheck() {
         if (ActivityCompat.checkSelfPermission(
                 this, Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED &&
-            ActivityCompat.checkSelfPermission(
+            ) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
                 this, Manifest.permission.ACCESS_COARSE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
@@ -158,24 +146,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     private fun requestNewLocationData() {
         val locationRequest = com.google.android.gms.location.LocationRequest.Builder(
-            Priority.PRIORITY_HIGH_ACCURACY,
-            1000
+            Priority.PRIORITY_HIGH_ACCURACY, 1000
         )
             .setMinUpdateIntervalMillis(2000)
             .build()
         if (ActivityCompat.checkSelfPermission(
                 this, Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED &&
-            ActivityCompat.checkSelfPermission(
+            ) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
                 this, Manifest.permission.ACCESS_COARSE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
             fusedLocationClient.requestLocationUpdates(
-                locationRequest,
-                object : com.google.android.gms.location.LocationCallback() {
+                locationRequest, object : com.google.android.gms.location.LocationCallback() {
                     override fun onLocationResult(locationResult: com.google.android.gms.location.LocationResult) {
                         super.onLocationResult(locationResult)
                         val location = locationResult.lastLocation
@@ -192,15 +176,13 @@ class MainActivity : AppCompatActivity() {
                                 .show()
                         }
                     }
-                },
-                null
+                }, null
             )
         }
     }
 
     private fun showRationaleDialog(onOk: () -> Unit) {
-        MaterialAlertDialogBuilder(this)
-            .setTitle("Benötigt Berechtigung")
+        MaterialAlertDialogBuilder(this).setTitle("Benötigt Berechtigung")
             .setMessage("Die App benötigt die folgende Berechtigung, um deine Aktivität zu tracken.")
             .setPositiveButton("OK") { _, _ -> onOk() }
             .show()
@@ -208,8 +190,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun requestInitialPermissions() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
+                this, Manifest.permission.ACCESS_FINE_LOCATION
             )
         ) {
             // Zeige den Dialog zur Erklärung der Berechtigung
@@ -224,8 +205,7 @@ class MainActivity : AppCompatActivity() {
         } else {
 
             if (ActivityCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.ACCESS_FINE_LOCATION
+                    this, Manifest.permission.ACCESS_FINE_LOCATION
                 ) == PackageManager.PERMISSION_GRANTED
             ) {
                 Log.d(TAG, "Permission granted")
@@ -241,8 +221,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showSettingsDialog() {
-        MaterialAlertDialogBuilder(this)
-            .setTitle("Berechtigungen dauerhaft abgelehnt")
+        MaterialAlertDialogBuilder(this).setTitle("Berechtigungen dauerhaft abgelehnt")
             .setMessage("Die Standortberechtigungen wurden dauerhaft abgelehnt. Du musst sie in den App-Einstellungen manuell aktivieren.")
             .setPositiveButton("Zu den Einstellungen") { _, _ ->
                 // Leite den Benutzer zu den App-Einstellungen
@@ -254,6 +233,5 @@ class MainActivity : AppCompatActivity() {
             .setNegativeButton("Abbrechen", null)
             .show()
     }
-
 }
 

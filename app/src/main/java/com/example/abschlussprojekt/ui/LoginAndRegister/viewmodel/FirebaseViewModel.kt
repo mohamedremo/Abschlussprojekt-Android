@@ -3,6 +3,7 @@ package com.example.abschlussprojekt.ui.LoginAndRegister.viewmodel
 import android.app.Application
 import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.abschlussprojekt.data.FirebaseRepository
 import com.example.abschlussprojekt.data.model.Product
@@ -18,6 +19,8 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
     private val repository = FirebaseRepository()
     val currentUser = repository.currentUser
     val profile = repository.profile
+    val tasks = repository.tasks
+    val selectedTask = repository.selectedTask
 
     fun registerNewUser(
         email: String,
@@ -112,8 +115,26 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
 
     }
 
+    fun fetchTasks() {
+        viewModelScope.launch {
+            repository.fetchTasks()
+        }
+    }
+
+    fun setOnlineStatus(status: Boolean) {
+        repository.setOnlineStatus(status)
+    }
+
     fun getMyTasks(onResult: (Map<String, Any>?) -> Unit) {
         repository.getMyTasks(onResult)
+    }
+
+    fun updateProfile(firstName: String, surName: String, birthDate: String) {
+        repository.updateProfile(firstName, surName, birthDate)
+    }
+
+    fun setSelectedTask(task: Task) {
+        repository.setSelectedTask(task)
     }
 
 

@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         android:fontFamily="@font/montserrat"
-        android:text="MySpäti"
+        android:text="mySpäti"
         android:textSize="26sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"

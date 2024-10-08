@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import coil.load
 import com.example.abschlussprojekt.databinding.FragmentSettingsBinding
+import com.example.abschlussprojekt.setLottieByLevel
 import com.example.abschlussprojekt.ui.LoginAndRegister.viewmodel.FirebaseViewModel
 
 class SettingsFragment : Fragment() {
@@ -34,6 +36,18 @@ class SettingsFragment : Fragment() {
 
         binding.logout.setOnClickListener {
             fireViewModel.logOut()
+        }
+
+        fireViewModel.profile.observe(viewLifecycleOwner) { profile ->
+            if (profile != null) {
+                binding.lvlAnimation.setAnimation(setLottieByLevel(profile.level))
+                binding.ivProfilePic.load(profile.profilePicture)
+                binding.tvName.setText(profile.firstName + " " + profile.surName)
+            }
+        }
+
+        binding.cvProfile.setOnClickListener {
+            nav.navigate(SettingsFragmentDirections.actionSettingsFragmentToProfileSettingsFragment())
         }
 
 

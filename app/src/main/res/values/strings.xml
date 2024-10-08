@@ -7,7 +7,7 @@
     <!-- REGISTER UND LOGIN STRINGS -->
     <string name="first_name">Vorname</string>
     <string name="sur_name">Nachname</string>
-    <string name="birth_date">Geburtsdatum</string>
+    <string name="birth_date"> Geburtsdatum</string>
     <string name="email"> E-Mail</string>
     <string name="password"> Passwort</string>
     <string name="password_again">Passwort wiederholen</string>

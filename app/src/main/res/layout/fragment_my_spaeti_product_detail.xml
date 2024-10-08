@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CBCFF2A1"
     tools:context=".ui.MySpaeti.MySpaetiProductDetailFragment">
 
     <Toolbar
@@ -35,28 +34,30 @@
 
     </Toolbar>
 
+
     <ImageView
         android:id="@+id/ivProduct"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_margin="60dp"
         android:src="@drawable/burger"
         app:layout_constraintBottom_toTopOf="@+id/tvPrice"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.319" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView4"
-        android:layout_width="0dp"
+        android:layout_width="150dp"
         android:layout_height="80dp"
-        android:layout_marginBottom="128dp"
+        android:layout_marginBottom="240dp"
         app:cardCornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/lottiePlus"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintStart_toEndOf="@+id/lottieMinus">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/tvCount"
@@ -71,62 +72,64 @@
 
     </androidx.cardview.widget.CardView>
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottiePlus"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="26dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddToCart"
+    <TextView
+        android:id="@+id/tvPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:fontFamily="@font/montserrat_alternates_light"
+        android:text="74,80 €"
+        android:textSize="28sp"
+
+        app:layout_constraintBottom_toTopOf="@+id/cardView4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:lottie_fileName="plus.json" />
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieMinus"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginBottom="26dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginBottom="28dp"
         android:clickable="true"
         app:layout_constraintBottom_toTopOf="@+id/btnAddToCart"
         app:layout_constraintStart_toStartOf="parent"
         app:lottie_fileName="minus.json" />
 
-    <TextView
-        android:id="@+id/tvPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="130dp"
-        android:layout_marginBottom="23dp"
-        android:fontFamily="@font/montserrat_alternates_light"
-        android:text="74,80"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/cardView4"
-        app:layout_constraintStart_toStartOf="parent" />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottiePlus"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="32dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddToCart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:lottie_fileName="plus.json" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginEnd="145dp"
-        android:layout_marginBottom="33dp"
-        android:fontFamily="@font/montserrat_alternates_light"
-        android:text="€"
-        android:textSize="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardView4"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/montserrat"
+        android:text="Burger"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvPrice"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvPrice" />
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnAddToCart"
         android:layout_width="200dp"
         android:layout_height="70dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:text="+ HINZUFÜGEN"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView4" />
 

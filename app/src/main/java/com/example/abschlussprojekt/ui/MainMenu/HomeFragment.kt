@@ -1,8 +1,8 @@
 package com.example.abschlussprojekt.ui.MainMenu
-
-import android.annotation.SuppressLint
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -11,16 +11,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
 import com.example.abschlussprojekt.databinding.FragmentHomeBinding
+import com.example.abschlussprojekt.displayTasksOnMap
 import com.example.abschlussprojekt.setLottieByLevel
+import com.example.abschlussprojekt.setOnlineStatus
+import com.example.abschlussprojekt.setProfilePic
+import com.example.abschlussprojekt.stringToCelsius
 import com.example.abschlussprojekt.ui.LoginAndRegister.viewmodel.FirebaseViewModel
 import com.example.abschlussprojekt.ui.MainMenu.viewmodel.WeatherViewModel
+import com.example.abschlussprojekt.welcomeMessage
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.MarkerOptions
 
 private const val TAG = "HomeFragment"
 
@@ -33,9 +42,25 @@ class HomeFragment : Fragment() {
     private val fireViewModel: FirebaseViewModel by activityViewModels()
     private lateinit var mapView: MapView
 
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+        // View Binding initialisieren
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        // MapView aus dem Binding-Objekt holen
+        mapView = binding.mapView
+        mapView.onCreate(savedInstanceState)
+
+        return binding.root
+    }
+
     override fun onStart() {
         super.onStart()
         mapView.onStart()
+        fireViewModel.fetchTasks()
     }
 
     override fun onResume() {
@@ -58,26 +83,19 @@ class HomeFragment : Fragment() {
         mapView.onStop()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        // View Binding initialisieren
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
-
-        // MapView aus dem Binding-Objekt holen
-        mapView = binding.mapView
-        mapView.onCreate(savedInstanceState)
-
-        return binding.root
+    override fun onLowMemory() {
+        super.onLowMemory()
+        mapView.onLowMemory()
     }
 
-    @SuppressLint("MissingPermission")
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val myPosition = com.google.android.gms.maps.model.LatLng(53.0793, 8.8017)
+        //Initialisierung der ActivityResultLauncher
+        initContent()
+
+        val myPosition = LatLng(53.089942, 8.829095)
 
         val nav = findNavController()
 
@@ -86,109 +104,149 @@ class HomeFragment : Fragment() {
             nav.navigate(HomeFragmentDirections.actionHomeFragmentToMySpaetiFragment())
         }
 
-        mapView.getMapAsync {
-            it.isMyLocationEnabled = true
-            it.moveCamera(CameraUpdateFactory.newLatLngZoom(myPosition, 13f))
-        }
+        /*Hier werden dies Tasks Observiert dementsprechend wird die Map initialisiert.
+        * danach wird die ui angepasst und am ende werden die offenen Tasks auf der Karte angezeigt.*/
 
-        //Initialisierung der ActivityResultLauncher
-        initContent()
+        fireViewModel.tasks.observe(viewLifecycleOwner) { tasks ->
+            mapView.getMapAsync { googleMap ->
 
-        fireViewModel.currentUser.observe(viewLifecycleOwner) {
-            if (it == null)
-                nav.navigate(
-                    HomeFragmentDirections
-                        .actionHomeFragmentToWelcomeFragment()
-                )
-        }
-
-
-        fireViewModel.profile.observe(viewLifecycleOwner) { profile ->
-            if (profile != null) {
-                binding.ivProfilePic.visibility = View.VISIBLE
-                binding.tvWelcome.visibility = View.VISIBLE
-                binding.tvPoints.visibility = View.VISIBLE
-                binding.lvlSymbol.visibility = View.VISIBLE
-                binding.tvLocation.visibility = View.VISIBLE
-                binding.tvWeather.visibility = View.VISIBLE
-
-                val firstname = profile?.firstName
-                    .toString()
-                val points = profile?.points
-                    .toString()
-
-                //Lottie Animation für Level Anzeige
-                val level = profile?.level
-                    .toString()
-                val lottieFile = setLottieByLevel(level.toInt())
-
-                val profilePic = profile?.profilePicture
-
-                if (profilePic != null) {
-                    try {
-                        binding.ivProfilePic.load(profilePic)
-                    } catch (e: Exception) {
-                        Log.d(TAG, "Cannot set Profil Pic!")
-                        e.printStackTrace()
-                    }
+                // Überprüfen der Berechtigungen für den Standort
+                if (ActivityCompat.checkSelfPermission(
+                        requireActivity(),
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    // Berechtigung anfordern, falls nicht erteilt
+                    ActivityCompat.requestPermissions(
+                        requireActivity(),
+                        arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                        1000
+                    )
+                    return@getMapAsync
                 }
 
-                //Lottie Animation laden und starten
-                binding.lvlSymbol.setAnimation(lottieFile)
-                binding.lvlSymbol.playAnimation()
+                // Standort aktivieren und Kamera bewegen
+                googleMap.isMyLocationEnabled = true
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myPosition, 13f))
+                googleMap.uiSettings.isZoomControlsEnabled = true
+                googleMap.uiSettings.isMyLocationButtonEnabled = true
 
-                binding.tvWelcome.text = "Welcome $firstname"
-                binding.tvPoints.text = points
+                // Überprüfen, ob Tasks nicht leer sind
+                if (tasks.isNotEmpty()) {
+                    val boundsBuilder = LatLngBounds.Builder()
+                    for (task in tasks) {
+                        val position = LatLng(task.location.latitude, task.location.longitude)
+                        googleMap.addMarker(
+                            MarkerOptions().position(position)
+                                .title(task.taskName)
+                        )
+                        boundsBuilder.include(position)
+                    }
+                    val bounds = boundsBuilder.build()
 
-                try {
-                    binding.ivProfilePic.setImageURI(fireViewModel.currentUser.value?.photoUrl)
-                    Log.d(TAG, "onViewCreated: Profil Pic set!")
-                } catch (e: Exception) {
-                    Log.d(TAG, "onViewCreated: Cannot set Profil Pic!")
-                    e.printStackTrace()
+                    // Kamera auf die Bounds der Marker bewegen, animateCamera statt moveCamera
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 0))
+                } else {
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(myPosition, 13f))
+                    Log.d(TAG, "MapView: Keine Aufgaben gefunden")
                 }
 
-                Log.d(TAG, "onViewCreated: Profile wurde geladen ${profile}")
+                Log.d(TAG, "onViewCreated: Tasks: $tasks")
+                displayTasksOnMap(googleMap, tasks)
 
-            }
-        }
-
-        //Wetter daten observieren und bei Änderung TextView aktualisieren
-        viewModel.lastWeather.observe(viewLifecycleOwner) {
-            binding.tvWeather.text = it.current_weather.temperature.toString() + "°C"
-        }
-
-        //ImageView für Profilbild änderung klickbar gemacht.
-        binding.cvProfile.setOnClickListener {
-            uploadImage()
-        }
-
-        binding.floatingBtn.setOnClickListener {
-            nav.navigate(HomeFragmentDirections.actionHomeFragmentToCreateTaskFragment())
-        }
-
-    }
-
-    //--------------------------------------------------------------------
-    //Intent zum Foto Picken und dann mit uri hochladen.
-    private fun uploadImage() {
-        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-            addCategory(Intent.CATEGORY_OPENABLE)
-            type = "image/*"
-        }
-        getContent.launch(intent)
-    }
-
-    private fun initContent() {
-        getContent =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == Activity.RESULT_OK) {
-                    val uri: Uri? = result.data?.data
-                    if (uri != null) {
-                        binding.ivProfilePic.setImageURI(uri)
-                        fireViewModel.uploadImage(uri)
+                googleMap.setOnMarkerClickListener { marker ->
+                    val task = tasks.find { it.taskName == marker.title.toString() }
+                    if (task != null) {
+                        Log.d(TAG, "onViewCreated: Task gefunden: $task")
+                        fireViewModel.setSelectedTask(task)
+                        nav.navigate(HomeFragmentDirections.actionHomeFragmentToTaskFragment())
                     }
+                    true
                 }
             }
+
+
+            //Wenn User Null ist wird er zum WelcomeFragment navigiert.
+            fireViewModel.currentUser.observe(viewLifecycleOwner) {
+                if (it == null)
+                    nav.navigate(
+                        HomeFragmentDirections
+                            .actionHomeFragmentToWelcomeFragment()
+                    )
+            }
+
+            //Profile Daten observieren und bei Änderung TextView aktualisieren
+            fireViewModel.profile.observe(viewLifecycleOwner) { profile ->
+
+                Log.d(TAG, "onViewCreated: Profile wurde geladen $profile")
+
+                if (profile != null) {
+
+                    val firstname = profile.firstName
+                    val points = profile.points.toString()
+
+
+                    binding.ivProfilePic.load(profile.profilePicture)
+
+                    //---------------LIEFERSTATUS ANIMATION--------------------------
+                    setOnlineStatus(binding.onlineStatus, profile.readyForWork)
+
+                    //---------------LEVEL ANIMATION--------------------------
+                    binding.lvlSymbol.setAnimation(setLottieByLevel(profile.level))
+                    binding.lvlSymbol.playAnimation()
+
+                    binding.tvWelcome.text = welcomeMessage(firstname)
+                    binding.tvPoints.text = points
+
+                }
+            }
+
+            //Wetter daten observieren und bei Änderung TextView aktualisieren
+            viewModel.lastWeather.observe(viewLifecycleOwner) {
+                binding.tvWeather.text = stringToCelsius(it.current_weather.temperature.toString())
+            }
+
+            //ImageView für Profilbild änderung klickbar gemacht.
+            binding.cvProfile.setOnClickListener {
+                pickImage()
+            }
+
+            binding.mySpaetiBtn.setOnClickListener {
+                if (fireViewModel.profile.value?.readyForWork != true) {
+                    fireViewModel.setOnlineStatus(true)
+                } else
+                    fireViewModel.setOnlineStatus(false)
+            }
+
+            binding.floatingBtn.setOnClickListener {
+                nav.navigate(HomeFragmentDirections.actionHomeFragmentToCreateTaskFragment())
+            }
+
+        }
     }
-}
+
+        //--------------------------------------------------------------------
+        //Intent zum Foto Picken und dann mit uri hochladen.
+        private fun pickImage() {
+            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+                addCategory(Intent.CATEGORY_OPENABLE)
+                type = "image/*"
+            }
+            getContent.launch(intent)
+        }
+
+        private fun initContent() {
+            getContent =
+                registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                    if (result.resultCode == Activity.RESULT_OK) {
+                        val uri: Uri? = result.data?.data
+                        if (uri != null) {
+                            binding.ivProfilePic.setImageURI(uri)
+                            fireViewModel.uploadImage(uri)
+                        }
+                    }
+                }
+        }
+    }
+
+

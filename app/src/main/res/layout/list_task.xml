@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,10 +13,12 @@
 
         <TextView
             android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:ellipsize="end"
             android:fontFamily="@font/montserrat_alternates_light"
+            android:maxLines="1"
             android:text="@string/penguin"
             android:textColor="#FFFF"
             android:textSize="20sp"
@@ -44,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="10dp"
+            android:ellipsize="end"
             android:fontFamily="@font/montserrat"
             android:text="Lorem ipsum dolor sit amet, consetetur sadividunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores "
             app:layout_constraintBottom_toTopOf="@+id/tvPoints"
@@ -52,16 +54,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTask"
             app:layout_constraintVertical_bias="0.0" />
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/tvLvl"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="8dp"
-            app:lottie_fileName="four.json"
-            app:lottie_autoPlay="true"
-            app:layout_constraintStart_toEndOf="@+id/tvTitle"
-            app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView
@@ -143,7 +135,6 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </com.google.android.material.card.MaterialCardView>

@@ -159,18 +159,29 @@
         android:id="@+id/mySpaetiBtn"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:backgroundTint="#CC8EDA4F"
         android:clickable="true"
         app:cardCornerRadius="50dp"
         tools:layout_editor_absoluteX="63dp"
         tools:layout_editor_absoluteY="305dp">
 
         <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/onlineStatus"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:lottie_fileName="scooter.json" />
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_fileName="offline.json" />
 
     </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_alternates_light"
+        android:text="Lieferstatus."
+        app:layout_constraintTop_toBottomOf="@+id/mySpaetiBtn"
+        tools:layout_editor_absoluteX="63dp" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/shopBtn"
@@ -188,17 +199,31 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:lottie_autoPlay="true"
+            app:lottie_repeatCount="5"
+            app:lottie_speed="0.5"
             app:lottie_fileName="tasche.json"
             app:lottie_loop="true" />
 
     </androidx.cardview.widget.CardView>
 
 
+    <TextView
+        android:id="@+id/tvShop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_alternates_light"
+        android:text="mySpäti."
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shopBtn" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:backgroundTint="#CC89CFF0"
         android:clickable="true"
         app:cardCornerRadius="50dp"
         app:layout_constraintStart_toEndOf="@+id/shopBtn"
@@ -207,10 +232,21 @@
         <com.airbnb.lottie.LottieAnimationView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:lottie_fileName="call.json" />
+            android:layout_margin="7dp"
+            app:lottie_fileName="delivery-truck.json" />
 
 
     </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvButle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="72dp"
+        android:fontFamily="@font/montserrat_alternates_light"
+        android:text="letsButle."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/swipeUp"
