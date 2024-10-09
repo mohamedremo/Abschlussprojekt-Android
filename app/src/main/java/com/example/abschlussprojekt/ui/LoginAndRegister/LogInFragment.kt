@@ -43,11 +43,6 @@ class LogInFragment : Fragment() {
             val email = binding.appCompatEditText.text.toString()
             val password = binding.appCompatEditText2.text.toString()
             fireViewModel.logIn(email, password)
-
-            nav.navigate(
-                LogInFragmentDirections
-                    .actionLogInFragmentToHomeFragment()
-            )
         }
     }
 

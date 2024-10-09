@@ -30,12 +30,10 @@ class SettingsFragment : Fragment() {
 
         val nav = findNavController()
 
-        binding.backBtn.setOnClickListener {
-            nav.navigateUp()
-        }
 
         binding.logout.setOnClickListener {
             fireViewModel.logOut()
+            nav.navigate(SettingsFragmentDirections.actionSettingsFragmentToHomeFragment())
         }
 
         fireViewModel.profile.observe(viewLifecycleOwner) { profile ->

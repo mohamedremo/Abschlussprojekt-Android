@@ -9,6 +9,7 @@ import com.example.abschlussprojekt.data.FirebaseRepository
 import com.example.abschlussprojekt.data.model.Product
 import com.example.abschlussprojekt.data.model.Profile
 import com.example.abschlussprojekt.data.model.Task
+import com.google.firebase.firestore.GeoPoint
 
 import kotlinx.coroutines.launch
 
@@ -45,6 +46,7 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
             )
         }
     }
+
 
     fun logIn(email: String, password: String) {
         viewModelScope.launch {
@@ -125,8 +127,8 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
         repository.setOnlineStatus(status)
     }
 
-    fun getMyTasks(onResult: (Map<String, Any>?) -> Unit) {
-        repository.getMyTasks(onResult)
+    fun getMyTasks() {
+        repository.getMyTasks()
     }
 
     fun updateProfile(firstName: String, surName: String, birthDate: String) {
@@ -135,6 +137,10 @@ class FirebaseViewModel(application: Application) : AndroidViewModel(application
 
     fun setSelectedTask(task: Task) {
         repository.setSelectedTask(task)
+    }
+
+    fun updateLastLocation(location: GeoPoint) {
+        repository.updateLastLocation(location)
     }
 
 

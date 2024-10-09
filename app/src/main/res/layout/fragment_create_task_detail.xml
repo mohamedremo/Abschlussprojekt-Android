@@ -2,13 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.Task.CreateTaskFragment"
-    tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="184dp"
-    android:id="@+id/mainLayout">
+    tools:context=".ui.Task.CreateTaskFragment">
 
+    <!-- Toolbar mit einem zurück-Button und Titel -->
     <Toolbar
         android:id="@+id/toolbar2"
         android:layout_width="match_parent"
@@ -18,23 +17,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!-- Zurück-Button -->
         <ImageView
             android:id="@+id/backBtn"
-            android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:src="@drawable/baseline_keyboard_arrow_left_24" />
 
+        <!-- Titel des Bildschirms -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
-            android:text="Vorheriger Bildschirm"
+            android:text="Zurück"
             android:textSize="16sp"
             android:textStyle="bold" />
-
     </Toolbar>
 
+    <!-- Titel für den neuen Task -->
     <TextView
         android:id="@+id/tvNewTask"
         android:layout_width="wrap_content"
@@ -46,6 +47,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
 
+    <!-- Eingabefeld für 'Was' -->
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/what"
         android:layout_width="match_parent"
@@ -53,13 +55,13 @@
         android:layout_margin="16dp"
         android:layout_marginTop="60dp"
         android:background="@drawable/round_edittext_green"
-        android:drawableStart="@drawable/location_on_24px"
-        android:hint="Was ? (Kleidung , Essen , etc.)"
+        android:drawableStart="@drawable/concierge_24px"
+        android:hint=" Was ? (Kleidung , Essen , etc.)"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.312"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNewTask" />
 
+    <!-- Eingabefeld für 'Wo' -->
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/where"
         android:layout_width="match_parent"
@@ -68,56 +70,57 @@
         android:layout_marginTop="60dp"
         android:background="@drawable/round_edittext_green"
         android:drawableStart="@drawable/location_on_24px"
-        android:hint="Wo ?"
         android:focusable="false"
+        android:hint=" Wo ?"
         android:inputType="textPostalAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.312"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/what" />
 
-
-
+    <!-- Eingabefeld für 'Wann' -->
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/wheen"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_margin="16dp"
         android:background="@drawable/round_edittext_pink"
-        android:drawableStart="@drawable/location_on_24px"
-        android:hint="Wann ?"
-        android:inputType="datetime"
+        android:drawableStart="@drawable/baseline_date_range_24"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:hint=" Wann ?"
         app:layout_constraintEnd_toStartOf="@+id/until"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/butlePoints" />
 
+    <!-- Eingabefeld für 'Bis' -->
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/until"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_margin="16dp"
         android:background="@drawable/round_edittext_pink"
-        android:drawableStart="@drawable/location_on_24px"
-        android:hint="Bis ?"
+        android:drawableStart="@drawable/baseline_date_range_24"
         android:focusable="false"
-        android:inputType="datetime"
+        android:focusableInTouchMode="false"
+        android:hint="Bis ?"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/butlePoints" />
 
+    <!-- Eingabefeld für 'butlePoints' -->
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/butlePoints"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_margin="16dp"
         android:background="@drawable/round_edittext_pink"
-        android:drawableStart="@drawable/location_on_24px"
-        android:hint="Vergütung ?"
+        android:drawableStart="@drawable/savings_24px"
+        android:hint=" butlePoints"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/where"
-        tools:layout_editor_absoluteY="285dp" />
+        app:layout_constraintTop_toBottomOf="@id/where" />
 
-
+    <!-- Eingabefeld für die Beschreibung -->
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etDescription"
         android:layout_width="match_parent"
@@ -125,32 +128,80 @@
         android:layout_margin="16dp"
         android:layout_marginTop="60dp"
         android:background="@drawable/round_edittext"
-        android:hint="Beschreibung"
+        android:hint=" Beschreibung"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/wheen" />
 
+    <!-- Button zum Erstellen des Tasks -->
     <Button
         android:id="@+id/createTask"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_marginTop="12dp"
-        android:text="TASK ERSTELLEN!"
         android:backgroundTint="@color/md_theme_tertiaryFixed"
+        android:text="TASK ERSTELLEN!"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etDescription" />
 
-    <com.google.android.gms.maps.MapView
+    <!-- Kartenansicht für die Map und die Suche -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvMapView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="30dp"
-        android:visibility="invisible"
-        android:id="@+id/mapView"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="40dp"
         android:clickable="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:visibility="invisible"
+        app:cardCornerRadius="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- MapView für die Kartenansicht -->
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/mapView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:clickable="true"
+                android:focusableInTouchMode="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Suchfeld für die Ortssuche -->
+            <SearchView
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:layout_marginTop="168dp"
+                android:background="@color/md_theme_background"
+                android:queryHint="Suche nach einem Ort"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

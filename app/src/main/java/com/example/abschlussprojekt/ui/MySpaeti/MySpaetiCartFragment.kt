@@ -8,6 +8,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.pdf.PdfDocument
+import android.location.Geocoder
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
@@ -16,6 +17,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.abschlussprojekt.R
 import com.example.abschlussprojekt.data.model.Order
 import com.example.abschlussprojekt.databinding.FragmentMySpaetiCartBinding
@@ -24,6 +26,11 @@ import com.example.abschlussprojekt.generateUUID
 import com.example.abschlussprojekt.toast
 import com.example.abschlussprojekt.ui.MySpaeti.adapter.MySpaetiCartAdapter
 import com.example.abschlussprojekt.ui.MySpaeti.viewmodel.MySpaetiViewModel
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.model.LatLng
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -248,4 +255,5 @@ class MySpaetiCartFragment : Fragment() {
             pdfDocument.close()
         }
     }
+
 }

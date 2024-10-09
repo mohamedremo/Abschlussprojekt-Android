@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_homeFragment_to_taskFragment"
             app:destination="@id/taskFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_letsButleFragment"
+            app:destination="@id/letsButleFragment" />
     </fragment>
 
     <fragment
@@ -92,6 +95,12 @@
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_profileFragment_to_createTaskDetailFragment"
+            app:destination="@id/createTaskDetailFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_taskFragment"
+            app:destination="@id/taskFragment" />
     </fragment>
 
     <fragment
@@ -111,6 +120,9 @@
         <action
             android:id="@+id/action_settingsFragment_to_profileSettingsFragment"
             app:destination="@id/profileSettingsFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
     </fragment>
 
     <fragment
@@ -150,6 +162,9 @@
         <action
             android:id="@+id/action_createTaskDetailFragment_to_taskFragment"
             app:destination="@id/taskFragment" />
+        <action
+            android:id="@+id/action_createTaskDetailFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
 
     <fragment
@@ -203,5 +218,19 @@
             android:id="@+id/action_profileSettingsFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/letsButleFragment"
+        android:name="com.example.abschlussprojekt.ui.Task.LetsButleFragment"
+        android:label="fragment_lets_butle"
+        tools:layout="@layout/fragment_lets_butle" >
+        <action
+            android:id="@+id/action_letsButleFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/serviceAndContactFragment"
+        android:name="com.example.abschlussprojekt.ui.Settings.ServiceAndContactFragment"
+        android:label="fragment_service_and_contact"
+        tools:layout="@layout/fragment_service_and_contact" />
 
 </navigation>

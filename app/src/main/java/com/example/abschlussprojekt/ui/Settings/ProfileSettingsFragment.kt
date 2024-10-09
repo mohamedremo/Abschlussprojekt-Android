@@ -9,7 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
 import com.example.abschlussprojekt.databinding.FragmentProfileSettingsBinding
-import com.example.abschlussprojekt.setProfilePic
+
 import com.example.abschlussprojekt.showDatePicker
 import com.example.abschlussprojekt.showDateTimePicker
 import com.example.abschlussprojekt.toast
@@ -46,9 +46,13 @@ class ProfileSettingsFragment : Fragment() {
             val surName = binding.etsurName.text.toString()
             val firstName = binding.etFirstName.text.toString()
             val birthDate = binding.etBirthDate.text.toString()
-            fireViewModel.updateProfile(firstName,surName, birthDate)
+            fireViewModel.updateProfile(firstName, surName, birthDate)
             toast("Profile erfolgreich aktualisiert", requireContext())
             nav.navigateUp()
+        }
+
+        binding.ivProfilePic.setOnClickListener {
+            //Load funktion für Profilbild
         }
 
         binding.etBirthDate.setOnClickListener {
@@ -57,5 +61,8 @@ class ProfileSettingsFragment : Fragment() {
             }
         }
 
+        binding.toolbar.backBtn.setOnClickListener {
+            nav.navigateUp()
+        }
     }
 }

@@ -32,7 +32,7 @@
     <!-- PROFILE FRAGMENT STRINGS -->
     <string name="tasks">Aufträge</string>
     <string name="actual1">aktuelle</string>
-    <string name="actual2">Aufträge</string>
+    <string name="actual2">Auftrag</string>
     <string name="taskbtn">taskBtn</string>
     <string name="dienstleister">-Dienstleister-</string>
     <string name="lv">Lv</string>

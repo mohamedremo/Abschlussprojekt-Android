@@ -11,8 +11,8 @@ import androidx.navigation.fragment.findNavController
 import coil.load
 import com.example.abschlussprojekt.databinding.FragmentProfileBinding
 import com.example.abschlussprojekt.setLottieByLevel
-import com.example.abschlussprojekt.ui.Task.adapter.TaskAdapter
 import com.example.abschlussprojekt.ui.Task.viewmodel.TaskViewModel
+
 
 private const val TAG = "ProfileFragment"
 
@@ -32,6 +32,9 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val nav = findNavController()
+
+
+        viewModel.getMyTasks()
 
         binding.addBtn.setOnClickListener {
             nav.navigate(ProfileFragmentDirections.actionProfileFragmentToCreateTaskFragment())
@@ -68,10 +71,20 @@ class ProfileFragment : Fragment() {
                 }
             }
         }
-        viewModel.fetchTasks()
-        viewModel.tasks.observe(viewLifecycleOwner) { tasks ->
-            binding.recyV.adapter = TaskAdapter(tasks)
+
+        viewModel.myTasks.observe(viewLifecycleOwner) { task->
+            task?.let {
+                binding.actualTask.tvDescription.setText(it.description)
+                binding.actualTask.tvTitle.setText(it.taskName)
+                binding.actualTask.tvPoints.setText(it.butlePoints.toString())
+                binding.actualTask.tvTask.setText(it.category)
+                binding.actualTask.tvDeadline.setText(it.expire)
+            }
         }
+//        viewModel.fetchTasks()
+//        viewModel.tasks.observe(viewLifecycleOwner) { tasks ->
+//            binding.recyV.adapter = TaskAdapter(tasks)
+//        }
     }
 
 }

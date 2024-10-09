@@ -4,17 +4,20 @@ import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.abschlussprojekt.data.model.Category
 import com.example.abschlussprojekt.data.model.Order
 import com.example.abschlussprojekt.data.model.Product
 import com.example.abschlussprojekt.data.model.Profile
 import com.example.abschlussprojekt.data.model.Task
 import com.example.abschlussprojekt.isValidEmail
+import com.example.abschlussprojekt.randomCategory
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.GeoPoint
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.firestore.toObject
 import com.google.firebase.storage.FirebaseStorage
+import com.google.type.LatLng
 import kotlinx.coroutines.tasks.await
 import java.io.File
 
@@ -51,6 +54,10 @@ class FirebaseRepository {
     private val _selectedTask = MutableLiveData<Task>()
     val selectedTask: LiveData<Task>
         get() = _selectedTask
+
+    private val _myTasks = MutableLiveData<Task?>()
+    val myTasks: LiveData<Task?>
+        get() = _myTasks
 
     //Initialisierung der Authentifizierung, wenn ein User eingeloggt ist.
     init {
@@ -131,8 +138,9 @@ class FirebaseRepository {
         _profile.postValue(null) // Profilreferenz zurücksetzen
         _currentUser.value =
             null // Setze den aktuellen Benutzer auf null um den Vorgang zu beenden.
-        Log.d(TAG, "logOut Successful")
         auth.signOut()
+        Log.d(TAG, "logOut Successful")
+
     }
 
     //Passwort vergessen Funktion
@@ -219,11 +227,8 @@ class FirebaseRepository {
     fun saveTaskInFireStore(newTask: Task) {
         auth.currentUser?.let { user ->
             //Referenz zum Dokument im Firestore
-            val documentRef = firestore
-                .collection("profiles")
-                .document(user.uid)
-                .collection("tasks")
-                .document(user.uid)
+            val documentRef = firestore.collection("tasks")
+                .document(user.email.toString())
 
             //Speichern der Daten
             documentRef.set(newTask)
@@ -237,7 +242,7 @@ class FirebaseRepository {
     }
 
     //Abrufen des zuletzt erstellenten Tasks
-    fun getMyTasks(onResult: (Map<String, Any>?) -> Unit) {
+    fun getMyTasks() {
         auth.currentUser?.let { user ->
             //Referenz zum Dokument im Firestore
             val taskRef = firestore.collection("tasks")
@@ -247,16 +252,14 @@ class FirebaseRepository {
                 .addOnSuccessListener { document -> //Erfolgreich -> widr aufgerufen wenn das Dokument erfolgreich abgerufen wurde
                     if (document.exists()) {
                         // Daten abrufen und an die Callback-Funktion übergeben
-                        val taskData = document.data
-                        onResult(taskData)
+                        val taskData = document.toObject(Task::class.java)
+                        _myTasks.postValue(taskData)
                     } else {
                         Log.d(TAG, "Dokument existiert nicht")
-                        onResult(null)
                     }
                 }
                 .addOnFailureListener { e -> //Fail -> wird aufgerufen wenn ein Fehler beim Abrufen des Dokuments auftritt
                     Log.w(TAG, "Beim Fetchen der Tasks ist ein Fehler aufgetreten", e)
-                    onResult(null)
                 }
         }
     }
@@ -274,7 +277,7 @@ class FirebaseRepository {
                     "",
                     "",
                     "",
-                    Category.DIENSTLEISTUNG,
+                    randomCategory(), // Hier werden zufällig die werte für die Task erstellt
                     0,
                     GeoPoint(0.0, 0.0),
                     false
@@ -429,4 +432,13 @@ class FirebaseRepository {
     fun setSelectedTask(task: Task) {
         _selectedTask.value = task
     }
+
+    fun updateLastLocation(location: GeoPoint) {
+        auth.currentUser?.let { user ->
+            val profileRef = firestore.collection("profiles")
+                .document(currentUser.value?.uid!!)
+            profileRef.update("lastLocation", location)
+        }
+    }
 }
+

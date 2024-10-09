@@ -4,7 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.abschlussprojekt.data.Repository
+import com.example.abschlussprojekt.data.WeatherRepository
 import com.example.abschlussprojekt.data.remote.WeatherApi
 
 import kotlinx.coroutines.launch
@@ -13,13 +13,13 @@ private const val TAG = "WeatherViewModel"
 
 class WeatherViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository = Repository(WeatherApi)
+    private val weatherRepository = WeatherRepository(WeatherApi)
 
-    val lastWeather = repository.lastWeather
+    val lastWeather = weatherRepository.lastWeather
 
     fun getWeatherByLocation(longitude: Double, latitude: Double) {
         viewModelScope.launch {
-            repository.getWeatherByLocation(longitude, latitude)
+            weatherRepository.getWeatherByLocation(longitude, latitude)
             Log.d(TAG, "getWeatherByLocation: $lastWeather")
         }
     }

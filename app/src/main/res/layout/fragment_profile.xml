@@ -80,7 +80,6 @@
                 android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/montserrat_alternates_light"
                 android:text="@string/testName"
@@ -104,8 +103,8 @@
                 android:id="@+id/lvlSymbol"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="28dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:lottie_autoPlay="true"
@@ -137,141 +136,41 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvRole"
                 tools:ignore="SmallSp" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/statusBtn"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="70dp"
-                android:backgroundTint="#CC8EDA4F"
-                android:clickable="true"
-                app:cardCornerRadius="50dp"
-                app:layout_constraintBottom_toBottomOf="@+id/shopBtn"
-                app:layout_constraintEnd_toStartOf="@+id/shopBtn"
-                app:layout_constraintTop_toBottomOf="@+id/divider">
-
-                <com.airbnb.lottie.LottieAnimationView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:lottie_fileName="scooter.json" />
-
-            </androidx.cardview.widget.CardView>
-
 
             <!-- Animation Symbol Rating -->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/montserrat_alternates_light"
-                android:text="Status"
-                android:textColor="@color/md_theme_tertiary"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@+id/textView"
-                app:layout_constraintHorizontal_bias="0.413"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/statusBtn" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/shopBtn"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginTop="40dp"
-                android:backgroundTint="#CCFF4081"
-                app:cardCornerRadius="50dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider">
-
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/lottieAnimationView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-
-                    android:clickable="true"
-                    app:lottie_fileName="rate.json" />
-
-            </androidx.cardview.widget.CardView>
-
             <!-- Animation Symbol Call -->
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/montserrat_alternates_light"
-                android:text="Bewertungen"
-                android:textColor="@color/md_theme_tertiaryFixed"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/shopBtn" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView2"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginStart="70dp"
-                android:layout_marginTop="40dp"
-                android:backgroundTint="#CC89CFF0"
-                android:clickable="true"
-                app:cardCornerRadius="50dp"
-                app:layout_constraintBottom_toBottomOf="@+id/shopBtn"
-                app:layout_constraintStart_toEndOf="@+id/shopBtn"
-                app:layout_constraintTop_toBottomOf="@+id/divider"
-                app:layout_constraintVertical_bias="0.0">
-
-                <com.airbnb.lottie.LottieAnimationView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:lottie_fileName="call.json" />
-
-            </androidx.cardview.widget.CardView>
 
             <!-- Überschrift "aktuelle Aufträge" -->
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_alternates_light"
-                android:text="Kontakt"
-                android:textColor="@color/md_theme_primary"
-                android:textSize="18sp"
-                android:layout_marginTop="4dp"
-                android:layout_marginStart="2dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.449"
-                app:layout_constraintStart_toEndOf="@+id/textView"
-                app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="80dp"
                 android:fontFamily="@font/montserrat_alternates_light"
-                android:text="meine"
+                android:text="aktueller"
                 android:textColor="@color/md_theme_tertiaryFixed"
                 android:textSize="26sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/statusBtn" />
+                app:layout_constraintTop_toTopOf="@+id/divider" />
 
             <!-- Trennlinie (Divider) unter der Überschrift -->
 
             <TextView
+                android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="1dp"
-                android:layout_marginTop="80dp"
                 android:fontFamily="@font/montserrat_alternates_light"
                 android:text="@string/actual2"
                 android:textColor="@color/md_theme_tertiary"
                 android:textSize="26sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/textView4"
-                app:layout_constraintTop_toBottomOf="@+id/shopBtn" />
+                app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+
 
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/materialDivider"
@@ -284,18 +183,21 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
             <!-- RecyclerView für die Anzeige von Aufgaben -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyV"
+            <include
+                android:id="@+id/actualTask"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="120dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+                layout="@layout/list_task"
+                android:layout_margin="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/materialDivider"
                 tools:listitem="@layout/list_task" />
+
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

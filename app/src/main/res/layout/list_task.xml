@@ -95,33 +95,25 @@
             app:layout_constraintStart_toEndOf="@+id/butlePoints" />
 
         <TextView
-            android:id="@+id/tvDistance"
+            android:id="@+id/tvDeadline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/montserrat_alternates_light"
             android:text="12,3"
-            app:layout_constraintEnd_toStartOf="@+id/kilometres"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/kilometres"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:fontFamily="@font/montserrat_thin"
-            android:text="km"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
+            android:id="@+id/imageView2"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="9dp"
-            android:layout_marginEnd="1dp"
-            android:src="@drawable/location_on_24px"
-            app:layout_constraintEnd_toStartOf="@+id/tvDistance"
+            android:src="@drawable/hourglass_top_24px"
+            app:layout_constraintStart_toEndOf="@+id/tvTitle"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton

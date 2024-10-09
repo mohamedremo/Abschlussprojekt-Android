@@ -10,12 +10,13 @@ import androidx.navigation.fragment.findNavController
 import com.example.abschlussprojekt.R
 import com.example.abschlussprojekt.databinding.FragmentCreateTaskBinding
 import com.example.abschlussprojekt.ui.MainMenu.viewmodel.WeatherViewModel
+import com.example.abschlussprojekt.ui.Task.viewmodel.TaskViewModel
 
 
 class CreateTaskFragment : Fragment() {
 
     private lateinit var binding: FragmentCreateTaskBinding
-    private val viewModel: WeatherViewModel by activityViewModels()
+    private val viewModel: TaskViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,15 +33,19 @@ class CreateTaskFragment : Fragment() {
 
         binding.etwasAbholen.setOnClickListener {
             nav.navigate(R.id.action_createTaskFragment_to_createTaskDetailFragment)
+            viewModel.setSelectedCategory("Etwas Abholen!")
         }
         binding.rent.setOnClickListener {
             nav.navigate(R.id.action_createTaskFragment_to_createTaskDetailFragment)
+            viewModel.setSelectedCategory("Etwas ausleihen!")
         }
         binding.wish.setOnClickListener {
             nav.navigate(R.id.action_createTaskFragment_to_createTaskDetailFragment)
+            viewModel.setSelectedCategory("Wunsch!")
         }
         binding.handyman.setOnClickListener {
             nav.navigate(R.id.action_createTaskFragment_to_createTaskDetailFragment)
+            viewModel.setSelectedCategory("Handwerker!")
         }
 
         binding.backBtn.setOnClickListener {

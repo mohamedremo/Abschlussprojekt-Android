@@ -1,6 +1,7 @@
 package com.example.abschlussprojekt.ui.Task.viewmodel
 
 import android.app.Application
+import android.location.Address
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
@@ -9,6 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.abschlussprojekt.data.FirebaseRepository
 import com.example.abschlussprojekt.data.model.Task
+import com.google.firebase.firestore.GeoPoint
 import kotlinx.coroutines.launch
 
 private const val TAG = "TaskViewModel"
@@ -21,6 +23,15 @@ class TaskViewModel(application: Application): AndroidViewModel(application) {
     val profile = repository.profile
     val tasks = repository.tasks
     val selectedTask = repository.selectedTask
+    val myTasks = repository.myTasks
+
+    private val _selectedAdress = MutableLiveData<Address>()
+    val selectedAdress: LiveData<Address>
+        get() = _selectedAdress
+
+    private val _selectedCategory = MutableLiveData<String>()
+    val selectedCategory: LiveData<String>
+        get() = _selectedCategory
 
     fun fetchTasks() {
         viewModelScope.launch {
@@ -28,16 +39,27 @@ class TaskViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
+    fun setSelectedAdress(address: Address) {
+        _selectedAdress.value = address
+    }
+
     fun saveTaskInFireStore(newTask: Task) {
         repository.saveTaskInFireStore(newTask)
     }
 
-    fun getMyTasks(onResult: (Map<String, Any>?) -> Unit) {
-        repository.getMyTasks(onResult)
+    fun getMyTasks() {
+        repository.getMyTasks()
     }
 
     fun uploadImage(imageUri: Uri) {
         repository.uploadImage(imageUri)
     }
 
+    fun setSelectedCategory(category: String) {
+        _selectedCategory.value = category
+    }
+
+    fun updateLastLocation(location: GeoPoint) {
+        repository.updateLastLocation(location)
+    }
 }

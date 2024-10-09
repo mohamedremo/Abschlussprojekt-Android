@@ -7,42 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainMenu.SettingsFragment">
 
-    <Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageButton
-            android:id="@+id/backBtn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:backgroundTint="@color/transparent"
-            android:contentDescription="backbtn"
-            android:src="@drawable/baseline_keyboard_arrow_left_24" />
-
-        <TextView
-            android:id="@+id/toolbarTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat"
-            android:text="Einstellungen"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-
-    </Toolbar>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        app:layout_constraintTop_toTopOf="parent" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,9 +25,9 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvProfile"
                 android:layout_width="match_parent"
-                android:clickable="true"
                 android:layout_height="150dp"
                 android:layout_margin="12dp"
+                android:clickable="true"
                 app:cardCornerRadius="30dp"
                 app:cardElevation="20dp"
                 app:cardPreventCornerOverlap="false">
