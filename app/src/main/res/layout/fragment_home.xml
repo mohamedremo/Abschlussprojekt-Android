@@ -179,7 +179,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_alternates_light"
-        android:text="Lieferstatus."
+        android:text="lieferStatus."
         app:layout_constraintTop_toBottomOf="@+id/mySpaetiBtn"
         tools:layout_editor_absoluteX="63dp" />
 
@@ -313,7 +313,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/penguin_pc"
-            android:visibility="invisible"
             tools:ignore="ContentDescription" />
 
     </androidx.cardview.widget.CardView>

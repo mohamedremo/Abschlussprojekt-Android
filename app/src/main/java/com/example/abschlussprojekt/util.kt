@@ -208,7 +208,7 @@ fun stringToCelsius(string: String): String {
 }
 
 fun welcomeMessage(name: String): String {
-    return "Welcome $name"
+    return "welcome $name"
 }
 
 fun setProfilePic(TAG: String, imageView: ImageView, pic: Uri?) {

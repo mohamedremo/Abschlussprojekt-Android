@@ -33,10 +33,12 @@ class MySpaetiProductDetailFragment : Fragment() {
         viewModel.selectedProduct.observe(viewLifecycleOwner) {
             binding.tvPrice.text = it?.price.toString()
             binding.ivProduct.load(it?.imageUrl)
+            binding.tvProductName.text = it.name
         }
 
         viewModel.productCount.observe(viewLifecycleOwner) {
             binding.tvCount.text = it.toString()
+
         }
 
         binding.lottiePlus.setOnClickListener {

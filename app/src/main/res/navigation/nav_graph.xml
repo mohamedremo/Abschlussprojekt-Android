@@ -17,6 +17,7 @@
             android:id="@+id/action_logInFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.abschlussprojekt.ui.LoginAndRegister.RegisterFragment"
@@ -28,6 +29,7 @@
             android:id="@+id/action_registerFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.abschlussprojekt.ui.MainMenu.HomeFragment"
@@ -48,6 +50,7 @@
             android:id="@+id/action_homeFragment_to_taskFragment"
             app:destination="@id/taskFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.example.abschlussprojekt.ui.LoginAndRegister.WelcomeFragment"
@@ -63,6 +66,7 @@
             android:id="@+id/action_welcomeFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.abschlussprojekt.ui.MainMenu.ProfileFragment"
@@ -72,11 +76,24 @@
             app:destination="@id/welcomeFragment" />
         <action
             android:id="@+id/action_profileFragment_to_settingsFragment2"
-            app:destination="@id/settingsFragment" />
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+
         <action
             android:id="@+id/action_profileFragment_to_createTaskFragment"
             app:destination="@id/createTaskFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
+
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.abschlussprojekt.ui.MainMenu.SettingsFragment"
@@ -95,6 +112,7 @@
             android:id="@+id/action_settingsFragment_to_profileSettingsFragment"
             app:destination="@id/profileSettingsFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/createTaskFragment"
         android:name="com.example.abschlussprojekt.ui.Task.CreateTaskFragment"
@@ -112,6 +130,7 @@
             android:id="@+id/action_createTaskFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/taskFragment"
         android:name="com.example.abschlussprojekt.ui.Task.TaskFragment"
@@ -120,6 +139,7 @@
             android:id="@+id/action_taskFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/createTaskDetailFragment"
         android:name="com.example.abschlussprojekt.ui.Task.CreateTaskDetailFragment"
@@ -131,6 +151,7 @@
             android:id="@+id/action_createTaskDetailFragment_to_taskFragment"
             app:destination="@id/taskFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/mySpaetiFragment"
         android:name="com.example.abschlussprojekt.ui.MySpaeti.MySpaetiFragment"
@@ -146,6 +167,7 @@
             android:id="@+id/action_mySpaetiFragment_to_mySpaetiProductDetail"
             app:destination="@id/mySpaetiProductDetailFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/mySpaetiCartFragment"
         android:name="com.example.abschlussprojekt.ui.MySpaeti.MySpaetiCartFragment"
@@ -158,6 +180,7 @@
             android:id="@+id/action_mySpaetiCartFragment_to_mySpaetiProductDetail"
             app:destination="@id/mySpaetiProductDetailFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/mySpaetiProductDetailFragment"
         android:name="com.example.abschlussprojekt.ui.MySpaeti.MySpaetiProductDetailFragment"
@@ -170,6 +193,7 @@
             android:id="@+id/action_mySpaetiProductDetail_to_mySpaetiCartFragment"
             app:destination="@id/mySpaetiCartFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/profileSettingsFragment"
         android:name="com.example.abschlussprojekt.ui.Settings.ProfileSettingsFragment"
@@ -179,4 +203,5 @@
             android:id="@+id/action_profileSettingsFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
     </fragment>
+
 </navigation>

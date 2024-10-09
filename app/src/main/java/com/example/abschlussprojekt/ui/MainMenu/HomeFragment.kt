@@ -56,7 +56,6 @@ class HomeFragment : Fragment() {
 
         return binding.root
     }
-
     override fun onStart() {
         super.onStart()
         mapView.onStart()
@@ -88,7 +87,6 @@ class HomeFragment : Fragment() {
         mapView.onLowMemory()
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -99,13 +97,35 @@ class HomeFragment : Fragment() {
 
         val nav = findNavController()
 
-        binding.shopBtn.setOnClickListener {
-            binding.shoppingBags.playAnimation()
-            nav.navigate(HomeFragmentDirections.actionHomeFragmentToMySpaetiFragment())
+        //Profile Daten observieren und bei Änderung TextView aktualisieren
+        fireViewModel.profile.observe(viewLifecycleOwner) { profile ->
+
+            Log.d(TAG, "onViewCreated: Profile wurde geladen $profile")
+
+            if (profile != null) {
+                binding.ivProfilePic.load(profile.profilePicture) {
+                    crossfade(true)
+                    crossfade(500)
+                }
+
+                val firstname = profile.firstName
+                val points = profile.points.toString()
+
+                //---------------LIEFERSTATUS ANIMATION--------------------------
+                setOnlineStatus(binding.onlineStatus, profile.readyForWork)
+
+                //---------------LEVEL ANIMATION--------------------------
+                binding.lvlSymbol.setAnimation(setLottieByLevel(profile.level))
+                binding.lvlSymbol.playAnimation()
+
+                binding.tvWelcome.text = welcomeMessage(firstname)
+                binding.tvPoints.text = points
+
+            }
         }
 
         /*Hier werden dies Tasks Observiert dementsprechend wird die Map initialisiert.
-        * danach wird die ui angepasst und am ende werden die offenen Tasks auf der Karte angezeigt.*/
+* danach wird die ui angepasst und am ende werden die offenen Tasks auf der Karte angezeigt.*/
 
         fireViewModel.tasks.observe(viewLifecycleOwner) { tasks ->
             mapView.getMapAsync { googleMap ->
@@ -165,6 +185,10 @@ class HomeFragment : Fragment() {
                 }
             }
 
+        binding.shopBtn.setOnClickListener {
+            binding.shoppingBags.playAnimation()
+            nav.navigate(HomeFragmentDirections.actionHomeFragmentToMySpaetiFragment())
+        }
 
             //Wenn User Null ist wird er zum WelcomeFragment navigiert.
             fireViewModel.currentUser.observe(viewLifecycleOwner) {
@@ -175,31 +199,7 @@ class HomeFragment : Fragment() {
                     )
             }
 
-            //Profile Daten observieren und bei Änderung TextView aktualisieren
-            fireViewModel.profile.observe(viewLifecycleOwner) { profile ->
 
-                Log.d(TAG, "onViewCreated: Profile wurde geladen $profile")
-
-                if (profile != null) {
-
-                    val firstname = profile.firstName
-                    val points = profile.points.toString()
-
-
-                    binding.ivProfilePic.load(profile.profilePicture)
-
-                    //---------------LIEFERSTATUS ANIMATION--------------------------
-                    setOnlineStatus(binding.onlineStatus, profile.readyForWork)
-
-                    //---------------LEVEL ANIMATION--------------------------
-                    binding.lvlSymbol.setAnimation(setLottieByLevel(profile.level))
-                    binding.lvlSymbol.playAnimation()
-
-                    binding.tvWelcome.text = welcomeMessage(firstname)
-                    binding.tvPoints.text = points
-
-                }
-            }
 
             //Wetter daten observieren und bei Änderung TextView aktualisieren
             viewModel.lastWeather.observe(viewLifecycleOwner) {
@@ -248,5 +248,7 @@ class HomeFragment : Fragment() {
                 }
         }
     }
+
+
 
 

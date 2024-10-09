@@ -66,13 +66,6 @@ class ProfileFragment : Fragment() {
                     Log.d(TAG, "onViewCreated: Cannot set Profil Pic!")
                     e.printStackTrace()
                 }
-
-                binding.tvName.visibility = View.VISIBLE
-                binding.tvRole.visibility = View.VISIBLE
-                binding.lvlSymbol.visibility = View.VISIBLE
-                binding.ivProfilePic.visibility = View.VISIBLE
-                binding.ivAppBar.visibility = View.VISIBLE
-
             }
         }
         viewModel.fetchTasks()

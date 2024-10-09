@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import coil.load
 import com.example.abschlussprojekt.databinding.FragmentProfileSettingsBinding
 import com.example.abschlussprojekt.setProfilePic
@@ -32,6 +33,8 @@ class ProfileSettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val nav = findNavController()
+
         fireViewModel.profile.observe(viewLifecycleOwner) { profile ->
             binding.ivProfilePic.load(profile?.profilePicture)
             binding.etsurName.setText(profile?.surName)
@@ -45,6 +48,7 @@ class ProfileSettingsFragment : Fragment() {
             val birthDate = binding.etBirthDate.text.toString()
             fireViewModel.updateProfile(firstName,surName, birthDate)
             toast("Profile erfolgreich aktualisiert", requireContext())
+            nav.navigateUp()
         }
 
         binding.etBirthDate.setOnClickListener {
