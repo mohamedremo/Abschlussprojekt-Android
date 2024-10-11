@@ -19,8 +19,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.abschlussprojekt.databinding.ActivityMainBinding
+import com.example.abschlussprojekt.ui.Home.viewmodel.HomeViewModel
 import com.example.abschlussprojekt.ui.LoginAndRegister.viewmodel.FirebaseViewModel
-import com.example.abschlussprojekt.ui.MainMenu.viewmodel.WeatherViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private val viewModel: WeatherViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels()
     private val fireViewModel: FirebaseViewModel by viewModels()
 
     //Permission Launcher für den Zugriff auf die Standortberechtigungen
@@ -222,7 +222,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun showSettingsDialog() {
         MaterialAlertDialogBuilder(this).setTitle("Berechtigungen dauerhaft abgelehnt")
-            .setMessage("Die Standortberechtigungen wurden dauerhaft abgelehnt. Du musst sie in den App-Einstellungen manuell aktivieren.")
+            .setMessage(
+                "Die Standortberechtigungen wurden dauerhaft abgelehnt." +
+                        " Du musst sie in den App-Einstellungen manuell aktivieren."
+            )
             .setPositiveButton("Zu den Einstellungen") { _, _ ->
                 // Leite den Benutzer zu den App-Einstellungen
                 val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {

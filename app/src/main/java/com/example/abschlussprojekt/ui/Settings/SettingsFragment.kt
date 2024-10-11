@@ -1,4 +1,4 @@
-package com.example.abschlussprojekt.ui.MainMenu
+package com.example.abschlussprojekt.ui.Settings
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,11 +11,12 @@ import coil.load
 import com.example.abschlussprojekt.databinding.FragmentSettingsBinding
 import com.example.abschlussprojekt.setLottieByLevel
 import com.example.abschlussprojekt.ui.LoginAndRegister.viewmodel.FirebaseViewModel
+import com.example.abschlussprojekt.ui.Settings.viewmodel.SettingsViewModel
 
 class SettingsFragment : Fragment() {
 
     private lateinit var binding: FragmentSettingsBinding
-    private val fireViewModel: FirebaseViewModel by activityViewModels()
+    private val viewModel: SettingsViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,13 +31,12 @@ class SettingsFragment : Fragment() {
 
         val nav = findNavController()
 
-
         binding.logout.setOnClickListener {
-            fireViewModel.logOut()
-            nav.navigate(SettingsFragmentDirections.actionSettingsFragmentToHomeFragment())
+            viewModel.logOut()
+            nav.navigate(SettingsFragmentDirections.actionSettingsFragmentToWelcomeFragment())
         }
 
-        fireViewModel.profile.observe(viewLifecycleOwner) { profile ->
+        viewModel.profile.observe(viewLifecycleOwner) { profile ->
             if (profile != null) {
                 binding.lvlAnimation.setAnimation(setLottieByLevel(profile.level))
                 binding.ivProfilePic.load(profile.profilePicture)

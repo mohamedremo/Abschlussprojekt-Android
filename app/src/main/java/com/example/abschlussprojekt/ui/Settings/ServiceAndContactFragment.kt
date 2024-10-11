@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.abschlussprojekt.databinding.FragmentServiceAndContactBinding
 
+private const val TAG = "ServiceAndContactFragment"
+
 class ServiceAndContactFragment : Fragment() {
 
     private lateinit var binding: FragmentServiceAndContactBinding

@@ -1,13 +1,18 @@
 package com.example.abschlussprojekt
 
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
+import android.content.Intent
 import android.content.res.AssetManager
+import android.net.Uri
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import com.airbnb.lottie.LottieAnimationView
 import com.example.abschlussprojekt.data.model.Profile
 import com.example.abschlussprojekt.data.model.Task
@@ -231,3 +236,13 @@ fun randomCategory(): String {
     )
     return listOfCategories.random()
 }
+
+fun pickImage(activityResultLauncher: ActivityResultLauncher<Intent>) {
+    val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+        addCategory(Intent.CATEGORY_OPENABLE)
+        type = "image/*"
+    }
+    activityResultLauncher.launch(intent)
+}
+
+

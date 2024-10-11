@@ -1,6 +1,7 @@
 package com.example.abschlussprojekt.ui.Task
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +10,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.abschlussprojekt.R
 import com.example.abschlussprojekt.databinding.FragmentCreateTaskBinding
-import com.example.abschlussprojekt.ui.MainMenu.viewmodel.WeatherViewModel
 import com.example.abschlussprojekt.ui.Task.viewmodel.TaskViewModel
 
+private const val TAG = "CreateTaskFragment"
 
 class CreateTaskFragment : Fragment() {
 
@@ -32,20 +33,24 @@ class CreateTaskFragment : Fragment() {
         val nav = findNavController()
 
         binding.etwasAbholen.setOnClickListener {
-            nav.navigate(R.id.action_createTaskFragment_to_createTaskDetailFragment)
             viewModel.setSelectedCategory("Etwas Abholen!")
+            Log.d(TAG, "onViewCreated: ${viewModel.selectedCategory.value}")
+            nav.navigate(R.id.action_createTaskFragment_to_createTaskDetailFragment)
         }
         binding.rent.setOnClickListener {
-            nav.navigate(R.id.action_createTaskFragment_to_createTaskDetailFragment)
             viewModel.setSelectedCategory("Etwas ausleihen!")
+            Log.d(TAG, "onViewCreated: ${viewModel.selectedCategory.value}")
+            nav.navigate(R.id.action_createTaskFragment_to_createTaskDetailFragment)
         }
         binding.wish.setOnClickListener {
-            nav.navigate(R.id.action_createTaskFragment_to_createTaskDetailFragment)
             viewModel.setSelectedCategory("Wunsch!")
+            Log.d(TAG, "onViewCreated: ${viewModel.selectedCategory.value}")
+            nav.navigate(R.id.action_createTaskFragment_to_createTaskDetailFragment)
         }
         binding.handyman.setOnClickListener {
-            nav.navigate(R.id.action_createTaskFragment_to_createTaskDetailFragment)
             viewModel.setSelectedCategory("Handwerker!")
+            Log.d(TAG, "onViewCreated: ${viewModel.selectedCategory.value}")
+            nav.navigate(R.id.action_createTaskFragment_to_createTaskDetailFragment)
         }
 
         binding.backBtn.setOnClickListener {

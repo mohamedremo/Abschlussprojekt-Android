@@ -91,27 +91,25 @@ class CreateTaskDetailFragment : Fragment() {
         val nav = findNavController()
 
         getLastLocation() // Abrufen des Standorts
+        Log.d(TAG, "Aktueller Standort: $currentLocation")
 
         viewModel.selectedCategory.observe(viewLifecycleOwner) { category ->
             binding.tvNewTask.setText(category)
+            Log.d(TAG, "onViewCreated: ()selectedCategory.observe = $category")
         }
 
         // Karte initialisieren
         mapView.getMapAsync { googleMap ->
             if (ActivityCompat.checkSelfPermission(
-                    requireActivity(),
-                    Manifest.permission.ACCESS_FINE_LOCATION
+                    requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
                 // Berechtigung anfordern
                 ActivityCompat.requestPermissions(
-                    requireActivity(),
-                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                    1000
+                    requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1000
                 )
                 return@getMapAsync
             }
-
             googleMap.isMyLocationEnabled = true // Aktivieren der Standortanzeige
         }
 
@@ -131,8 +129,11 @@ class CreateTaskDetailFragment : Fragment() {
 
         binding.where.setOnClickListener {
             cvMapView.visibility = View.VISIBLE
+            Log.d(TAG, "OutsideTouch = View.VISIBLE")
+
             mainLayout.setOnTouchListener { _, event ->
                 if (outsideTouch(mapView, event)) {
+                    Log.d(TAG, "OutsideTouch = View.GONE")
                     cvMapView.visibility = View.GONE
                     true
                 } else {
@@ -142,10 +143,7 @@ class CreateTaskDetailFragment : Fragment() {
         }
 
         binding.createTask.setOnClickListener {
-            if (binding.what.text.isNullOrEmpty() || binding.where.text.isNullOrEmpty()
-                || binding.wheen.text.isNullOrEmpty() || binding.until.text.isNullOrEmpty()
-                || binding.etDescription.text.isNullOrEmpty() || binding.butlePoints.text.isNullOrEmpty()
-            ) {
+            if (binding.what.text.isNullOrEmpty() || binding.where.text.isNullOrEmpty() || binding.wheen.text.isNullOrEmpty() || binding.until.text.isNullOrEmpty() || binding.etDescription.text.isNullOrEmpty() || binding.butlePoints.text.isNullOrEmpty()) {
                 toast("Bitte füllen Sie alle Felder aus", requireContext())
                 return@setOnClickListener
             } else if (binding.butlePoints.text.toString()
@@ -172,8 +170,7 @@ class CreateTaskDetailFragment : Fragment() {
                     viewModel.selectedCategory.value.toString(),
                     points.toInt(),
                     GeoPoint(
-                        currentLocation?.latitude ?: 0.0,
-                        currentLocation?.longitude ?: 0.0
+                        currentLocation?.latitude ?: 0.0, currentLocation?.longitude ?: 0.0
                     ), // GeoPoint aktualisieren
                     false
                 )
@@ -216,11 +213,16 @@ class CreateTaskDetailFragment : Fragment() {
                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation!!, 13f))
                 }
             } else {
-                Log.d(TAG, "Standort konnte nicht abgerufen werden.")
+                Log.d(
+                    TAG,
+                    "getLastLocation() called: Aktueller Standort konnte nicht abgerufen werden."
+                )
             }
         }
             .addOnFailureListener { e ->
-                Log.e(TAG, "Fehler beim Abrufen des Standorts: ${e.message}")
+                Log.e(
+                    TAG, "getLastLocation() called: Fehler beim Abrufen des Standorts: ${e.message}"
+                )
             }
     }
 
@@ -242,25 +244,25 @@ class CreateTaskDetailFragment : Fragment() {
                         mapView.getMapAsync { googleMap ->
                             googleMap.moveCamera(
                                 CameraUpdateFactory.newLatLngZoom(
-                                    currentLocation!!,
-                                    10f
+                                    currentLocation!!, 10f
                                 )
                             )
                         }
-
                         Log.d(
                             TAG,
-                            "Ort gefunden: $locationName, Koordinaten: ${address.latitude}, ${address.longitude}"
+                            "searchLocation() called: Ort gefunden: $locationName, Koordinaten: ${address.latitude}, ${address.longitude}"
                         )
                     } else {
-                        Log.d(TAG, "Ort nicht gefunden.")
+                        Log.d(TAG, "searchLocation() called: Ort nicht gefunden.")
                     }
                 } catch (e: Exception) {
-                    Log.e(TAG, "Fehler bei der Standortsuche: ${e.message}")
+                    Log.e(
+                        TAG, "searchLocation() called: Fehler bei der Standortsuche: ${e.message}"
+                    )
                 }
             }
         } else {
-            Log.e(TAG, "Geocoder nicht verfügbar.")
+            Log.e(TAG, "searchLocation() called: Geocoder nicht verfügbar.")
         }
     }
 
@@ -271,28 +273,24 @@ class CreateTaskDetailFragment : Fragment() {
         binding.until.text?.clear()
         binding.etDescription.text?.clear()
         binding.butlePoints.text?.clear()
+        Log.d(TAG, "clearFields() called")
     }
 
     private fun displayLocations(locations: List<Address>) {
         val adapter = LocationAdapter(locations) { selectedLocation ->
-
             binding.where.setText(selectedLocation.getAddressLine(0))
-
             binding.cvMapView.visibility = View.INVISIBLE
-
             // Optional: Karte zentrieren auf den ausgewählten Standort
             mapView.getMapAsync { googleMap ->
                 googleMap.moveCamera(
                     CameraUpdateFactory.newLatLngZoom(
                         LatLng(
-                            selectedLocation.latitude,
-                            selectedLocation.longitude
+                            selectedLocation.latitude, selectedLocation.longitude
                         ), 13f
                     )
                 )
             }
         }
-
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
     }

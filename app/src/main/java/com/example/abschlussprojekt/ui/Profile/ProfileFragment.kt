@@ -1,4 +1,4 @@
-package com.example.abschlussprojekt.ui.MainMenu
+package com.example.abschlussprojekt.ui.Profile
 
 import android.os.Bundle
 import android.util.Log
@@ -11,15 +11,15 @@ import androidx.navigation.fragment.findNavController
 import coil.load
 import com.example.abschlussprojekt.databinding.FragmentProfileBinding
 import com.example.abschlussprojekt.setLottieByLevel
+import com.example.abschlussprojekt.ui.Home.viewmodel.ProfileViewModel
 import com.example.abschlussprojekt.ui.Task.viewmodel.TaskViewModel
-
 
 private const val TAG = "ProfileFragment"
 
 class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
-    private val viewModel: TaskViewModel by activityViewModels()
+    private val viewModel: ProfileViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -33,9 +33,6 @@ class ProfileFragment : Fragment() {
 
         val nav = findNavController()
 
-
-        viewModel.getMyTasks()
-
         binding.addBtn.setOnClickListener {
             nav.navigate(ProfileFragmentDirections.actionProfileFragmentToCreateTaskFragment())
         }
@@ -43,6 +40,7 @@ class ProfileFragment : Fragment() {
         //Profil Referenz aus dem Firestore wird beobachtet und bei änderungen angezeigt.
         viewModel.profile.observe(viewLifecycleOwner) { profile ->
             profile?.let {
+                Log.d(TAG, "onViewCreated: Profile is $it")
 
                 val firstName = it.firstName
                 val surName = it.surName
@@ -74,6 +72,7 @@ class ProfileFragment : Fragment() {
 
         viewModel.myTasks.observe(viewLifecycleOwner) { task->
             task?.let {
+                Log.d(TAG, "onViewCreated: Actual Task is $it")
                 binding.actualTask.tvDescription.setText(it.description)
                 binding.actualTask.tvTitle.setText(it.taskName)
                 binding.actualTask.tvPoints.setText(it.butlePoints.toString())

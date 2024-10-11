@@ -14,6 +14,7 @@ import com.example.abschlussprojekt.toast
 import com.example.abschlussprojekt.ui.MySpaeti.MySpaetiFragmentDirections
 import com.example.abschlussprojekt.ui.MySpaeti.viewmodel.MySpaetiViewModel
 
+private const val TAG = "MySpaetiAllProductsAdapter"
 
 class MySpaetiAllProductsAdapter(
     private val dataset: List<Product>,

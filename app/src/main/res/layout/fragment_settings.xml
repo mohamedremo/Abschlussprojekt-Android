@@ -5,7 +5,7 @@
     android:id="@+id/settingsFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainMenu.SettingsFragment">
+    tools:context=".ui.Settings.SettingsFragment">
 
     <ScrollView
         android:layout_width="match_parent"

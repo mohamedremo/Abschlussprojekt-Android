@@ -10,7 +10,3 @@ data class Weather(
     val is_day: Int,
 )
 
-data class WeatherResponse(
-    val current_weather: Weather
-)
-

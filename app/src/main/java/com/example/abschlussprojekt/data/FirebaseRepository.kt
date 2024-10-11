@@ -140,7 +140,6 @@ class FirebaseRepository {
             null // Setze den aktuellen Benutzer auf null um den Vorgang zu beenden.
         auth.signOut()
         Log.d(TAG, "logOut Successful")
-
     }
 
     //Passwort vergessen Funktion

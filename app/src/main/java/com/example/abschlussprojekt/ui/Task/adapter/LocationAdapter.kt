@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.abschlussprojekt.databinding.ListSearchLocationBinding
 
+private const val TAG = "LocationAdapter"
+
 class LocationAdapter(
     private val dataset: List<Address>,
     private val onLocationSelected: (Address) -> Unit,

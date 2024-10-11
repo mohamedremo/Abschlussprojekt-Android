@@ -8,6 +8,8 @@ import com.example.abschlussprojekt.data.model.Product
 import com.example.abschlussprojekt.databinding.ListCartProductsBinding
 import com.example.abschlussprojekt.ui.MySpaeti.viewmodel.MySpaetiViewModel
 
+private const val TAG = "MySpaetiCartAdapter"
+
 class MySpaetiCartAdapter(
     private val dataset: MutableMap<Product, Int>,
     private val viewModel: MySpaetiViewModel

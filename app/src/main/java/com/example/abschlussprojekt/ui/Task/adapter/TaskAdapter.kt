@@ -1,15 +1,21 @@
 package com.example.abschlussprojekt.ui.Task.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.abschlussprojekt.calculateDistance
 import com.example.abschlussprojekt.data.model.Task
 import com.example.abschlussprojekt.databinding.ListTaskBinding
+import com.example.abschlussprojekt.ui.Task.LetsButleFragmentDirections
+import com.example.abschlussprojekt.ui.Task.viewmodel.TaskViewModel
 
+private const val TAG = "TaskAdapter"
 
 class TaskAdapter(
     private val dataset: List<Task>,
+    private val viewModel: TaskViewModel
 ) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     inner class TaskViewHolder(val binding: ListTaskBinding) : RecyclerView.ViewHolder(binding.root)
@@ -33,6 +39,14 @@ class TaskAdapter(
         holder.binding.tvTitle.text = item.taskName
         holder.binding.tvPoints.text = item.butlePoints.toString()
         holder.binding.tvDeadline.text = item.expire
+
+        holder.binding.root.setOnClickListener {
+            Log.d(TAG, "onBindViewHolder: ${item.location}")
+            viewModel.setSelectedTask(item)
+            holder.itemView.findNavController().navigate(
+                LetsButleFragmentDirections.actionLetsButleFragmentToTaskFragment()
+            )
+        }
     }
 }
 

@@ -11,6 +11,8 @@ import com.example.abschlussprojekt.databinding.FragmentMySpaetiBinding
 import com.example.abschlussprojekt.ui.MySpaeti.adapter.MySpaetiAllProductsAdapter
 import com.example.abschlussprojekt.ui.MySpaeti.viewmodel.MySpaetiViewModel
 
+private const val TAG = "MySpaetiFragment"
+
 class MySpaetiFragment : Fragment() {
 
     private lateinit var binding: FragmentMySpaetiBinding

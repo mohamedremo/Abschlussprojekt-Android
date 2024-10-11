@@ -1,4 +1,4 @@
-package com.example.abschlussprojekt.ui.MainMenu
+package com.example.abschlussprojekt.ui.Home
 
 import android.Manifest
 import android.app.Activity
@@ -22,8 +22,8 @@ import com.example.abschlussprojekt.displayTasksOnMap
 import com.example.abschlussprojekt.setLottieByLevel
 import com.example.abschlussprojekt.setOnlineStatus
 import com.example.abschlussprojekt.stringToCelsius
-import com.example.abschlussprojekt.ui.LoginAndRegister.viewmodel.FirebaseViewModel
-import com.example.abschlussprojekt.ui.MainMenu.viewmodel.WeatherViewModel
+import com.example.abschlussprojekt.ui.Home.viewmodel.HomeViewModel
+import com.example.abschlussprojekt.ui.Task.viewmodel.TaskViewModel
 import com.example.abschlussprojekt.welcomeMessage
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -32,7 +32,6 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.firestore.GeoPoint
-import kotlinx.coroutines.tasks.await
 
 private const val TAG = "HomeFragment"
 
@@ -41,8 +40,8 @@ class HomeFragment : Fragment() {
     // ViewBinding, ActivityResultLauncher und ViewModel initialisieren
     private lateinit var binding: FragmentHomeBinding
     private lateinit var getContent: ActivityResultLauncher<Intent>
-    private val viewModel: WeatherViewModel by activityViewModels()
-    private val fireViewModel: FirebaseViewModel by activityViewModels()
+    private val viewModel: HomeViewModel by activityViewModels()
+    private val taskViewModel: TaskViewModel by activityViewModels()
     private lateinit var mapView: MapView
     private val fusedLocationClient by lazy {
         LocationServices.getFusedLocationProviderClient(requireActivity())
@@ -65,7 +64,7 @@ class HomeFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         mapView.onStart()
-        fireViewModel.fetchTasks() // Tasks laden
+        viewModel.fetchTasks() // Tasks laden
     }
 
     override fun onResume() {
@@ -106,21 +105,19 @@ class HomeFragment : Fragment() {
             nav.navigate(HomeFragmentDirections.actionHomeFragmentToLetsButleFragment())
         }
 
-       fusedLocationClient.lastLocation.addOnSuccessListener {
-           if (it != null) {
-               myPosition = LatLng(it.latitude, it.longitude)
-               fireViewModel.updateLastLocation(GeoPoint(it.latitude, it.longitude))
-           }
-       }
+        fusedLocationClient.lastLocation.addOnSuccessListener {
+            if (it != null) {
+                myPosition = LatLng(it.latitude, it.longitude)
+                viewModel.updateLastLocation(GeoPoint(it.latitude, it.longitude))
+            }
+        }
 
         // Initialisierung der ActivityResultLauncher
         initContent()
 
 
-
-
         // Profile Daten beobachten und bei Änderung TextView aktualisieren
-        fireViewModel.profile.observe(viewLifecycleOwner) { profile ->
+        viewModel.profile.observe(viewLifecycleOwner) { profile ->
             Log.d(TAG, "onViewCreated: Profile wurde geladen $profile")
 
             if (profile != null) {
@@ -147,7 +144,8 @@ class HomeFragment : Fragment() {
         }
 
         // Tasks beobachten und Map initialisieren
-        fireViewModel.tasks.observe(viewLifecycleOwner) { tasks ->
+        taskViewModel.tasks.observe(viewLifecycleOwner) { tasks ->
+            Log.d(TAG, "onViewCreated: Tasks wurden geladen $tasks")
             mapView.getMapAsync { googleMap ->
                 // Überprüfen der Berechtigungen für den Standort
                 if (ActivityCompat.checkSelfPermission(
@@ -171,7 +169,7 @@ class HomeFragment : Fragment() {
                 googleMap.uiSettings.isMyLocationButtonEnabled = true
 
                 // Überprüfen, ob Tasks nicht leer sind
-                if (tasks.isNotEmpty() && tasks != null ) {
+                if (tasks.isNotEmpty() && tasks != null) {
                     val boundsBuilder = LatLngBounds.Builder()
                     for (task in tasks) {
                         val position = LatLng(task.location.latitude, task.location.longitude)
@@ -185,7 +183,7 @@ class HomeFragment : Fragment() {
 
 
                     // Kamera auf die Bounds der Marker bewegen
-                    googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 0))
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 1))
                 } else {
                     googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(myPosition, 13f))
                     Log.d(TAG, "MapView: Keine Aufgaben gefunden")
@@ -196,11 +194,15 @@ class HomeFragment : Fragment() {
 
                 // Marker-Klick-Listener
                 googleMap.setOnMarkerClickListener { marker ->
-                    val task = tasks?.find { it.taskName == marker.title.toString() }
+                    val task = tasks?.find { task ->
+                        task.taskName == marker.title.toString()
+                    }
                     if (task != null) {
-                        Log.d(TAG, "onViewCreated: Task gefunden: $task")
-                        fireViewModel.setSelectedTask(task)
+                        Log.d(TAG, "Task gefunden: $task")
+                        taskViewModel.setSelectedTask(task)
                         nav.navigate(HomeFragmentDirections.actionHomeFragmentToTaskFragment())
+                    } else {
+                        Log.d(TAG, "Kein Task für den Marker gefunden")
                     }
                     true
                 }
@@ -213,7 +215,7 @@ class HomeFragment : Fragment() {
             }
 
             // Wenn User Null ist, zum WelcomeFragment navigieren
-            fireViewModel.currentUser.observe(viewLifecycleOwner) {
+            viewModel.currentUser.observe(viewLifecycleOwner) {
                 if (it == null)
                     nav.navigate(
                         HomeFragmentDirections
@@ -223,20 +225,24 @@ class HomeFragment : Fragment() {
 
             // Wetterdaten beobachten und bei Änderung TextView aktualisieren
             viewModel.lastWeather.observe(viewLifecycleOwner) {
-                binding.tvWeather.text = stringToCelsius(it.current_weather.temperature.toString())
+                binding.tvWeather.text =
+                    stringToCelsius(it.current_weather.temperature.toString())
             }
 
             // Klick-Listener für Profilbildänderung
             binding.cvProfile.setOnClickListener {
                 pickImage()
+                initContent()
+                Log.d(TAG, "onViewCreated: Profilbild geändert")
+
             }
 
             // MySpaeti Button Klick-Listener
             binding.mySpaetiBtn.setOnClickListener {
-                if (fireViewModel.profile.value?.readyForWork != true) {
-                    fireViewModel.setOnlineStatus(true)
+                if (viewModel.profile.value?.readyForWork != true) {
+                    viewModel.setOnlineStatus(true)
                 } else
-                    fireViewModel.setOnlineStatus(false)
+                    viewModel.setOnlineStatus(false)
             }
 
             // Floating Button Klick-Listener
@@ -245,6 +251,7 @@ class HomeFragment : Fragment() {
             }
         }
     }
+
 
     //--------------------------------------------------------------------
     // Intent zum Foto Picken und dann mit uri hochladen
@@ -263,10 +270,11 @@ class HomeFragment : Fragment() {
                 if (result.resultCode == Activity.RESULT_OK) {
                     val uri: Uri? = result.data?.data
                     if (uri != null) {
+                        Log.d(TAG, "initContent: $uri")
                         binding.ivProfilePic.setImageURI(uri)
-                        fireViewModel.uploadImage(uri)
+                        viewModel.uploadImage(uri)
                     }
                 }
             }
     }
-    }
+}

@@ -25,6 +25,11 @@ class TaskViewModel(application: Application): AndroidViewModel(application) {
     val selectedTask = repository.selectedTask
     val myTasks = repository.myTasks
 
+    init {
+        fetchTasks()
+        getMyTasks()
+    }
+
     private val _selectedAdress = MutableLiveData<Address>()
     val selectedAdress: LiveData<Address>
         get() = _selectedAdress
@@ -61,5 +66,9 @@ class TaskViewModel(application: Application): AndroidViewModel(application) {
 
     fun updateLastLocation(location: GeoPoint) {
         repository.updateLastLocation(location)
+    }
+
+    fun setSelectedTask(task: Task) {
+        repository.setSelectedTask(task)
     }
 }

@@ -20,7 +20,3 @@ data class Profile(
 ) {
     constructor() : this("", "", "", "", false, false, "", "", 0, 0, GeoPoint(53.0793, 8.8017))
 }
-
-data class Profiles(
-    val profiles: List<Profile>,
-)
