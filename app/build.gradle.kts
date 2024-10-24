@@ -112,7 +112,7 @@ dependencies {
     //LOTTIE
     implementation(libs.lottie)
 
-    //WEATHER
+    //Location
     implementation(libs.play.services.location)
 
 }

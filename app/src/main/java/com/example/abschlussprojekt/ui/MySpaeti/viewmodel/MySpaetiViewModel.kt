@@ -80,7 +80,6 @@ class MySpaetiViewModel(application: Application) : AndroidViewModel(application
             currentCart[product] ?: 0 // Wenn kein Eintrag gefunden wird, setze die Menge auf 0
         currentCart[product] = currentCount + 1
         _cart.postValue(currentCart)
-        calculateTotalPrice()
         Log.d(TAG, "Produkt erhöht im Warenkorb: ${product.name}, neue Menge: ${currentCount + 1}")
     }
 
@@ -98,7 +97,6 @@ class MySpaetiViewModel(application: Application) : AndroidViewModel(application
             Log.d(TAG, "Produkt entfernt aus dem Warenkorb: ${product.name}")
         }
         _cart.postValue(currentCart)
-        calculateTotalPrice()
     }
 
     //run ist
@@ -110,7 +108,6 @@ class MySpaetiViewModel(application: Application) : AndroidViewModel(application
                 val currentCart = _cart.value?.toMutableMap() ?: mutableMapOf()
                 currentCart[product] = currentCart.getOrDefault(product, 0) + count
                 _cart.postValue(currentCart) // Aktualisiere den Warenkorb
-                calculateTotalPrice()
                 _productCount.postValue(1) // Setze die LiveData von Count zurück
                 Log.d(TAG, "Produkt hinzugefügt: ${product.name}, Menge: $count")
             } else {
@@ -128,11 +125,10 @@ class MySpaetiViewModel(application: Application) : AndroidViewModel(application
         val currentCart = _cart.value?.toMutableMap() ?: mutableMapOf()
         currentCart[product] = currentCart.getOrDefault(product, 0) + 1
         _cart.postValue(currentCart)
-        calculateTotalPrice()
     }
 
     //Hier wird die Gesamtsummer berechnet und nur Intern benutzt daher private.
-    private fun calculateTotalPrice() {
+    fun calculateTotalPrice() {
         var totalPrice = 0.0
         _cart.value?.forEach { (product, count) ->
             totalPrice += product.price * count
@@ -155,14 +151,12 @@ class MySpaetiViewModel(application: Application) : AndroidViewModel(application
         val currentCart = _cart.value?.toMutableMap() ?: mutableMapOf()
         currentCart.remove(product)
         _cart.postValue(currentCart)
-        calculateTotalPrice()
     }
 
     fun clearCart() {
         _cart.postValue(mutableMapOf())
         _productCount.postValue(1)
         _totalPrice.postValue(0.0)
-        calculateTotalPrice()
         Log.d(TAG, "Der Warenkorb wurde geleert.")
     }
 

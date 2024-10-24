@@ -1,7 +1,5 @@
 package com.example.abschlussprojekt.data.model
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.google.firebase.firestore.GeoPoint
 import kotlin.random.Random
 

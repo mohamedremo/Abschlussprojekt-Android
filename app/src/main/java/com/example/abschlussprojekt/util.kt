@@ -1,18 +1,15 @@
 package com.example.abschlussprojekt
 
-import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.content.res.AssetManager
-import android.net.Uri
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import com.airbnb.lottie.LottieAnimationView
 import com.example.abschlussprojekt.data.model.Profile
 import com.example.abschlussprojekt.data.model.Task

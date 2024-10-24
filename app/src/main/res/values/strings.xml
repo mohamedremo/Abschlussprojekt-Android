@@ -53,5 +53,29 @@
     <string name="_28_c">28°C</string>
     <string name="stk">/ Stk</string>
 
+    <!--FIREBASE STRINGS-->
+    <string name="firebase_repository_tag">FirebaseRepository</string>
+    <string name="register_new_user_success">Registrierung erfolgreich!</string>
+    <string name="register_new_user_failure">Registrierung fehlgeschlagen: %1$s</string>
+    <string name="login_success">Login erfolgreich!</string>
+    <string name="login_failure">Login fehlgeschlagen: %1$s</string>
+    <string name="logout_successful">Erfolgreich abgemeldet!</string>
+    <string name="forgot_password_success">Passwort-Reset-E-Mail wurde gesendet!</string>
+    <string name="forgot_password_failure">Fehler beim Senden der Passwort-Reset-E-Mail: %1$s</string>
+    <string name="profile_upload_success">User Profil wurde erfolgreich hochgeladen</string>
+    <string name="profile_upload_failure">Beim Speichern des User-Profiles ist ein Fehler aufgetreten: %1$s</string>
+    <string name="task_upload_success">Task wurde erfolgreich hochgeladen und angelegt.</string>
+    <string name="task_upload_failure">Beim Speichern des Tasks ist ein Fehler aufgetreten: %1$s</string>
+    <string name="order_upload_success">Order wurde erfolgreich hochgeladen und angelegt.</string>
+    <string name="order_upload_failure">Beim Speichern des Orders ist ein Fehler aufgetreten: %1$s</string>
+    <string name="image_upload_success">Bild wurde erfolgreich auf Firestore hochgeladen</string>
+    <string name="image_upload_failure">Bild konnte nicht hochgeladen werden: %1$s</string>
+    <string name="profile_update_success">Profile erfolgreich aktualisiert</string>
+    <string name="profile_update_failure">Beim Aktualisieren des Profiles ist ein Fehler aufgetreten: %1$s</string>
+    <string name="status_update_success">Status erfolgreich aktualisiert</string>
+    <string name="status_update_failure">Beim Aktualisieren des Status ist ein Fehler aufgetreten: %1$s</string>
+    <string name="location_update_failure">Beim Aktualisieren des letzten Standorts ist ein Fehler aufgetreten: %1$s</string>
+
+
 
 </resources>
