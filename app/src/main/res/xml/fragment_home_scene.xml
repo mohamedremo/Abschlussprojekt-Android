@@ -273,7 +273,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="34dp"
+            android:layout_marginTop="42dp"
             motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintTop_toTopOf="parent" />
         <Constraint
@@ -281,7 +281,7 @@
             android:layout_width="23dp"
             android:layout_height="23dp"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="44dp"
             android:rotation="-360"
             motion:layout_constraintStart_toEndOf="@+id/tvWelcome"
             motion:layout_constraintTop_toTopOf="parent" />
@@ -349,7 +349,7 @@
             android:id="@+id/cvProfile"
             android:layout_width="55dp"
             android:layout_height="53dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="46dp"
             android:layout_marginEnd="12dp"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintTop_toTopOf="parent" />
@@ -415,6 +415,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginStart="16dp"
+            android:visibility="gone"
             android:layout_marginTop="16dp"
             motion:layout_constraintEnd_toStartOf="parent"
             motion:layout_constraintTop_toBottomOf="@+id/cardV" />
@@ -439,6 +440,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginEnd="16dp"
+            android:visibility="gone"
             motion:layout_constraintStart_toEndOf="parent"
             motion:layout_constraintTop_toBottomOf="@+id/cardV" />
         <Constraint
@@ -456,6 +458,29 @@
             android:layout_marginBottom="16dp"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toEndOf="parent" />
+        <Constraint
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            motion:layout_constraintTop_toBottomOf="@+id/mySpaetiBtn"
+            motion:layout_editor_absoluteX="63dp" />
+        <Constraint
+            android:id="@+id/tvShop"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/shopBtn"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/tvButle"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_marginEnd="72dp"
+            motion:layout_constraintTop_toBottomOf="@+id/cardView2" />
     </ConstraintSet>
 
 </MotionScene>

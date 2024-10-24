@@ -65,12 +65,10 @@ class MySpaetiCartFragment : Fragment() {
 
         // Beobachten des Warenkorbs
         viewModel.cart.observe(viewLifecycleOwner) { cart ->
-            // Adapter wird an RecyclerView gebunden
-            viewModel.calculateTotalPrice()
-            binding.recyclerView.adapter = MySpaetiCartAdapter(cart, viewModel)
-            // Preis und Steuern werden formatiert und gesetzt
-            val totalPrice = formatToEuro(viewModel.totalPrice.value)
-            val taxes = formatToEuro(viewModel.totalPrice.value?.times(0.19))
+            viewModel.calculateTotalPrice() //GesamtPreis wird berechnet
+            binding.recyclerView.adapter = MySpaetiCartAdapter(cart, viewModel) // Adapter wird aktualisiert
+            val totalPrice = formatToEuro(viewModel.totalPrice.value) // Preis wird formatiert
+            val taxes = formatToEuro(viewModel.totalPrice.value?.times(0.19)) // Preis mit 19% Steuern wird formatiert
             binding.tvTotalPrice.text = totalPrice
             binding.tvTaxes.text = taxes
             Log.d(TAG, "Warenkorb aktualisiert - Preis: $totalPrice, Steuern: $taxes")
