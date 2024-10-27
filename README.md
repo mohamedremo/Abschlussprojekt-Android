@@ -23,7 +23,6 @@ erleichtern und die Community zu stärken.
 <img src="./img/2.png" width="200">
 <img src="./img/3.png" width="200">
 <img src="./img/4.png" width="200">
-<img src="./img/5.png" width="200">
 
 </p>
 
